@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { type Icon, IconCirclePlus } from "@tabler/icons-react";
+import { usePathname } from "next/navigation";
+import { type Icon } from "@tabler/icons-react";
 
 import {
   SidebarMenu,
@@ -10,7 +11,6 @@ import {
   SidebarMenuButton,
   SidebarGroupContent,
 } from "@/components/ui/sidebar";
-import { Button } from "./ui/button";
 
 export function NavMain({
   items,
@@ -22,6 +22,8 @@ export function NavMain({
     createUrl?: string;
   }[];
 }) {
+  const pathname = usePathname();
+
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -29,21 +31,19 @@ export function NavMain({
           {items.map((item) => (
             <SidebarMenuItem
               key={item.title}
-              className="flex flex-row items-center"
+              className={`rounded-md flex flex-row items-center ${
+                pathname === item.url ? "bg-sidebar-primary" : ""
+              } `}
             >
               <SidebarMenuButton tooltip={item.title} asChild>
-                <Link href={item.url}>
+                <Link
+                  href={item.url}
+                  className="h-10 hover:bg-sidebar-primary/90"
+                >
                   {item.icon && <item.icon />}
-                  <span>{item.title}</span>
+                  <span className="font-semibold">{item.title}</span>
                 </Link>
               </SidebarMenuButton>
-              {item.createUrl && (
-                <Button asChild size={"icon"} variant="ghost">
-                  <Link href={item.createUrl} className="ml-auto">
-                    <IconCirclePlus className="size-5 text-primary" />
-                  </Link>
-                </Button>
-              )}
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
