@@ -1,3 +1,11 @@
+import { redirect } from "next/navigation";
+
+import CustomerForm from "./_components/CustomerForm";
+
 export default function AddCustomerPage() {
-  return <div>Add Customer Page</div>;
+  return (
+    <div>
+      <CustomerForm />
+    </div>
+  );
 }

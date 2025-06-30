@@ -1,0 +1,158 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  // provider = "postgresql"
+  // url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum CompanyType {
+  Seed
+  Bayer
+  Regular
+}
+
+enum CropType {
+  Corn
+  Sorghum
+  Soybean
+  Canola
+  Alfalfa
+  Palletbox
+}
+
+model Dealership {
+  id             Int              @id @default(autoincrement())
+  name           String
+  password       String
+  isDeleted      Boolean          @default(false)
+  Customer       Customer[]
+  ProductCompany ProductCompany[]
+
+  @@map("Dealerships")
+}
+
+model Customer {
+  id            Int             @id @default(autoincrement())
+  name          String
+  street1       String?
+  street2       String?
+  state         String?
+  city          String?
+  zip           String?
+  phone         String?
+  email         String?         @unique
+  isDeleted     Boolean         @default(false)
+  dealershipId  Int
+  Dealership    Dealership      @relation(fields: [dealershipId], references: [id])
+  PurchaseOrder PurchaseOrder[]
+
+  @@map("Customers")
+}
+
+model ProductCompany {
+  id             Int              @id @default(autoincrement())
+  name           String
+  companyType    CompanyType
+  dealershipId   Int
+  isDeleted      Boolean          @default(false)
+  Dealership     Dealership       @relation(fields: [dealershipId], references: [id])
+  SeedProduct    SeedProduct[]
+  BayerProduct   BayerProduct[]
+  RegularProduct RegularProduct[]
+
+  @@map("ProductCompanies")
+}
+
+model BayerProduct {
+  id               Int            @id @default(autoincrement())
+  trait            String
+  variety          String
+  treatment        String
+  seedSize         String
+  packaging        String
+  cropType         CropType
+  productDetail    String
+  dealerPricing    Float
+  endUserPricing   Float
+  agiisId          String
+  sapId            String
+  isDeleted        Boolean        @default(false)
+  productCompanyId Int
+  ProductCompany   ProductCompany @relation(fields: [productCompanyId], references: [id])
+
+  @@unique([trait, variety, treatment, seedSize, cropType, packaging, agiisId, sapId])
+  @@map("BayerProducts")
+}
+
+model SeedProduct {
+  id               Int            @id @default(autoincrement())
+  trait            String
+  variety          String
+  treatment        String
+  seedSize         String
+  packaging        String
+  cropType         CropType
+  dealerPricing    Float
+  endUserPricing   Float
+  isDeleted        Boolean        @default(false)
+  productCompanyId Int
+  ProductCompany   ProductCompany @relation(fields: [productCompanyId], references: [id])
+
+  @@unique([trait, variety, treatment, seedSize, cropType, packaging])
+  @@map("SeedProducts")
+}
+
+model RegularProduct {
+  id               Int            @id @default(autoincrement())
+  product          String
+  type             String?
+  description      String?
+  dealerPricing    Float
+  endUserPricing   Float
+  isDeleted        Boolean        @default(false)
+  productCompanyId Int
+  ProductCompany   ProductCompany @relation(fields: [productCompanyId], references: [id])
+
+  @@map("RegularProducts")
+}
+
+model PurchaseOrder {
+  id                Int                 @id @default(autoincrement())
+  isQuote           Boolean
+  isSimple          Boolean
+  customerId        Int
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  isDeleted         Boolean             @default(false)
+  Customer          Customer            @relation(fields: [customerId], references: [id])
+  PurchaseOrderItem PurchaseOrderItem[]
+
+  @@map("PurchaseOrders")
+}
+
+model PurchaseOrderItem {
+  id               Int           @id @default(autoincrement())
+  puchaseOrderId   Int
+  productCompanyId Int
+  productId        Int
+  quantity         Float
+  note             String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  PurchaseOrder    PurchaseOrder @relation(fields: [puchaseOrderId], references: [id])
+
+  @@unique([productCompanyId, productId])
+  @@map("PurchaseOrderItems")
+}
