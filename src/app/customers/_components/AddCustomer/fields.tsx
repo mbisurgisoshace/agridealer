@@ -2,12 +2,13 @@ import { z } from "zod";
 import { ComponentType } from "react";
 
 import { Input } from "@/components/ui/input";
+import { ControllerRenderProps } from "react-hook-form";
 import { createCustomerSchema } from "@/schemas/customerSchema";
 
 type Field = {
   label: string;
-  component: ComponentType<any>;
   name: keyof z.infer<typeof createCustomerSchema>;
+  component: ComponentType<ControllerRenderProps>;
 };
 
 export const fields: Field[] = [

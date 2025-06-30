@@ -16,9 +16,10 @@ import {
 } from "@/components/ui/table";
 
 import { columns } from "./columns";
+import { CustomerWithPurchaseOrders } from "@/types/customer";
 
 interface CustomerTableProps {
-  data: any[];
+  data: CustomerWithPurchaseOrders[];
 }
 
 export default function CustomersTable({ data }: CustomerTableProps) {

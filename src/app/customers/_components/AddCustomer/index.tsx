@@ -86,7 +86,7 @@ export default function AddCustomer() {
                       <FormControl>
                         <customerFormField.component {...field} />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="font-semibold text-xs" />
                     </FormItem>
                   )}
                 />
