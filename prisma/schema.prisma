@@ -131,6 +131,7 @@ model RegularProduct {
 
 model PurchaseOrder {
   id                Int                 @id @default(autoincrement())
+  purchaseOrderName String?
   isQuote           Boolean
   isSimple          Boolean
   customerId        Int

@@ -350,8 +350,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.10.1
-   * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
+   * Prisma Client JS version: 6.11.0
+   * Query Engine version: 9c30299f5a0ea26a96790e13f796dc6094db3173
    */
   export type PrismaVersion = {
     client: string
@@ -8765,6 +8765,7 @@ export namespace Prisma {
 
   export type PurchaseOrderMinAggregateOutputType = {
     id: number | null
+    purchaseOrderName: string | null
     isQuote: boolean | null
     isSimple: boolean | null
     customerId: number | null
@@ -8775,6 +8776,7 @@ export namespace Prisma {
 
   export type PurchaseOrderMaxAggregateOutputType = {
     id: number | null
+    purchaseOrderName: string | null
     isQuote: boolean | null
     isSimple: boolean | null
     customerId: number | null
@@ -8785,6 +8787,7 @@ export namespace Prisma {
 
   export type PurchaseOrderCountAggregateOutputType = {
     id: number
+    purchaseOrderName: number
     isQuote: number
     isSimple: number
     customerId: number
@@ -8807,6 +8810,7 @@ export namespace Prisma {
 
   export type PurchaseOrderMinAggregateInputType = {
     id?: true
+    purchaseOrderName?: true
     isQuote?: true
     isSimple?: true
     customerId?: true
@@ -8817,6 +8821,7 @@ export namespace Prisma {
 
   export type PurchaseOrderMaxAggregateInputType = {
     id?: true
+    purchaseOrderName?: true
     isQuote?: true
     isSimple?: true
     customerId?: true
@@ -8827,6 +8832,7 @@ export namespace Prisma {
 
   export type PurchaseOrderCountAggregateInputType = {
     id?: true
+    purchaseOrderName?: true
     isQuote?: true
     isSimple?: true
     customerId?: true
@@ -8924,6 +8930,7 @@ export namespace Prisma {
 
   export type PurchaseOrderGroupByOutputType = {
     id: number
+    purchaseOrderName: string | null
     isQuote: boolean
     isSimple: boolean
     customerId: number
@@ -8953,6 +8960,7 @@ export namespace Prisma {
 
   export type PurchaseOrderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    purchaseOrderName?: boolean
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
@@ -8966,6 +8974,7 @@ export namespace Prisma {
 
   export type PurchaseOrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    purchaseOrderName?: boolean
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
@@ -8977,6 +8986,7 @@ export namespace Prisma {
 
   export type PurchaseOrderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    purchaseOrderName?: boolean
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
@@ -8988,6 +8998,7 @@ export namespace Prisma {
 
   export type PurchaseOrderSelectScalar = {
     id?: boolean
+    purchaseOrderName?: boolean
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
@@ -8996,7 +9007,7 @@ export namespace Prisma {
     isDeleted?: boolean
   }
 
-  export type PurchaseOrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "isQuote" | "isSimple" | "customerId" | "createdAt" | "updatedAt" | "isDeleted", ExtArgs["result"]["purchaseOrder"]>
+  export type PurchaseOrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "purchaseOrderName" | "isQuote" | "isSimple" | "customerId" | "createdAt" | "updatedAt" | "isDeleted", ExtArgs["result"]["purchaseOrder"]>
   export type PurchaseOrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Customer?: boolean | CustomerDefaultArgs<ExtArgs>
     PurchaseOrderItem?: boolean | PurchaseOrder$PurchaseOrderItemArgs<ExtArgs>
@@ -9017,6 +9028,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      purchaseOrderName: string | null
       isQuote: boolean
       isSimple: boolean
       customerId: number
@@ -9449,6 +9461,7 @@ export namespace Prisma {
    */
   interface PurchaseOrderFieldRefs {
     readonly id: FieldRef<"PurchaseOrder", 'Int'>
+    readonly purchaseOrderName: FieldRef<"PurchaseOrder", 'String'>
     readonly isQuote: FieldRef<"PurchaseOrder", 'Boolean'>
     readonly isSimple: FieldRef<"PurchaseOrder", 'Boolean'>
     readonly customerId: FieldRef<"PurchaseOrder", 'Int'>
@@ -11145,6 +11158,7 @@ export namespace Prisma {
 
   export const PurchaseOrderScalarFieldEnum: {
     id: 'id',
+    purchaseOrderName: 'purchaseOrderName',
     isQuote: 'isQuote',
     isSimple: 'isSimple',
     customerId: 'customerId',
@@ -11772,6 +11786,7 @@ export namespace Prisma {
     OR?: PurchaseOrderWhereInput[]
     NOT?: PurchaseOrderWhereInput | PurchaseOrderWhereInput[]
     id?: IntFilter<"PurchaseOrder"> | number
+    purchaseOrderName?: StringNullableFilter<"PurchaseOrder"> | string | null
     isQuote?: BoolFilter<"PurchaseOrder"> | boolean
     isSimple?: BoolFilter<"PurchaseOrder"> | boolean
     customerId?: IntFilter<"PurchaseOrder"> | number
@@ -11784,6 +11799,7 @@ export namespace Prisma {
 
   export type PurchaseOrderOrderByWithRelationInput = {
     id?: SortOrder
+    purchaseOrderName?: SortOrderInput | SortOrder
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
@@ -11799,6 +11815,7 @@ export namespace Prisma {
     AND?: PurchaseOrderWhereInput | PurchaseOrderWhereInput[]
     OR?: PurchaseOrderWhereInput[]
     NOT?: PurchaseOrderWhereInput | PurchaseOrderWhereInput[]
+    purchaseOrderName?: StringNullableFilter<"PurchaseOrder"> | string | null
     isQuote?: BoolFilter<"PurchaseOrder"> | boolean
     isSimple?: BoolFilter<"PurchaseOrder"> | boolean
     customerId?: IntFilter<"PurchaseOrder"> | number
@@ -11811,6 +11828,7 @@ export namespace Prisma {
 
   export type PurchaseOrderOrderByWithAggregationInput = {
     id?: SortOrder
+    purchaseOrderName?: SortOrderInput | SortOrder
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
@@ -11829,6 +11847,7 @@ export namespace Prisma {
     OR?: PurchaseOrderScalarWhereWithAggregatesInput[]
     NOT?: PurchaseOrderScalarWhereWithAggregatesInput | PurchaseOrderScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"PurchaseOrder"> | number
+    purchaseOrderName?: StringNullableWithAggregatesFilter<"PurchaseOrder"> | string | null
     isQuote?: BoolWithAggregatesFilter<"PurchaseOrder"> | boolean
     isSimple?: BoolWithAggregatesFilter<"PurchaseOrder"> | boolean
     customerId?: IntWithAggregatesFilter<"PurchaseOrder"> | number
@@ -12409,6 +12428,7 @@ export namespace Prisma {
   }
 
   export type PurchaseOrderCreateInput = {
+    purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
     createdAt?: Date | string
@@ -12420,6 +12440,7 @@ export namespace Prisma {
 
   export type PurchaseOrderUncheckedCreateInput = {
     id?: number
+    purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
     customerId: number
@@ -12430,6 +12451,7 @@ export namespace Prisma {
   }
 
   export type PurchaseOrderUpdateInput = {
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12441,6 +12463,7 @@ export namespace Prisma {
 
   export type PurchaseOrderUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     customerId?: IntFieldUpdateOperationsInput | number
@@ -12452,6 +12475,7 @@ export namespace Prisma {
 
   export type PurchaseOrderCreateManyInput = {
     id?: number
+    purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
     customerId: number
@@ -12461,6 +12485,7 @@ export namespace Prisma {
   }
 
   export type PurchaseOrderUpdateManyMutationInput = {
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12470,6 +12495,7 @@ export namespace Prisma {
 
   export type PurchaseOrderUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     customerId?: IntFieldUpdateOperationsInput | number
@@ -13124,6 +13150,7 @@ export namespace Prisma {
 
   export type PurchaseOrderCountOrderByAggregateInput = {
     id?: SortOrder
+    purchaseOrderName?: SortOrder
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
@@ -13139,6 +13166,7 @@ export namespace Prisma {
 
   export type PurchaseOrderMaxOrderByAggregateInput = {
     id?: SortOrder
+    purchaseOrderName?: SortOrder
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
@@ -13149,6 +13177,7 @@ export namespace Prisma {
 
   export type PurchaseOrderMinOrderByAggregateInput = {
     id?: SortOrder
+    purchaseOrderName?: SortOrder
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
@@ -14013,6 +14042,7 @@ export namespace Prisma {
   }
 
   export type PurchaseOrderCreateWithoutCustomerInput = {
+    purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
     createdAt?: Date | string
@@ -14023,6 +14053,7 @@ export namespace Prisma {
 
   export type PurchaseOrderUncheckedCreateWithoutCustomerInput = {
     id?: number
+    purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
     createdAt?: Date | string
@@ -14088,6 +14119,7 @@ export namespace Prisma {
     OR?: PurchaseOrderScalarWhereInput[]
     NOT?: PurchaseOrderScalarWhereInput | PurchaseOrderScalarWhereInput[]
     id?: IntFilter<"PurchaseOrder"> | number
+    purchaseOrderName?: StringNullableFilter<"PurchaseOrder"> | string | null
     isQuote?: BoolFilter<"PurchaseOrder"> | boolean
     isSimple?: BoolFilter<"PurchaseOrder"> | boolean
     customerId?: IntFilter<"PurchaseOrder"> | number
@@ -14638,6 +14670,7 @@ export namespace Prisma {
   }
 
   export type PurchaseOrderCreateWithoutPurchaseOrderItemInput = {
+    purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
     createdAt?: Date | string
@@ -14648,6 +14681,7 @@ export namespace Prisma {
 
   export type PurchaseOrderUncheckedCreateWithoutPurchaseOrderItemInput = {
     id?: number
+    purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
     customerId: number
@@ -14673,6 +14707,7 @@ export namespace Prisma {
   }
 
   export type PurchaseOrderUpdateWithoutPurchaseOrderItemInput = {
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14683,6 +14718,7 @@ export namespace Prisma {
 
   export type PurchaseOrderUncheckedUpdateWithoutPurchaseOrderItemInput = {
     id?: IntFieldUpdateOperationsInput | number
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     customerId?: IntFieldUpdateOperationsInput | number
@@ -14779,6 +14815,7 @@ export namespace Prisma {
 
   export type PurchaseOrderCreateManyCustomerInput = {
     id?: number
+    purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
     createdAt?: Date | string
@@ -14787,6 +14824,7 @@ export namespace Prisma {
   }
 
   export type PurchaseOrderUpdateWithoutCustomerInput = {
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14797,6 +14835,7 @@ export namespace Prisma {
 
   export type PurchaseOrderUncheckedUpdateWithoutCustomerInput = {
     id?: IntFieldUpdateOperationsInput | number
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14807,6 +14846,7 @@ export namespace Prisma {
 
   export type PurchaseOrderUncheckedUpdateManyWithoutCustomerInput = {
     id?: IntFieldUpdateOperationsInput | number
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
