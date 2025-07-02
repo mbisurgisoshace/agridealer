@@ -7,11 +7,17 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Command, CommandInput, CommandItem, CommandList } from "./ui/command";
 
 interface ComboboxProps {
+  value: string | number;
+  onValueChange: (value: string) => void;
   options: { value: string; label: string }[];
 }
 
-export default function Combobox({ options }: ComboboxProps) {
-  const [value, setValue] = useState("");
+export default function Combobox({
+  value,
+  options,
+  onValueChange,
+}: ComboboxProps) {
+  // const [innerValue, setValue] = useState("");
   const [open, setOpen] = useState(false);
 
   return (
@@ -38,7 +44,7 @@ export default function Combobox({ options }: ComboboxProps) {
                 key={option.value}
                 value={option.value.toString()}
                 onSelect={(currentValue) => {
-                  setValue(currentValue === value ? "" : currentValue);
+                  onValueChange(currentValue === value ? "" : currentValue);
                   setOpen(false);
                 }}
               >

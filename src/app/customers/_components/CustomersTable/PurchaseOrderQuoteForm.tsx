@@ -45,10 +45,13 @@ export default function PurchaseOrderQuoteForm({
     defaultValues: {
       pruchaseOrderName: "",
       isSimple: true,
+      items: [],
     },
   });
 
   async function onSubmit(values: z.infer<typeof createPurchaseOrderSchema>) {
+    console.log("values", values);
+
     if (step === 0) return setStep((currStep) => currStep + 1);
 
     try {
@@ -71,7 +74,7 @@ export default function PurchaseOrderQuoteForm({
             {title}
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[760px]">
+        <DialogContent className="sm:max-w-[1060px]">
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <DialogHeader>
               <DialogTitle>{titleText}</DialogTitle>
@@ -135,7 +138,7 @@ export default function PurchaseOrderQuoteForm({
                 />
               </div>
             ) : (
-              <SelectProductsTable />
+              <SelectProductsTable form={form} />
             )}
             <DialogFooter>
               <DialogClose asChild>
