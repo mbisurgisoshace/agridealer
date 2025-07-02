@@ -31,6 +31,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import SelectProductsTable from "@/components/SelectProductsTable/SelectProductsTable";
 
 interface PurchaseOrderQuoteFormProps {
   title: string;
@@ -134,7 +135,7 @@ export default function PurchaseOrderQuoteForm({
                 />
               </div>
             ) : (
-              <div>Select products</div>
+              <SelectProductsTable />
             )}
             <DialogFooter>
               <DialogClose asChild>
