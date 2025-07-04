@@ -12,7 +12,7 @@ export default function ColumnHeader({ title }: ColumnHeaderProps) {
   );
 }
 
-export const columns = [
+export const seedProductColumns = [
   {
     key: "traits",
     title: "Traits",
@@ -32,6 +32,25 @@ export const columns = [
   {
     key: "packaging",
     title: "Packaging",
+  },
+  {
+    key: "quantityAndMsrp",
+    title: "Quantity and MSRP",
+  },
+];
+
+export const regularProductColumns = [
+  {
+    key: "product",
+    title: "Product",
+  },
+  {
+    key: "type",
+    title: "Type",
+  },
+  {
+    key: "description",
+    title: "Description",
   },
   {
     key: "quantityAndMsrp",

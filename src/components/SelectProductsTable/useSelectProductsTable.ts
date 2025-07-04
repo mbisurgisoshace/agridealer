@@ -1,13 +1,22 @@
 import { useEffect, useState } from "react";
+
 import {
-  CompanyType,
   CropType,
+  CompanyType,
+  SeedProduct,
+  BayerProduct,
+  RegularProduct,
   ProductCompany,
 } from "../../../generated/prisma";
-
+import { getProducts } from "@/services/Products";
 import { getCompanies } from "@/services/Companies";
 
+export type Regular = RegularProduct;
+export type Seed = BayerProduct | SeedProduct;
+export type Product = Seed | Regular;
+
 export default function useSelectProductsTable() {
+  const [products, setProducts] = useState<Product[]>([]);
   const [companies, setCompanies] = useState<ProductCompany[]>([]);
   const [selectedCropType, setSelectedCropType] = useState<CropType>();
   const [selectedCompany, setSelectedCompany] = useState<ProductCompany>();
@@ -17,15 +26,25 @@ export default function useSelectProductsTable() {
     setCompanies(companies);
   }
 
+  async function fetchProducts(companyType: CompanyType) {
+    const products = await getProducts(companyType);
+    setProducts(products);
+  }
+
   useEffect(() => {
     fetchCompanies();
   }, []);
 
-  const selectCompany = (companyId: string) => {
-    setSelectedCropType(undefined);
-    setSelectedCompany(
-      companies.find((company) => company.id.toString() === companyId)
+  const selectCompany = async (companyId: string) => {
+    const company = companies.find(
+      (company) => company.id.toString() === companyId
     );
+
+    if (company) {
+      setSelectedCompany(company);
+      setSelectedCropType(undefined);
+      await fetchProducts(company.companyType);
+    }
   };
 
   const selectCropType = (cropType: string) => {
@@ -51,6 +70,7 @@ export default function useSelectProductsTable() {
   };
 
   return {
+    products,
     selectCompany,
     selectCropType,
     selectedCompany,

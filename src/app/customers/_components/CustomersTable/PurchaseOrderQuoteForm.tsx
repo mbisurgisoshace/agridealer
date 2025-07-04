@@ -3,17 +3,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import {
-  Dialog,
-  DialogTitle,
-  DialogHeader,
-  DialogContent,
-  DialogTrigger,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-
-import { createPurchaseOrderSchema } from "@/schemas/purchaseOrderSchema";
+  Card,
+  CardTitle,
+  CardHeader,
+  CardDescription,
+} from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -22,16 +16,20 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import SelectProductsTable from "@/components/SelectProductsTable/SelectProductsTable";
+  Dialog,
+  DialogClose,
+  DialogTitle,
+  DialogHeader,
+  DialogFooter,
+  DialogTrigger,
+  DialogContent,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import SelectProductsTable from "@/components/SelectProductsTable";
+
+import { createPurchaseOrderSchema } from "@/schemas/purchaseOrderSchema";
 
 interface PurchaseOrderQuoteFormProps {
   title: string;
@@ -55,7 +53,9 @@ export default function PurchaseOrderQuoteForm({
     if (step === 0) return setStep((currStep) => currStep + 1);
 
     try {
-    } catch (error) {}
+    } catch (error) {
+      console.log("Error submitting purchase order:", error);
+    }
   }
 
   const submitText = step === 0 ? "Proceed" : "Submit";

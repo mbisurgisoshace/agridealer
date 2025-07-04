@@ -11,8 +11,6 @@ interface PurchaseOrdersProps {
 export default function PurchaseOrders({
   purchaseOrders,
 }: PurchaseOrdersProps) {
-  console.log("Rendering PurchaseOrders with:", purchaseOrders);
-
   return (
     <div className="flex flex-col">
       {purchaseOrders.map((po) => (
