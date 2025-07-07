@@ -1,6 +1,8 @@
 import { z } from "zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
   Card,
@@ -27,32 +29,41 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { createOrder } from "@/services/Orders";
 import SelectProductsTable from "@/components/SelectProductsTable";
 
 import { createPurchaseOrderSchema } from "@/schemas/purchaseOrderSchema";
 
 interface PurchaseOrderQuoteFormProps {
   title: string;
+  isQuote: boolean;
+  customerId: number;
 }
 
 export default function PurchaseOrderQuoteForm({
   title,
+  isQuote,
+  customerId,
 }: PurchaseOrderQuoteFormProps) {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const form = useForm<z.infer<typeof createPurchaseOrderSchema>>({
+    resolver: zodResolver(createPurchaseOrderSchema),
     defaultValues: {
-      pruchaseOrderName: "",
+      isQuote,
+      purchaseOrderName: "",
       isSimple: true,
+      orderDate: new Date(),
       items: [],
     },
   });
 
   async function onSubmit(values: z.infer<typeof createPurchaseOrderSchema>) {
-    console.log("values", values);
-
     if (step === 0) return setStep((currStep) => currStep + 1);
 
     try {
+      const newOrderId = await createOrder(customerId, values);
+      router.push(`/customers/${customerId}/orders/${newOrderId}`);
     } catch (error) {
       console.log("Error submitting purchase order:", error);
     }
@@ -83,8 +94,8 @@ export default function PurchaseOrderQuoteForm({
               <div className="space-y-4">
                 <FormField
                   control={form.control}
-                  key={"pruchaseOrderName"}
-                  name={"pruchaseOrderName"}
+                  key={"purchaseOrderName"}
+                  name={"purchaseOrderName"}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Name</FormLabel>
@@ -144,7 +155,16 @@ export default function PurchaseOrderQuoteForm({
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
-              <Button type="submit">{submitText}</Button>
+              <Button
+                type={step === 0 ? "button" : "submit"}
+                onClick={() => {
+                  if (step === 0) {
+                    setStep((currStep) => currStep + 1);
+                  }
+                }}
+              >
+                {submitText}
+              </Button>
             </DialogFooter>
           </form>
         </DialogContent>

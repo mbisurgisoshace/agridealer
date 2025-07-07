@@ -18,19 +18,34 @@ import useRegularProductFiltering from "./Filters/useRegularProductFiltering";
 
 interface RegularProductsTableProps {
   products: Product[];
+  onAddProduct: (product: Product, quantity: number) => void;
 }
 
 export default function RegularProductsTable({
   products,
+  onAddProduct,
 }: RegularProductsTableProps) {
-  const { filters, selectedProduct, filteringOptions, onFilterValueChange } =
-    useRegularProductFiltering(products as Regular[]);
+  const {
+    reset,
+    filters,
+    selectedProduct,
+    filteringOptions,
+    onFilterValueChange,
+  } = useRegularProductFiltering(products as Regular[]);
 
   const [quantity, setQuantity] = useState<number>(0);
 
   useEffect(() => {
     if (!selectedProduct) setQuantity(0);
   }, [selectedProduct]);
+
+  const onSelectProduct = () => {
+    if (!selectedProduct) return;
+    if (quantity <= 0) return;
+
+    onAddProduct(selectedProduct, quantity);
+    reset();
+  };
 
   return (
     <Table>
@@ -84,7 +99,11 @@ export default function RegularProductsTable({
       <TableFooter>
         <TableRow>
           <TableCell className="flex">
-            <Button variant={"outline"} className="ml-auto">
+            <Button
+              variant={"outline"}
+              className="ml-auto"
+              onClick={onSelectProduct}
+            >
               Select
             </Button>
           </TableCell>

@@ -20,20 +20,35 @@ import useSeedProductFiltering from "./Filters/useSeedProductFiltering";
 interface SeedProductsTableProps {
   products: Product[];
   cropType?: CropType;
+  onAddProduct: (product: Product, quantity: number) => void;
 }
 
 export default function SeedProductsTable({
   cropType,
   products,
+  onAddProduct,
 }: SeedProductsTableProps) {
-  const { filters, selectedProduct, filteringOptions, onFilterValueChange } =
-    useSeedProductFiltering(products as Seed[], cropType);
+  const {
+    reset,
+    filters,
+    selectedProduct,
+    filteringOptions,
+    onFilterValueChange,
+  } = useSeedProductFiltering(products as Seed[], cropType);
 
   const [quantity, setQuantity] = useState<number>(0);
 
   useEffect(() => {
     if (!selectedProduct) setQuantity(0);
   }, [selectedProduct]);
+
+  const onSelectProduct = () => {
+    if (!selectedProduct) return;
+    if (quantity <= 0) return;
+
+    onAddProduct(selectedProduct, quantity);
+    reset();
+  };
 
   return (
     <Table>
@@ -99,7 +114,11 @@ export default function SeedProductsTable({
       <TableFooter>
         <TableRow>
           <TableCell className="flex">
-            <Button variant={"outline"} className="ml-auto">
+            <Button
+              variant={"outline"}
+              className="ml-auto"
+              onClick={onSelectProduct}
+            >
               Select
             </Button>
           </TableCell>

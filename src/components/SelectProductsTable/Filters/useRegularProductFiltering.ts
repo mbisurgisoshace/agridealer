@@ -41,6 +41,15 @@ export default function useRegularProductFiltering(products: Product[]) {
     updateFilteringOptions(filters);
   }, [filters]);
 
+  const reset = () => {
+    setFilteringOptions({
+      product: getDistinctProductsColumnValues(products, "product"),
+      type: [],
+      description: [],
+    });
+    setFilters(initialFilters);
+  };
+
   const onFilterValueChange = (key: keyof RegularFilter, value: string) => {
     setFilters((prevFilter) => {
       let resettedFilters = { ...prevFilter };
@@ -104,6 +113,7 @@ export default function useRegularProductFiltering(products: Product[]) {
   };
 
   return {
+    reset,
     filters,
     products,
     filteringOptions,

@@ -62,6 +62,23 @@ export default function useSeedProductFiltering(
     updateFilteringOptions(filters);
   }, [filters]);
 
+  const reset = () => {
+    setFilteringOptions({
+      trait: getDistinctProductsColumnValues(
+        products.filter((product) => product.cropType === cropType),
+        "trait"
+      ),
+      variety: getDistinctProductsColumnValues(
+        products.filter((product) => product.cropType === cropType),
+        "variety"
+      ),
+      seedSize: [],
+      treatment: [],
+      packaging: [],
+    });
+    setFilters(initialFilters);
+  };
+
   const onFilterValueChange = (key: keyof SeedFilter, value: string) => {
     setFilters((prevFilter) => {
       let resettedFilters = { ...prevFilter };
@@ -263,6 +280,7 @@ export default function useSeedProductFiltering(
   };
 
   return {
+    reset,
     filters,
     products,
     filteringOptions,

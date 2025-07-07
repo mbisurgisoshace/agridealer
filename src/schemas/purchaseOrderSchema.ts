@@ -8,7 +8,11 @@ export const createPurchaseOrderItemSchema = z.object({
 });
 
 export const createPurchaseOrderSchema = z.object({
-  pruchaseOrderName: z.string().optional(),
-  isSimple: z.boolean().default(false),
-  items: z.array(createPurchaseOrderItemSchema),
+  orderDate: z.date(),
+  isQuote: z.boolean(),
+  isSimple: z.boolean(),
+  purchaseOrderName: z.string().optional(),
+  items: z
+    .array(createPurchaseOrderItemSchema)
+    .min(1, "At least one item is required"),
 });

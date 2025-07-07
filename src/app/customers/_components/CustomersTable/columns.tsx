@@ -1,9 +1,10 @@
 import { ColumnDef } from "@tanstack/react-table";
+
 import { CustomerWithPurchaseOrders } from "@/types/customer";
+
+import OrdersCell from "./OrderCell";
 import CreateQuote from "./CreateQuote";
 import CreatePurchaseOrder from "./CreatePurchaseOrder";
-import PurchaseOrders from "./PurchaseOrders";
-import Quotes from "./Quotes";
 
 export const columns: ColumnDef<CustomerWithPurchaseOrders>[] = [
   {
@@ -16,7 +17,11 @@ export const columns: ColumnDef<CustomerWithPurchaseOrders>[] = [
     cell: ({ row }) => {
       const quotes = row.original.PurchaseOrder.filter((po) => po.isQuote);
 
-      return quotes.length > 0 ? <Quotes quotes={quotes} /> : <CreateQuote />;
+      return quotes.length > 0 ? (
+        <OrdersCell orders={quotes} />
+      ) : (
+        <CreateQuote customerId={row.original.id} />
+      );
     },
   },
   {
@@ -28,9 +33,9 @@ export const columns: ColumnDef<CustomerWithPurchaseOrders>[] = [
       );
 
       return purchaseOrders.length > 0 ? (
-        <PurchaseOrders purchaseOrders={purchaseOrders} />
+        <OrdersCell orders={purchaseOrders} />
       ) : (
-        <CreatePurchaseOrder />
+        <CreatePurchaseOrder customerId={row.original.id} />
       );
     },
   },

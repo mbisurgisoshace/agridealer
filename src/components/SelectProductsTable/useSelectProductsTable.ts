@@ -8,8 +8,9 @@ import {
   RegularProduct,
   ProductCompany,
 } from "../../../generated/prisma";
-import { getProducts } from "@/services/Products";
+import { getAllProducts, getProducts } from "@/services/Products";
 import { getCompanies } from "@/services/Companies";
+import { ProductView } from "@/types/products";
 
 export type Regular = RegularProduct;
 export type Seed = BayerProduct | SeedProduct;
@@ -18,6 +19,7 @@ export type Product = Seed | Regular;
 export default function useSelectProductsTable() {
   const [products, setProducts] = useState<Product[]>([]);
   const [companies, setCompanies] = useState<ProductCompany[]>([]);
+  const [allProducts, setAllProducts] = useState<ProductView[]>([]);
   const [selectedCropType, setSelectedCropType] = useState<CropType>();
   const [selectedCompany, setSelectedCompany] = useState<ProductCompany>();
 
@@ -31,8 +33,14 @@ export default function useSelectProductsTable() {
     setProducts(products);
   }
 
+  async function fetchAllProducts() {
+    const allProducts = await getAllProducts();
+    setAllProducts(allProducts);
+  }
+
   useEffect(() => {
     fetchCompanies();
+    fetchAllProducts();
   }, []);
 
   const selectCompany = async (companyId: string) => {
@@ -45,6 +53,12 @@ export default function useSelectProductsTable() {
       setSelectedCropType(undefined);
       await fetchProducts(company.companyType);
     }
+  };
+
+  const unselectCompany = () => {
+    setProducts([]);
+    setSelectedCompany(undefined);
+    setSelectedCropType(undefined);
   };
 
   const selectCropType = (cropType: string) => {
@@ -71,8 +85,10 @@ export default function useSelectProductsTable() {
 
   return {
     products,
+    allProducts,
     selectCompany,
     selectCropType,
+    unselectCompany,
     selectedCompany,
     selectedCropType,
     companies: companies.map((company) => ({

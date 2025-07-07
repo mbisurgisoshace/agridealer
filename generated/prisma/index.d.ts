@@ -350,8 +350,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.11.0
-   * Query Engine version: 9c30299f5a0ea26a96790e13f796dc6094db3173
+   * Prisma Client JS version: 6.11.1
+   * Query Engine version: f40f79ec31188888a2e33acda0ecc8fd10a853a9
    */
   export type PrismaVersion = {
     client: string
@@ -8769,6 +8769,7 @@ export namespace Prisma {
     isQuote: boolean | null
     isSimple: boolean | null
     customerId: number | null
+    orderDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     isDeleted: boolean | null
@@ -8780,6 +8781,7 @@ export namespace Prisma {
     isQuote: boolean | null
     isSimple: boolean | null
     customerId: number | null
+    orderDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     isDeleted: boolean | null
@@ -8791,6 +8793,7 @@ export namespace Prisma {
     isQuote: number
     isSimple: number
     customerId: number
+    orderDate: number
     createdAt: number
     updatedAt: number
     isDeleted: number
@@ -8814,6 +8817,7 @@ export namespace Prisma {
     isQuote?: true
     isSimple?: true
     customerId?: true
+    orderDate?: true
     createdAt?: true
     updatedAt?: true
     isDeleted?: true
@@ -8825,6 +8829,7 @@ export namespace Prisma {
     isQuote?: true
     isSimple?: true
     customerId?: true
+    orderDate?: true
     createdAt?: true
     updatedAt?: true
     isDeleted?: true
@@ -8836,6 +8841,7 @@ export namespace Prisma {
     isQuote?: true
     isSimple?: true
     customerId?: true
+    orderDate?: true
     createdAt?: true
     updatedAt?: true
     isDeleted?: true
@@ -8934,6 +8940,7 @@ export namespace Prisma {
     isQuote: boolean
     isSimple: boolean
     customerId: number
+    orderDate: Date
     createdAt: Date
     updatedAt: Date
     isDeleted: boolean
@@ -8964,6 +8971,7 @@ export namespace Prisma {
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
+    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
@@ -8978,6 +8986,7 @@ export namespace Prisma {
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
+    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
@@ -8990,6 +8999,7 @@ export namespace Prisma {
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
+    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
@@ -9002,12 +9012,13 @@ export namespace Prisma {
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
+    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
   }
 
-  export type PurchaseOrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "purchaseOrderName" | "isQuote" | "isSimple" | "customerId" | "createdAt" | "updatedAt" | "isDeleted", ExtArgs["result"]["purchaseOrder"]>
+  export type PurchaseOrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "purchaseOrderName" | "isQuote" | "isSimple" | "customerId" | "orderDate" | "createdAt" | "updatedAt" | "isDeleted", ExtArgs["result"]["purchaseOrder"]>
   export type PurchaseOrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Customer?: boolean | CustomerDefaultArgs<ExtArgs>
     PurchaseOrderItem?: boolean | PurchaseOrder$PurchaseOrderItemArgs<ExtArgs>
@@ -9032,6 +9043,7 @@ export namespace Prisma {
       isQuote: boolean
       isSimple: boolean
       customerId: number
+      orderDate: Date
       createdAt: Date
       updatedAt: Date
       isDeleted: boolean
@@ -9465,6 +9477,7 @@ export namespace Prisma {
     readonly isQuote: FieldRef<"PurchaseOrder", 'Boolean'>
     readonly isSimple: FieldRef<"PurchaseOrder", 'Boolean'>
     readonly customerId: FieldRef<"PurchaseOrder", 'Int'>
+    readonly orderDate: FieldRef<"PurchaseOrder", 'DateTime'>
     readonly createdAt: FieldRef<"PurchaseOrder", 'DateTime'>
     readonly updatedAt: FieldRef<"PurchaseOrder", 'DateTime'>
     readonly isDeleted: FieldRef<"PurchaseOrder", 'Boolean'>
@@ -11162,6 +11175,7 @@ export namespace Prisma {
     isQuote: 'isQuote',
     isSimple: 'isSimple',
     customerId: 'customerId',
+    orderDate: 'orderDate',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     isDeleted: 'isDeleted'
@@ -11790,6 +11804,7 @@ export namespace Prisma {
     isQuote?: BoolFilter<"PurchaseOrder"> | boolean
     isSimple?: BoolFilter<"PurchaseOrder"> | boolean
     customerId?: IntFilter<"PurchaseOrder"> | number
+    orderDate?: DateTimeFilter<"PurchaseOrder"> | Date | string
     createdAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
     updatedAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
     isDeleted?: BoolFilter<"PurchaseOrder"> | boolean
@@ -11803,6 +11818,7 @@ export namespace Prisma {
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
+    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
@@ -11819,6 +11835,7 @@ export namespace Prisma {
     isQuote?: BoolFilter<"PurchaseOrder"> | boolean
     isSimple?: BoolFilter<"PurchaseOrder"> | boolean
     customerId?: IntFilter<"PurchaseOrder"> | number
+    orderDate?: DateTimeFilter<"PurchaseOrder"> | Date | string
     createdAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
     updatedAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
     isDeleted?: BoolFilter<"PurchaseOrder"> | boolean
@@ -11832,6 +11849,7 @@ export namespace Prisma {
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
+    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
@@ -11851,6 +11869,7 @@ export namespace Prisma {
     isQuote?: BoolWithAggregatesFilter<"PurchaseOrder"> | boolean
     isSimple?: BoolWithAggregatesFilter<"PurchaseOrder"> | boolean
     customerId?: IntWithAggregatesFilter<"PurchaseOrder"> | number
+    orderDate?: DateTimeWithAggregatesFilter<"PurchaseOrder"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"PurchaseOrder"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PurchaseOrder"> | Date | string
     isDeleted?: BoolWithAggregatesFilter<"PurchaseOrder"> | boolean
@@ -12431,6 +12450,7 @@ export namespace Prisma {
     purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -12444,6 +12464,7 @@ export namespace Prisma {
     isQuote: boolean
     isSimple: boolean
     customerId: number
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -12454,6 +12475,7 @@ export namespace Prisma {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -12467,6 +12489,7 @@ export namespace Prisma {
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     customerId?: IntFieldUpdateOperationsInput | number
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -12479,6 +12502,7 @@ export namespace Prisma {
     isQuote: boolean
     isSimple: boolean
     customerId: number
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -12488,6 +12512,7 @@ export namespace Prisma {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -12499,6 +12524,7 @@ export namespace Prisma {
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     customerId?: IntFieldUpdateOperationsInput | number
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -13154,6 +13180,7 @@ export namespace Prisma {
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
+    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
@@ -13170,6 +13197,7 @@ export namespace Prisma {
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
+    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
@@ -13181,6 +13209,7 @@ export namespace Prisma {
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
+    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
@@ -14045,6 +14074,7 @@ export namespace Prisma {
     purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -14056,6 +14086,7 @@ export namespace Prisma {
     purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -14123,6 +14154,7 @@ export namespace Prisma {
     isQuote?: BoolFilter<"PurchaseOrder"> | boolean
     isSimple?: BoolFilter<"PurchaseOrder"> | boolean
     customerId?: IntFilter<"PurchaseOrder"> | number
+    orderDate?: DateTimeFilter<"PurchaseOrder"> | Date | string
     createdAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
     updatedAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
     isDeleted?: BoolFilter<"PurchaseOrder"> | boolean
@@ -14673,6 +14705,7 @@ export namespace Prisma {
     purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -14685,6 +14718,7 @@ export namespace Prisma {
     isQuote: boolean
     isSimple: boolean
     customerId: number
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -14710,6 +14744,7 @@ export namespace Prisma {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -14722,6 +14757,7 @@ export namespace Prisma {
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     customerId?: IntFieldUpdateOperationsInput | number
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -14818,6 +14854,7 @@ export namespace Prisma {
     purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
@@ -14827,6 +14864,7 @@ export namespace Prisma {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -14838,6 +14876,7 @@ export namespace Prisma {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -14849,6 +14888,7 @@ export namespace Prisma {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean

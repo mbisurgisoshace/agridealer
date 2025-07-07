@@ -1,5 +1,15 @@
 import PurchaseOrderQuoteForm from "./PurchaseOrderQuoteForm";
 
-export default function CreateQuote() {
-  return <PurchaseOrderQuoteForm title="Create Quote" />;
+interface CreateQuoteProps {
+  customerId: number;
+}
+
+export default function CreateQuote({ customerId }: CreateQuoteProps) {
+  return (
+    <PurchaseOrderQuoteForm
+      isQuote={true}
+      title="Create Quote"
+      customerId={customerId}
+    />
+  );
 }
