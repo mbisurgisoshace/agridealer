@@ -18,36 +18,59 @@ import ColumnHeader, { seedProductColumns } from "./ColumnHeader";
 import useSeedProductFiltering from "./Filters/useSeedProductFiltering";
 
 interface SeedProductsTableProps {
+  product?: Seed;
   products: Product[];
   cropType?: CropType;
+  productQuantity?: number;
   onAddProduct: (product: Product, quantity: number) => void;
+  onUpdateProduct?: (product: Product, quantity: number) => void;
 }
 
 export default function SeedProductsTable({
+  product,
   cropType,
   products,
   onAddProduct,
+  onUpdateProduct,
+  productQuantity = 0,
 }: SeedProductsTableProps) {
   const {
     reset,
     filters,
+    setFilters,
     selectedProduct,
     filteringOptions,
     onFilterValueChange,
   } = useSeedProductFiltering(products as Seed[], cropType);
 
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(productQuantity);
 
   useEffect(() => {
-    if (!selectedProduct) setQuantity(0);
+    if (!selectedProduct && !product) setQuantity(0);
   }, [selectedProduct]);
+
+  useEffect(() => {
+    if (product) {
+      setFilters({
+        trait: product.trait,
+        variety: product.variety,
+        seedSize: product.seedSize,
+        treatment: product.treatment,
+        packaging: product.packaging,
+      });
+    }
+  }, [product]);
 
   const onSelectProduct = () => {
     if (!selectedProduct) return;
     if (quantity <= 0) return;
 
-    onAddProduct(selectedProduct, quantity);
-    reset();
+    if (product && onUpdateProduct) {
+      onUpdateProduct(selectedProduct, quantity);
+    } else {
+      onAddProduct(selectedProduct, quantity);
+      reset();
+    }
   };
 
   return (
@@ -115,11 +138,12 @@ export default function SeedProductsTable({
         <TableRow>
           <TableCell className="flex">
             <Button
+              type="button"
               variant={"outline"}
               className="ml-auto"
               onClick={onSelectProduct}
             >
-              Select
+              {product ? "Update" : "Select"}
             </Button>
           </TableCell>
         </TableRow>

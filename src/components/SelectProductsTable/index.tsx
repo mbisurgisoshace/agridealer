@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { useState } from "react";
 import { useFieldArray, UseFormReturn } from "react-hook-form";
 
 import Combobox from "../Combobox";
@@ -8,8 +9,8 @@ import OrderProductsTable from "../OrderProductsTable";
 import RegularProductsTable from "./RegularProductsTable";
 import { FormField, FormItem, FormMessage } from "../ui/form";
 import { OrderProductView } from "../OrderProductsTable/columns";
-import useSelectProductsTable, { Product } from "./useSelectProductsTable";
 import { createPurchaseOrderSchema } from "@/schemas/purchaseOrderSchema";
+import useSelectProductsTable, { Product } from "./useSelectProductsTable";
 
 interface SelectProductsTableProps {
   form: UseFormReturn<z.infer<typeof createPurchaseOrderSchema>>;
@@ -28,6 +29,9 @@ export default function SelectProductsTable({
     selectedCompany,
     selectedCropType,
   } = useSelectProductsTable();
+  const [orderItemDate, setOrderItemDate] = useState<Date | undefined>(
+    new Date()
+  );
 
   const { fields, append } = useFieldArray({
     control: form.control,
@@ -40,10 +44,12 @@ export default function SelectProductsTable({
     const newItem = {
       quantity,
       productId: product.id,
+      orderDate: orderItemDate!,
       productCompanyId: selectedCompany.id,
     };
 
     append(newItem);
+    setOrderItemDate(new Date());
   };
 
   const generateData = (): OrderProductView[] => {
@@ -64,18 +70,7 @@ export default function SelectProductsTable({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-4">
-        <FormField
-          control={form.control}
-          name="orderDate"
-          render={({ field }) => (
-            <FormItem>
-              <Datepicker
-                value={field.value}
-                onChange={(date) => field.onChange(date)}
-              />
-            </FormItem>
-          )}
-        />
+        <Datepicker value={orderItemDate!} onChange={setOrderItemDate} />
         <Combobox
           options={companies}
           value={selectedCompany?.id.toString() || ""}

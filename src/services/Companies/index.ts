@@ -19,3 +19,22 @@ export async function getCompanies() {
     throw new Error("Failed to fetch companies");
   }
 }
+
+export async function getCompanyById(id: number) {
+  try {
+    const company = await prisma.productCompany.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!company) {
+      throw new Error("Company not found");
+    }
+
+    return company;
+  } catch (err) {
+    console.error("Error fetching company by ID:", err);
+    throw new Error("Failed to fetch company");
+  }
+}

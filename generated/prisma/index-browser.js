@@ -163,6 +163,7 @@ exports.Prisma.BayerProductScalarFieldEnum = {
   agiisId: 'agiisId',
   sapId: 'sapId',
   isDeleted: 'isDeleted',
+  dealershipId: 'dealershipId',
   productCompanyId: 'productCompanyId'
 };
 
@@ -177,6 +178,7 @@ exports.Prisma.SeedProductScalarFieldEnum = {
   dealerPricing: 'dealerPricing',
   endUserPricing: 'endUserPricing',
   isDeleted: 'isDeleted',
+  dealershipId: 'dealershipId',
   productCompanyId: 'productCompanyId'
 };
 
@@ -188,6 +190,7 @@ exports.Prisma.RegularProductScalarFieldEnum = {
   dealerPricing: 'dealerPricing',
   endUserPricing: 'endUserPricing',
   isDeleted: 'isDeleted',
+  dealershipId: 'dealershipId',
   productCompanyId: 'productCompanyId'
 };
 
@@ -197,10 +200,10 @@ exports.Prisma.PurchaseOrderScalarFieldEnum = {
   isQuote: 'isQuote',
   isSimple: 'isSimple',
   customerId: 'customerId',
-  orderDate: 'orderDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  isDeleted: 'isDeleted'
+  isDeleted: 'isDeleted',
+  dealershipId: 'dealershipId'
 };
 
 exports.Prisma.PurchaseOrderItemScalarFieldEnum = {
@@ -210,6 +213,7 @@ exports.Prisma.PurchaseOrderItemScalarFieldEnum = {
   productId: 'productId',
   quantity: 'quantity',
   note: 'note',
+  orderDate: 'orderDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

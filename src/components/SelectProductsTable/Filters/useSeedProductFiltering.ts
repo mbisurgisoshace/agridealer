@@ -283,6 +283,7 @@ export default function useSeedProductFiltering(
     reset,
     filters,
     products,
+    setFilters,
     filteringOptions,
     onFilterValueChange,
     selectedProduct: getSelectedProduct(),

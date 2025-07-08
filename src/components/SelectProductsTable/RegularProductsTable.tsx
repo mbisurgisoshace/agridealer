@@ -17,34 +17,55 @@ import ColumnHeader, { regularProductColumns } from "./ColumnHeader";
 import useRegularProductFiltering from "./Filters/useRegularProductFiltering";
 
 interface RegularProductsTableProps {
+  product?: Regular;
   products: Product[];
+  productQuantity?: number;
   onAddProduct: (product: Product, quantity: number) => void;
+  onUpdateProduct?: (product: Product, quantity: number) => void;
 }
 
 export default function RegularProductsTable({
+  product,
   products,
   onAddProduct,
+  onUpdateProduct,
+  productQuantity = 0,
 }: RegularProductsTableProps) {
   const {
     reset,
     filters,
+    setFilters,
     selectedProduct,
     filteringOptions,
     onFilterValueChange,
   } = useRegularProductFiltering(products as Regular[]);
 
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(productQuantity);
 
   useEffect(() => {
-    if (!selectedProduct) setQuantity(0);
+    if (!selectedProduct && !product) setQuantity(0);
   }, [selectedProduct]);
+
+  useEffect(() => {
+    if (product) {
+      setFilters({
+        product: product.product,
+        type: product.type || "-",
+        description: product.description || "-",
+      });
+    }
+  }, [product]);
 
   const onSelectProduct = () => {
     if (!selectedProduct) return;
     if (quantity <= 0) return;
 
-    onAddProduct(selectedProduct, quantity);
-    reset();
+    if (product && onUpdateProduct) {
+      onUpdateProduct(selectedProduct, quantity);
+    } else {
+      onAddProduct(selectedProduct, quantity);
+      reset();
+    }
   };
 
   return (
@@ -100,11 +121,12 @@ export default function RegularProductsTable({
         <TableRow>
           <TableCell className="flex">
             <Button
+              type="button"
               variant={"outline"}
               className="ml-auto"
               onClick={onSelectProduct}
             >
-              Select
+              {product ? "Update" : "Select"}
             </Button>
           </TableCell>
         </TableRow>

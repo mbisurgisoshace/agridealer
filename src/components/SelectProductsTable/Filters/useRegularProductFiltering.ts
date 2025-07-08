@@ -116,6 +116,7 @@ export default function useRegularProductFiltering(products: Product[]) {
     reset,
     filters,
     products,
+    setFilters,
     filteringOptions,
     onFilterValueChange,
     selectedProduct: getSelectedProduct(),

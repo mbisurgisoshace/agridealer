@@ -1,10 +1,11 @@
+"use client";
+
 import {
   flexRender,
   useReactTable,
   getCoreRowModel,
 } from "@tanstack/react-table";
 
-import { columns, OrderProductView } from "./columns";
 import {
   Table,
   TableRow,
@@ -13,15 +14,20 @@ import {
   TableCell,
   TableHeader,
 } from "../ui/table";
+import { columns, OrderProductView } from "./columns";
 
 interface OrderProductsTableProps {
+  isEditable?: boolean;
   data: OrderProductView[];
 }
 
-export default function OrderProductsTable({ data }: OrderProductsTableProps) {
+export default function OrderProductsTable({
+  data,
+  isEditable = false,
+}: OrderProductsTableProps) {
   const table = useReactTable({
     data,
-    columns,
+    columns: columns(isEditable),
     getCoreRowModel: getCoreRowModel(),
   });
 

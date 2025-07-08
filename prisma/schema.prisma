@@ -40,6 +40,10 @@ model Dealership {
   isDeleted      Boolean          @default(false)
   Customer       Customer[]
   ProductCompany ProductCompany[]
+  BayerProduct   BayerProduct[]
+  SeedProduct    SeedProduct[]
+  RegularProduct RegularProduct[]
+  PurchaseOrder  PurchaseOrder[]
 
   @@map("Dealerships")
 }
@@ -90,6 +94,8 @@ model BayerProduct {
   agiisId          String
   sapId            String
   isDeleted        Boolean        @default(false)
+  dealershipId     Int            @default(1)
+  Dealership       Dealership     @relation(fields: [dealershipId], references: [id])
   productCompanyId Int
   ProductCompany   ProductCompany @relation(fields: [productCompanyId], references: [id])
 
@@ -108,6 +114,8 @@ model SeedProduct {
   dealerPricing    Float
   endUserPricing   Float
   isDeleted        Boolean        @default(false)
+  dealershipId     Int            @default(1)
+  Dealership       Dealership     @relation(fields: [dealershipId], references: [id])
   productCompanyId Int
   ProductCompany   ProductCompany @relation(fields: [productCompanyId], references: [id])
 
@@ -123,6 +131,8 @@ model RegularProduct {
   dealerPricing    Float
   endUserPricing   Float
   isDeleted        Boolean        @default(false)
+  dealershipId     Int            @default(1)
+  Dealership       Dealership     @relation(fields: [dealershipId], references: [id])
   productCompanyId Int
   ProductCompany   ProductCompany @relation(fields: [productCompanyId], references: [id])
 
@@ -135,10 +145,11 @@ model PurchaseOrder {
   isQuote           Boolean
   isSimple          Boolean
   customerId        Int
-  orderDate         DateTime            @default(now())
   createdAt         DateTime            @default(now())
   updatedAt         DateTime            @updatedAt
   isDeleted         Boolean             @default(false)
+  dealershipId      Int                 @default(1)
+  Dealership        Dealership          @relation(fields: [dealershipId], references: [id])
   Customer          Customer            @relation(fields: [customerId], references: [id])
   PurchaseOrderItem PurchaseOrderItem[]
 
@@ -152,6 +163,7 @@ model PurchaseOrderItem {
   productId        Int
   quantity         Float
   note             String?
+  orderDate        DateTime      @default(now())
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @updatedAt
   PurchaseOrder    PurchaseOrder @relation(fields: [puchaseOrderId], references: [id])

@@ -53,7 +53,6 @@ export default function PurchaseOrderQuoteForm({
       isQuote,
       purchaseOrderName: "",
       isSimple: true,
-      orderDate: new Date(),
       items: [],
     },
   });

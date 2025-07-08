@@ -4,11 +4,11 @@ export const createPurchaseOrderItemSchema = z.object({
   productId: z.number(),
   productCompanyId: z.number(),
   quantity: z.number(),
+  orderDate: z.date(),
   note: z.string().optional(),
 });
 
 export const createPurchaseOrderSchema = z.object({
-  orderDate: z.date(),
   isQuote: z.boolean(),
   isSimple: z.boolean(),
   purchaseOrderName: z.string().optional(),

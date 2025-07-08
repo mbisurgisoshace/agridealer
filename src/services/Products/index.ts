@@ -74,6 +74,52 @@ export async function getProducts(companyType: CompanyType) {
   }
 }
 
+export async function getProductByIdAndCompany(
+  productId: number,
+  companyId: number
+) {
+  try {
+    const company = await prisma.productCompany.findUnique({
+      where: {
+        id: companyId,
+      },
+    });
+
+    if (!company) {
+      throw new Error("Company not found");
+    }
+
+    const { companyType } = company;
+
+    switch (companyType) {
+      case "Bayer":
+        return await getBayerProduct(productId);
+      case "Seed":
+        return await getSeedProduct(productId);
+      case "Regular":
+        return await getRegularProduct(productId);
+      default:
+        throw new Error("Invalid company type");
+    }
+  } catch (error) {
+    console.error("Error fetching product by ID and company:", error);
+    throw new Error("Failed to fetch product by ID and company");
+  }
+}
+
+async function getBayerProduct(productId: number) {
+  try {
+    return prisma.bayerProduct.findUnique({
+      where: {
+        id: productId,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching Bayer product:", error);
+    throw new Error("Failed to fetch Bayer product");
+  }
+}
+
 async function getBayerProducts() {
   try {
     return prisma.bayerProduct.findMany({});
@@ -83,12 +129,38 @@ async function getBayerProducts() {
   }
 }
 
+async function getSeedProduct(productId: number) {
+  try {
+    return prisma.seedProduct.findUnique({
+      where: {
+        id: productId,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching Seed product:", error);
+    throw new Error("Failed to fetch Seed product");
+  }
+}
+
 async function getSeedProducts() {
   try {
     return prisma.seedProduct.findMany({});
   } catch (error) {
     console.error("Error fetching Seed products:", error);
     throw new Error("Failed to fetch Seed products");
+  }
+}
+
+async function getRegularProduct(productId: number) {
+  try {
+    return prisma.regularProduct.findUnique({
+      where: {
+        id: productId,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching Regular product:", error);
+    throw new Error("Failed to fetch Regular product");
   }
 }
 

@@ -1,14 +1,18 @@
 import numeral from "numeral";
 import { ColumnDef } from "@tanstack/react-table";
 
+import ActionsMenu from "./ActionsMenu";
 import { ProductView } from "@/types/products";
-import { IconDotsVertical } from "@tabler/icons-react";
 
 export type OrderProductView = ProductView & {
+  orderDate?: Date;
   quantity: number;
+  orderItemId?: number;
 };
 
-export const columns: ColumnDef<OrderProductView>[] = [
+export const columns: (isEditable: boolean) => ColumnDef<OrderProductView>[] = (
+  isEditable
+) => [
   {
     accessorKey: "product",
     header: "Product",
@@ -22,6 +26,7 @@ export const columns: ColumnDef<OrderProductView>[] = [
         </span>
       );
     },
+    size: 300,
   },
   {
     id: "quantity",
@@ -38,6 +43,7 @@ export const columns: ColumnDef<OrderProductView>[] = [
         <span>{numeral(row.original.endUserPricing).format("$0,0.00")}</span>
       );
     },
+    size: 100,
   },
   {
     id: "pre-total",
@@ -51,15 +57,13 @@ export const columns: ColumnDef<OrderProductView>[] = [
         </span>
       );
     },
+    size: 100,
   },
   {
     id: "actions",
-    cell: () => {
-      return (
-        <span>
-          <IconDotsVertical size={18} />
-        </span>
-      );
+    cell: ({ row }) => {
+      return isEditable ? <ActionsMenu orderItem={row.original} /> : null;
     },
+    size: 50,
   },
 ];

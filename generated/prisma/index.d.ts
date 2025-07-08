@@ -1542,11 +1542,19 @@ export namespace Prisma {
   export type DealershipCountOutputType = {
     Customer: number
     ProductCompany: number
+    BayerProduct: number
+    SeedProduct: number
+    RegularProduct: number
+    PurchaseOrder: number
   }
 
   export type DealershipCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Customer?: boolean | DealershipCountOutputTypeCountCustomerArgs
     ProductCompany?: boolean | DealershipCountOutputTypeCountProductCompanyArgs
+    BayerProduct?: boolean | DealershipCountOutputTypeCountBayerProductArgs
+    SeedProduct?: boolean | DealershipCountOutputTypeCountSeedProductArgs
+    RegularProduct?: boolean | DealershipCountOutputTypeCountRegularProductArgs
+    PurchaseOrder?: boolean | DealershipCountOutputTypeCountPurchaseOrderArgs
   }
 
   // Custom InputTypes
@@ -1572,6 +1580,34 @@ export namespace Prisma {
    */
   export type DealershipCountOutputTypeCountProductCompanyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductCompanyWhereInput
+  }
+
+  /**
+   * DealershipCountOutputType without action
+   */
+  export type DealershipCountOutputTypeCountBayerProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BayerProductWhereInput
+  }
+
+  /**
+   * DealershipCountOutputType without action
+   */
+  export type DealershipCountOutputTypeCountSeedProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SeedProductWhereInput
+  }
+
+  /**
+   * DealershipCountOutputType without action
+   */
+  export type DealershipCountOutputTypeCountRegularProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RegularProductWhereInput
+  }
+
+  /**
+   * DealershipCountOutputType without action
+   */
+  export type DealershipCountOutputTypeCountPurchaseOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PurchaseOrderWhereInput
   }
 
 
@@ -1882,6 +1918,10 @@ export namespace Prisma {
     isDeleted?: boolean
     Customer?: boolean | Dealership$CustomerArgs<ExtArgs>
     ProductCompany?: boolean | Dealership$ProductCompanyArgs<ExtArgs>
+    BayerProduct?: boolean | Dealership$BayerProductArgs<ExtArgs>
+    SeedProduct?: boolean | Dealership$SeedProductArgs<ExtArgs>
+    RegularProduct?: boolean | Dealership$RegularProductArgs<ExtArgs>
+    PurchaseOrder?: boolean | Dealership$PurchaseOrderArgs<ExtArgs>
     _count?: boolean | DealershipCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dealership"]>
 
@@ -1910,6 +1950,10 @@ export namespace Prisma {
   export type DealershipInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Customer?: boolean | Dealership$CustomerArgs<ExtArgs>
     ProductCompany?: boolean | Dealership$ProductCompanyArgs<ExtArgs>
+    BayerProduct?: boolean | Dealership$BayerProductArgs<ExtArgs>
+    SeedProduct?: boolean | Dealership$SeedProductArgs<ExtArgs>
+    RegularProduct?: boolean | Dealership$RegularProductArgs<ExtArgs>
+    PurchaseOrder?: boolean | Dealership$PurchaseOrderArgs<ExtArgs>
     _count?: boolean | DealershipCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DealershipIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1920,6 +1964,10 @@ export namespace Prisma {
     objects: {
       Customer: Prisma.$CustomerPayload<ExtArgs>[]
       ProductCompany: Prisma.$ProductCompanyPayload<ExtArgs>[]
+      BayerProduct: Prisma.$BayerProductPayload<ExtArgs>[]
+      SeedProduct: Prisma.$SeedProductPayload<ExtArgs>[]
+      RegularProduct: Prisma.$RegularProductPayload<ExtArgs>[]
+      PurchaseOrder: Prisma.$PurchaseOrderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2322,6 +2370,10 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Customer<T extends Dealership$CustomerArgs<ExtArgs> = {}>(args?: Subset<T, Dealership$CustomerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ProductCompany<T extends Dealership$ProductCompanyArgs<ExtArgs> = {}>(args?: Subset<T, Dealership$ProductCompanyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductCompanyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    BayerProduct<T extends Dealership$BayerProductArgs<ExtArgs> = {}>(args?: Subset<T, Dealership$BayerProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BayerProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    SeedProduct<T extends Dealership$SeedProductArgs<ExtArgs> = {}>(args?: Subset<T, Dealership$SeedProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SeedProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    RegularProduct<T extends Dealership$RegularProductArgs<ExtArgs> = {}>(args?: Subset<T, Dealership$RegularProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RegularProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    PurchaseOrder<T extends Dealership$PurchaseOrderArgs<ExtArgs> = {}>(args?: Subset<T, Dealership$PurchaseOrderArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2788,6 +2840,102 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProductCompanyScalarFieldEnum | ProductCompanyScalarFieldEnum[]
+  }
+
+  /**
+   * Dealership.BayerProduct
+   */
+  export type Dealership$BayerProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BayerProduct
+     */
+    select?: BayerProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BayerProduct
+     */
+    omit?: BayerProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BayerProductInclude<ExtArgs> | null
+    where?: BayerProductWhereInput
+    orderBy?: BayerProductOrderByWithRelationInput | BayerProductOrderByWithRelationInput[]
+    cursor?: BayerProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BayerProductScalarFieldEnum | BayerProductScalarFieldEnum[]
+  }
+
+  /**
+   * Dealership.SeedProduct
+   */
+  export type Dealership$SeedProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SeedProduct
+     */
+    select?: SeedProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SeedProduct
+     */
+    omit?: SeedProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SeedProductInclude<ExtArgs> | null
+    where?: SeedProductWhereInput
+    orderBy?: SeedProductOrderByWithRelationInput | SeedProductOrderByWithRelationInput[]
+    cursor?: SeedProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SeedProductScalarFieldEnum | SeedProductScalarFieldEnum[]
+  }
+
+  /**
+   * Dealership.RegularProduct
+   */
+  export type Dealership$RegularProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RegularProduct
+     */
+    select?: RegularProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RegularProduct
+     */
+    omit?: RegularProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RegularProductInclude<ExtArgs> | null
+    where?: RegularProductWhereInput
+    orderBy?: RegularProductOrderByWithRelationInput | RegularProductOrderByWithRelationInput[]
+    cursor?: RegularProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RegularProductScalarFieldEnum | RegularProductScalarFieldEnum[]
+  }
+
+  /**
+   * Dealership.PurchaseOrder
+   */
+  export type Dealership$PurchaseOrderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PurchaseOrder
+     */
+    select?: PurchaseOrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PurchaseOrder
+     */
+    omit?: PurchaseOrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PurchaseOrderInclude<ExtArgs> | null
+    where?: PurchaseOrderWhereInput
+    orderBy?: PurchaseOrderOrderByWithRelationInput | PurchaseOrderOrderByWithRelationInput[]
+    cursor?: PurchaseOrderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PurchaseOrderScalarFieldEnum | PurchaseOrderScalarFieldEnum[]
   }
 
   /**
@@ -5211,6 +5359,7 @@ export namespace Prisma {
     id: number | null
     dealerPricing: number | null
     endUserPricing: number | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -5218,6 +5367,7 @@ export namespace Prisma {
     id: number | null
     dealerPricing: number | null
     endUserPricing: number | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -5235,6 +5385,7 @@ export namespace Prisma {
     agiisId: string | null
     sapId: string | null
     isDeleted: boolean | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -5252,6 +5403,7 @@ export namespace Prisma {
     agiisId: string | null
     sapId: string | null
     isDeleted: boolean | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -5269,6 +5421,7 @@ export namespace Prisma {
     agiisId: number
     sapId: number
     isDeleted: number
+    dealershipId: number
     productCompanyId: number
     _all: number
   }
@@ -5278,6 +5431,7 @@ export namespace Prisma {
     id?: true
     dealerPricing?: true
     endUserPricing?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -5285,6 +5439,7 @@ export namespace Prisma {
     id?: true
     dealerPricing?: true
     endUserPricing?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -5302,6 +5457,7 @@ export namespace Prisma {
     agiisId?: true
     sapId?: true
     isDeleted?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -5319,6 +5475,7 @@ export namespace Prisma {
     agiisId?: true
     sapId?: true
     isDeleted?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -5336,6 +5493,7 @@ export namespace Prisma {
     agiisId?: true
     sapId?: true
     isDeleted?: true
+    dealershipId?: true
     productCompanyId?: true
     _all?: true
   }
@@ -5440,6 +5598,7 @@ export namespace Prisma {
     agiisId: string
     sapId: string
     isDeleted: boolean
+    dealershipId: number
     productCompanyId: number
     _count: BayerProductCountAggregateOutputType | null
     _avg: BayerProductAvgAggregateOutputType | null
@@ -5476,7 +5635,9 @@ export namespace Prisma {
     agiisId?: boolean
     sapId?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bayerProduct"]>
 
@@ -5494,7 +5655,9 @@ export namespace Prisma {
     agiisId?: boolean
     sapId?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bayerProduct"]>
 
@@ -5512,7 +5675,9 @@ export namespace Prisma {
     agiisId?: boolean
     sapId?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bayerProduct"]>
 
@@ -5530,23 +5695,28 @@ export namespace Prisma {
     agiisId?: boolean
     sapId?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
   }
 
-  export type BayerProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "trait" | "variety" | "treatment" | "seedSize" | "packaging" | "cropType" | "productDetail" | "dealerPricing" | "endUserPricing" | "agiisId" | "sapId" | "isDeleted" | "productCompanyId", ExtArgs["result"]["bayerProduct"]>
+  export type BayerProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "trait" | "variety" | "treatment" | "seedSize" | "packaging" | "cropType" | "productDetail" | "dealerPricing" | "endUserPricing" | "agiisId" | "sapId" | "isDeleted" | "dealershipId" | "productCompanyId", ExtArgs["result"]["bayerProduct"]>
   export type BayerProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }
   export type BayerProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }
   export type BayerProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }
 
   export type $BayerProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "BayerProduct"
     objects: {
+      Dealership: Prisma.$DealershipPayload<ExtArgs>
       ProductCompany: Prisma.$ProductCompanyPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -5563,6 +5733,7 @@ export namespace Prisma {
       agiisId: string
       sapId: string
       isDeleted: boolean
+      dealershipId: number
       productCompanyId: number
     }, ExtArgs["result"]["bayerProduct"]>
     composites: {}
@@ -5958,6 +6129,7 @@ export namespace Prisma {
    */
   export interface Prisma__BayerProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    Dealership<T extends DealershipDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DealershipDefaultArgs<ExtArgs>>): Prisma__DealershipClient<$Result.GetResult<Prisma.$DealershipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     ProductCompany<T extends ProductCompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductCompanyDefaultArgs<ExtArgs>>): Prisma__ProductCompanyClient<$Result.GetResult<Prisma.$ProductCompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6001,6 +6173,7 @@ export namespace Prisma {
     readonly agiisId: FieldRef<"BayerProduct", 'String'>
     readonly sapId: FieldRef<"BayerProduct", 'String'>
     readonly isDeleted: FieldRef<"BayerProduct", 'Boolean'>
+    readonly dealershipId: FieldRef<"BayerProduct", 'Int'>
     readonly productCompanyId: FieldRef<"BayerProduct", 'Int'>
   }
     
@@ -6432,6 +6605,7 @@ export namespace Prisma {
     id: number | null
     dealerPricing: number | null
     endUserPricing: number | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -6439,6 +6613,7 @@ export namespace Prisma {
     id: number | null
     dealerPricing: number | null
     endUserPricing: number | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -6453,6 +6628,7 @@ export namespace Prisma {
     dealerPricing: number | null
     endUserPricing: number | null
     isDeleted: boolean | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -6467,6 +6643,7 @@ export namespace Prisma {
     dealerPricing: number | null
     endUserPricing: number | null
     isDeleted: boolean | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -6481,6 +6658,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted: number
+    dealershipId: number
     productCompanyId: number
     _all: number
   }
@@ -6490,6 +6668,7 @@ export namespace Prisma {
     id?: true
     dealerPricing?: true
     endUserPricing?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -6497,6 +6676,7 @@ export namespace Prisma {
     id?: true
     dealerPricing?: true
     endUserPricing?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -6511,6 +6691,7 @@ export namespace Prisma {
     dealerPricing?: true
     endUserPricing?: true
     isDeleted?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -6525,6 +6706,7 @@ export namespace Prisma {
     dealerPricing?: true
     endUserPricing?: true
     isDeleted?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -6539,6 +6721,7 @@ export namespace Prisma {
     dealerPricing?: true
     endUserPricing?: true
     isDeleted?: true
+    dealershipId?: true
     productCompanyId?: true
     _all?: true
   }
@@ -6640,6 +6823,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted: boolean
+    dealershipId: number
     productCompanyId: number
     _count: SeedProductCountAggregateOutputType | null
     _avg: SeedProductAvgAggregateOutputType | null
@@ -6673,7 +6857,9 @@ export namespace Prisma {
     dealerPricing?: boolean
     endUserPricing?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seedProduct"]>
 
@@ -6688,7 +6874,9 @@ export namespace Prisma {
     dealerPricing?: boolean
     endUserPricing?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seedProduct"]>
 
@@ -6703,7 +6891,9 @@ export namespace Prisma {
     dealerPricing?: boolean
     endUserPricing?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seedProduct"]>
 
@@ -6718,23 +6908,28 @@ export namespace Prisma {
     dealerPricing?: boolean
     endUserPricing?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
   }
 
-  export type SeedProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "trait" | "variety" | "treatment" | "seedSize" | "packaging" | "cropType" | "dealerPricing" | "endUserPricing" | "isDeleted" | "productCompanyId", ExtArgs["result"]["seedProduct"]>
+  export type SeedProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "trait" | "variety" | "treatment" | "seedSize" | "packaging" | "cropType" | "dealerPricing" | "endUserPricing" | "isDeleted" | "dealershipId" | "productCompanyId", ExtArgs["result"]["seedProduct"]>
   export type SeedProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }
   export type SeedProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }
   export type SeedProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }
 
   export type $SeedProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "SeedProduct"
     objects: {
+      Dealership: Prisma.$DealershipPayload<ExtArgs>
       ProductCompany: Prisma.$ProductCompanyPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -6748,6 +6943,7 @@ export namespace Prisma {
       dealerPricing: number
       endUserPricing: number
       isDeleted: boolean
+      dealershipId: number
       productCompanyId: number
     }, ExtArgs["result"]["seedProduct"]>
     composites: {}
@@ -7143,6 +7339,7 @@ export namespace Prisma {
    */
   export interface Prisma__SeedProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    Dealership<T extends DealershipDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DealershipDefaultArgs<ExtArgs>>): Prisma__DealershipClient<$Result.GetResult<Prisma.$DealershipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     ProductCompany<T extends ProductCompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductCompanyDefaultArgs<ExtArgs>>): Prisma__ProductCompanyClient<$Result.GetResult<Prisma.$ProductCompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7183,6 +7380,7 @@ export namespace Prisma {
     readonly dealerPricing: FieldRef<"SeedProduct", 'Float'>
     readonly endUserPricing: FieldRef<"SeedProduct", 'Float'>
     readonly isDeleted: FieldRef<"SeedProduct", 'Boolean'>
+    readonly dealershipId: FieldRef<"SeedProduct", 'Int'>
     readonly productCompanyId: FieldRef<"SeedProduct", 'Int'>
   }
     
@@ -7614,6 +7812,7 @@ export namespace Prisma {
     id: number | null
     dealerPricing: number | null
     endUserPricing: number | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -7621,6 +7820,7 @@ export namespace Prisma {
     id: number | null
     dealerPricing: number | null
     endUserPricing: number | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -7632,6 +7832,7 @@ export namespace Prisma {
     dealerPricing: number | null
     endUserPricing: number | null
     isDeleted: boolean | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -7643,6 +7844,7 @@ export namespace Prisma {
     dealerPricing: number | null
     endUserPricing: number | null
     isDeleted: boolean | null
+    dealershipId: number | null
     productCompanyId: number | null
   }
 
@@ -7654,6 +7856,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted: number
+    dealershipId: number
     productCompanyId: number
     _all: number
   }
@@ -7663,6 +7866,7 @@ export namespace Prisma {
     id?: true
     dealerPricing?: true
     endUserPricing?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -7670,6 +7874,7 @@ export namespace Prisma {
     id?: true
     dealerPricing?: true
     endUserPricing?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -7681,6 +7886,7 @@ export namespace Prisma {
     dealerPricing?: true
     endUserPricing?: true
     isDeleted?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -7692,6 +7898,7 @@ export namespace Prisma {
     dealerPricing?: true
     endUserPricing?: true
     isDeleted?: true
+    dealershipId?: true
     productCompanyId?: true
   }
 
@@ -7703,6 +7910,7 @@ export namespace Prisma {
     dealerPricing?: true
     endUserPricing?: true
     isDeleted?: true
+    dealershipId?: true
     productCompanyId?: true
     _all?: true
   }
@@ -7801,6 +8009,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted: boolean
+    dealershipId: number
     productCompanyId: number
     _count: RegularProductCountAggregateOutputType | null
     _avg: RegularProductAvgAggregateOutputType | null
@@ -7831,7 +8040,9 @@ export namespace Prisma {
     dealerPricing?: boolean
     endUserPricing?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["regularProduct"]>
 
@@ -7843,7 +8054,9 @@ export namespace Prisma {
     dealerPricing?: boolean
     endUserPricing?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["regularProduct"]>
 
@@ -7855,7 +8068,9 @@ export namespace Prisma {
     dealerPricing?: boolean
     endUserPricing?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["regularProduct"]>
 
@@ -7867,23 +8082,28 @@ export namespace Prisma {
     dealerPricing?: boolean
     endUserPricing?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
     productCompanyId?: boolean
   }
 
-  export type RegularProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "product" | "type" | "description" | "dealerPricing" | "endUserPricing" | "isDeleted" | "productCompanyId", ExtArgs["result"]["regularProduct"]>
+  export type RegularProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "product" | "type" | "description" | "dealerPricing" | "endUserPricing" | "isDeleted" | "dealershipId" | "productCompanyId", ExtArgs["result"]["regularProduct"]>
   export type RegularProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }
   export type RegularProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }
   export type RegularProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     ProductCompany?: boolean | ProductCompanyDefaultArgs<ExtArgs>
   }
 
   export type $RegularProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "RegularProduct"
     objects: {
+      Dealership: Prisma.$DealershipPayload<ExtArgs>
       ProductCompany: Prisma.$ProductCompanyPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -7894,6 +8114,7 @@ export namespace Prisma {
       dealerPricing: number
       endUserPricing: number
       isDeleted: boolean
+      dealershipId: number
       productCompanyId: number
     }, ExtArgs["result"]["regularProduct"]>
     composites: {}
@@ -8289,6 +8510,7 @@ export namespace Prisma {
    */
   export interface Prisma__RegularProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    Dealership<T extends DealershipDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DealershipDefaultArgs<ExtArgs>>): Prisma__DealershipClient<$Result.GetResult<Prisma.$DealershipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     ProductCompany<T extends ProductCompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductCompanyDefaultArgs<ExtArgs>>): Prisma__ProductCompanyClient<$Result.GetResult<Prisma.$ProductCompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8326,6 +8548,7 @@ export namespace Prisma {
     readonly dealerPricing: FieldRef<"RegularProduct", 'Float'>
     readonly endUserPricing: FieldRef<"RegularProduct", 'Float'>
     readonly isDeleted: FieldRef<"RegularProduct", 'Boolean'>
+    readonly dealershipId: FieldRef<"RegularProduct", 'Int'>
     readonly productCompanyId: FieldRef<"RegularProduct", 'Int'>
   }
     
@@ -8756,11 +8979,13 @@ export namespace Prisma {
   export type PurchaseOrderAvgAggregateOutputType = {
     id: number | null
     customerId: number | null
+    dealershipId: number | null
   }
 
   export type PurchaseOrderSumAggregateOutputType = {
     id: number | null
     customerId: number | null
+    dealershipId: number | null
   }
 
   export type PurchaseOrderMinAggregateOutputType = {
@@ -8769,10 +8994,10 @@ export namespace Prisma {
     isQuote: boolean | null
     isSimple: boolean | null
     customerId: number | null
-    orderDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     isDeleted: boolean | null
+    dealershipId: number | null
   }
 
   export type PurchaseOrderMaxAggregateOutputType = {
@@ -8781,10 +9006,10 @@ export namespace Prisma {
     isQuote: boolean | null
     isSimple: boolean | null
     customerId: number | null
-    orderDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     isDeleted: boolean | null
+    dealershipId: number | null
   }
 
   export type PurchaseOrderCountAggregateOutputType = {
@@ -8793,10 +9018,10 @@ export namespace Prisma {
     isQuote: number
     isSimple: number
     customerId: number
-    orderDate: number
     createdAt: number
     updatedAt: number
     isDeleted: number
+    dealershipId: number
     _all: number
   }
 
@@ -8804,11 +9029,13 @@ export namespace Prisma {
   export type PurchaseOrderAvgAggregateInputType = {
     id?: true
     customerId?: true
+    dealershipId?: true
   }
 
   export type PurchaseOrderSumAggregateInputType = {
     id?: true
     customerId?: true
+    dealershipId?: true
   }
 
   export type PurchaseOrderMinAggregateInputType = {
@@ -8817,10 +9044,10 @@ export namespace Prisma {
     isQuote?: true
     isSimple?: true
     customerId?: true
-    orderDate?: true
     createdAt?: true
     updatedAt?: true
     isDeleted?: true
+    dealershipId?: true
   }
 
   export type PurchaseOrderMaxAggregateInputType = {
@@ -8829,10 +9056,10 @@ export namespace Prisma {
     isQuote?: true
     isSimple?: true
     customerId?: true
-    orderDate?: true
     createdAt?: true
     updatedAt?: true
     isDeleted?: true
+    dealershipId?: true
   }
 
   export type PurchaseOrderCountAggregateInputType = {
@@ -8841,10 +9068,10 @@ export namespace Prisma {
     isQuote?: true
     isSimple?: true
     customerId?: true
-    orderDate?: true
     createdAt?: true
     updatedAt?: true
     isDeleted?: true
+    dealershipId?: true
     _all?: true
   }
 
@@ -8940,10 +9167,10 @@ export namespace Prisma {
     isQuote: boolean
     isSimple: boolean
     customerId: number
-    orderDate: Date
     createdAt: Date
     updatedAt: Date
     isDeleted: boolean
+    dealershipId: number
     _count: PurchaseOrderCountAggregateOutputType | null
     _avg: PurchaseOrderAvgAggregateOutputType | null
     _sum: PurchaseOrderSumAggregateOutputType | null
@@ -8971,10 +9198,11 @@ export namespace Prisma {
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
-    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     Customer?: boolean | CustomerDefaultArgs<ExtArgs>
     PurchaseOrderItem?: boolean | PurchaseOrder$PurchaseOrderItemArgs<ExtArgs>
     _count?: boolean | PurchaseOrderCountOutputTypeDefaultArgs<ExtArgs>
@@ -8986,10 +9214,11 @@ export namespace Prisma {
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
-    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     Customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["purchaseOrder"]>
 
@@ -8999,10 +9228,11 @@ export namespace Prisma {
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
-    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     Customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["purchaseOrder"]>
 
@@ -9012,28 +9242,32 @@ export namespace Prisma {
     isQuote?: boolean
     isSimple?: boolean
     customerId?: boolean
-    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeleted?: boolean
+    dealershipId?: boolean
   }
 
-  export type PurchaseOrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "purchaseOrderName" | "isQuote" | "isSimple" | "customerId" | "orderDate" | "createdAt" | "updatedAt" | "isDeleted", ExtArgs["result"]["purchaseOrder"]>
+  export type PurchaseOrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "purchaseOrderName" | "isQuote" | "isSimple" | "customerId" | "createdAt" | "updatedAt" | "isDeleted" | "dealershipId", ExtArgs["result"]["purchaseOrder"]>
   export type PurchaseOrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     Customer?: boolean | CustomerDefaultArgs<ExtArgs>
     PurchaseOrderItem?: boolean | PurchaseOrder$PurchaseOrderItemArgs<ExtArgs>
     _count?: boolean | PurchaseOrderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PurchaseOrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     Customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }
   export type PurchaseOrderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Dealership?: boolean | DealershipDefaultArgs<ExtArgs>
     Customer?: boolean | CustomerDefaultArgs<ExtArgs>
   }
 
   export type $PurchaseOrderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PurchaseOrder"
     objects: {
+      Dealership: Prisma.$DealershipPayload<ExtArgs>
       Customer: Prisma.$CustomerPayload<ExtArgs>
       PurchaseOrderItem: Prisma.$PurchaseOrderItemPayload<ExtArgs>[]
     }
@@ -9043,10 +9277,10 @@ export namespace Prisma {
       isQuote: boolean
       isSimple: boolean
       customerId: number
-      orderDate: Date
       createdAt: Date
       updatedAt: Date
       isDeleted: boolean
+      dealershipId: number
     }, ExtArgs["result"]["purchaseOrder"]>
     composites: {}
   }
@@ -9441,6 +9675,7 @@ export namespace Prisma {
    */
   export interface Prisma__PurchaseOrderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    Dealership<T extends DealershipDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DealershipDefaultArgs<ExtArgs>>): Prisma__DealershipClient<$Result.GetResult<Prisma.$DealershipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Customer<T extends CustomerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CustomerDefaultArgs<ExtArgs>>): Prisma__CustomerClient<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     PurchaseOrderItem<T extends PurchaseOrder$PurchaseOrderItemArgs<ExtArgs> = {}>(args?: Subset<T, PurchaseOrder$PurchaseOrderItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PurchaseOrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -9477,10 +9712,10 @@ export namespace Prisma {
     readonly isQuote: FieldRef<"PurchaseOrder", 'Boolean'>
     readonly isSimple: FieldRef<"PurchaseOrder", 'Boolean'>
     readonly customerId: FieldRef<"PurchaseOrder", 'Int'>
-    readonly orderDate: FieldRef<"PurchaseOrder", 'DateTime'>
     readonly createdAt: FieldRef<"PurchaseOrder", 'DateTime'>
     readonly updatedAt: FieldRef<"PurchaseOrder", 'DateTime'>
     readonly isDeleted: FieldRef<"PurchaseOrder", 'Boolean'>
+    readonly dealershipId: FieldRef<"PurchaseOrder", 'Int'>
   }
     
 
@@ -9954,6 +10189,7 @@ export namespace Prisma {
     productId: number | null
     quantity: number | null
     note: string | null
+    orderDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9965,6 +10201,7 @@ export namespace Prisma {
     productId: number | null
     quantity: number | null
     note: string | null
+    orderDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9976,6 +10213,7 @@ export namespace Prisma {
     productId: number
     quantity: number
     note: number
+    orderDate: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -10005,6 +10243,7 @@ export namespace Prisma {
     productId?: true
     quantity?: true
     note?: true
+    orderDate?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -10016,6 +10255,7 @@ export namespace Prisma {
     productId?: true
     quantity?: true
     note?: true
+    orderDate?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -10027,6 +10267,7 @@ export namespace Prisma {
     productId?: true
     quantity?: true
     note?: true
+    orderDate?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -10125,6 +10366,7 @@ export namespace Prisma {
     productId: number
     quantity: number
     note: string | null
+    orderDate: Date
     createdAt: Date
     updatedAt: Date
     _count: PurchaseOrderItemCountAggregateOutputType | null
@@ -10155,6 +10397,7 @@ export namespace Prisma {
     productId?: boolean
     quantity?: boolean
     note?: boolean
+    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     PurchaseOrder?: boolean | PurchaseOrderDefaultArgs<ExtArgs>
@@ -10167,6 +10410,7 @@ export namespace Prisma {
     productId?: boolean
     quantity?: boolean
     note?: boolean
+    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     PurchaseOrder?: boolean | PurchaseOrderDefaultArgs<ExtArgs>
@@ -10179,6 +10423,7 @@ export namespace Prisma {
     productId?: boolean
     quantity?: boolean
     note?: boolean
+    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     PurchaseOrder?: boolean | PurchaseOrderDefaultArgs<ExtArgs>
@@ -10191,11 +10436,12 @@ export namespace Prisma {
     productId?: boolean
     quantity?: boolean
     note?: boolean
+    orderDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PurchaseOrderItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "puchaseOrderId" | "productCompanyId" | "productId" | "quantity" | "note" | "createdAt" | "updatedAt", ExtArgs["result"]["purchaseOrderItem"]>
+  export type PurchaseOrderItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "puchaseOrderId" | "productCompanyId" | "productId" | "quantity" | "note" | "orderDate" | "createdAt" | "updatedAt", ExtArgs["result"]["purchaseOrderItem"]>
   export type PurchaseOrderItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     PurchaseOrder?: boolean | PurchaseOrderDefaultArgs<ExtArgs>
   }
@@ -10218,6 +10464,7 @@ export namespace Prisma {
       productId: number
       quantity: number
       note: string | null
+      orderDate: Date
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["purchaseOrderItem"]>
@@ -10650,6 +10897,7 @@ export namespace Prisma {
     readonly productId: FieldRef<"PurchaseOrderItem", 'Int'>
     readonly quantity: FieldRef<"PurchaseOrderItem", 'Float'>
     readonly note: FieldRef<"PurchaseOrderItem", 'String'>
+    readonly orderDate: FieldRef<"PurchaseOrderItem", 'DateTime'>
     readonly createdAt: FieldRef<"PurchaseOrderItem", 'DateTime'>
     readonly updatedAt: FieldRef<"PurchaseOrderItem", 'DateTime'>
   }
@@ -11132,6 +11380,7 @@ export namespace Prisma {
     agiisId: 'agiisId',
     sapId: 'sapId',
     isDeleted: 'isDeleted',
+    dealershipId: 'dealershipId',
     productCompanyId: 'productCompanyId'
   };
 
@@ -11149,6 +11398,7 @@ export namespace Prisma {
     dealerPricing: 'dealerPricing',
     endUserPricing: 'endUserPricing',
     isDeleted: 'isDeleted',
+    dealershipId: 'dealershipId',
     productCompanyId: 'productCompanyId'
   };
 
@@ -11163,6 +11413,7 @@ export namespace Prisma {
     dealerPricing: 'dealerPricing',
     endUserPricing: 'endUserPricing',
     isDeleted: 'isDeleted',
+    dealershipId: 'dealershipId',
     productCompanyId: 'productCompanyId'
   };
 
@@ -11175,10 +11426,10 @@ export namespace Prisma {
     isQuote: 'isQuote',
     isSimple: 'isSimple',
     customerId: 'customerId',
-    orderDate: 'orderDate',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    isDeleted: 'isDeleted'
+    isDeleted: 'isDeleted',
+    dealershipId: 'dealershipId'
   };
 
   export type PurchaseOrderScalarFieldEnum = (typeof PurchaseOrderScalarFieldEnum)[keyof typeof PurchaseOrderScalarFieldEnum]
@@ -11191,6 +11442,7 @@ export namespace Prisma {
     productId: 'productId',
     quantity: 'quantity',
     note: 'note',
+    orderDate: 'orderDate',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -11331,6 +11583,10 @@ export namespace Prisma {
     isDeleted?: BoolFilter<"Dealership"> | boolean
     Customer?: CustomerListRelationFilter
     ProductCompany?: ProductCompanyListRelationFilter
+    BayerProduct?: BayerProductListRelationFilter
+    SeedProduct?: SeedProductListRelationFilter
+    RegularProduct?: RegularProductListRelationFilter
+    PurchaseOrder?: PurchaseOrderListRelationFilter
   }
 
   export type DealershipOrderByWithRelationInput = {
@@ -11340,6 +11596,10 @@ export namespace Prisma {
     isDeleted?: SortOrder
     Customer?: CustomerOrderByRelationAggregateInput
     ProductCompany?: ProductCompanyOrderByRelationAggregateInput
+    BayerProduct?: BayerProductOrderByRelationAggregateInput
+    SeedProduct?: SeedProductOrderByRelationAggregateInput
+    RegularProduct?: RegularProductOrderByRelationAggregateInput
+    PurchaseOrder?: PurchaseOrderOrderByRelationAggregateInput
   }
 
   export type DealershipWhereUniqueInput = Prisma.AtLeast<{
@@ -11352,6 +11612,10 @@ export namespace Prisma {
     isDeleted?: BoolFilter<"Dealership"> | boolean
     Customer?: CustomerListRelationFilter
     ProductCompany?: ProductCompanyListRelationFilter
+    BayerProduct?: BayerProductListRelationFilter
+    SeedProduct?: SeedProductListRelationFilter
+    RegularProduct?: RegularProductListRelationFilter
+    PurchaseOrder?: PurchaseOrderListRelationFilter
   }, "id">
 
   export type DealershipOrderByWithAggregationInput = {
@@ -11549,7 +11813,9 @@ export namespace Prisma {
     agiisId?: StringFilter<"BayerProduct"> | string
     sapId?: StringFilter<"BayerProduct"> | string
     isDeleted?: BoolFilter<"BayerProduct"> | boolean
+    dealershipId?: IntFilter<"BayerProduct"> | number
     productCompanyId?: IntFilter<"BayerProduct"> | number
+    Dealership?: XOR<DealershipScalarRelationFilter, DealershipWhereInput>
     ProductCompany?: XOR<ProductCompanyScalarRelationFilter, ProductCompanyWhereInput>
   }
 
@@ -11567,7 +11833,9 @@ export namespace Prisma {
     agiisId?: SortOrder
     sapId?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
+    Dealership?: DealershipOrderByWithRelationInput
     ProductCompany?: ProductCompanyOrderByWithRelationInput
   }
 
@@ -11589,7 +11857,9 @@ export namespace Prisma {
     agiisId?: StringFilter<"BayerProduct"> | string
     sapId?: StringFilter<"BayerProduct"> | string
     isDeleted?: BoolFilter<"BayerProduct"> | boolean
+    dealershipId?: IntFilter<"BayerProduct"> | number
     productCompanyId?: IntFilter<"BayerProduct"> | number
+    Dealership?: XOR<DealershipScalarRelationFilter, DealershipWhereInput>
     ProductCompany?: XOR<ProductCompanyScalarRelationFilter, ProductCompanyWhereInput>
   }, "id" | "trait_variety_treatment_seedSize_cropType_packaging_agiisId_sapId">
 
@@ -11607,6 +11877,7 @@ export namespace Prisma {
     agiisId?: SortOrder
     sapId?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
     _count?: BayerProductCountOrderByAggregateInput
     _avg?: BayerProductAvgOrderByAggregateInput
@@ -11632,6 +11903,7 @@ export namespace Prisma {
     agiisId?: StringWithAggregatesFilter<"BayerProduct"> | string
     sapId?: StringWithAggregatesFilter<"BayerProduct"> | string
     isDeleted?: BoolWithAggregatesFilter<"BayerProduct"> | boolean
+    dealershipId?: IntWithAggregatesFilter<"BayerProduct"> | number
     productCompanyId?: IntWithAggregatesFilter<"BayerProduct"> | number
   }
 
@@ -11649,7 +11921,9 @@ export namespace Prisma {
     dealerPricing?: FloatFilter<"SeedProduct"> | number
     endUserPricing?: FloatFilter<"SeedProduct"> | number
     isDeleted?: BoolFilter<"SeedProduct"> | boolean
+    dealershipId?: IntFilter<"SeedProduct"> | number
     productCompanyId?: IntFilter<"SeedProduct"> | number
+    Dealership?: XOR<DealershipScalarRelationFilter, DealershipWhereInput>
     ProductCompany?: XOR<ProductCompanyScalarRelationFilter, ProductCompanyWhereInput>
   }
 
@@ -11664,7 +11938,9 @@ export namespace Prisma {
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
+    Dealership?: DealershipOrderByWithRelationInput
     ProductCompany?: ProductCompanyOrderByWithRelationInput
   }
 
@@ -11683,7 +11959,9 @@ export namespace Prisma {
     dealerPricing?: FloatFilter<"SeedProduct"> | number
     endUserPricing?: FloatFilter<"SeedProduct"> | number
     isDeleted?: BoolFilter<"SeedProduct"> | boolean
+    dealershipId?: IntFilter<"SeedProduct"> | number
     productCompanyId?: IntFilter<"SeedProduct"> | number
+    Dealership?: XOR<DealershipScalarRelationFilter, DealershipWhereInput>
     ProductCompany?: XOR<ProductCompanyScalarRelationFilter, ProductCompanyWhereInput>
   }, "id" | "trait_variety_treatment_seedSize_cropType_packaging">
 
@@ -11698,6 +11976,7 @@ export namespace Prisma {
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
     _count?: SeedProductCountOrderByAggregateInput
     _avg?: SeedProductAvgOrderByAggregateInput
@@ -11720,6 +11999,7 @@ export namespace Prisma {
     dealerPricing?: FloatWithAggregatesFilter<"SeedProduct"> | number
     endUserPricing?: FloatWithAggregatesFilter<"SeedProduct"> | number
     isDeleted?: BoolWithAggregatesFilter<"SeedProduct"> | boolean
+    dealershipId?: IntWithAggregatesFilter<"SeedProduct"> | number
     productCompanyId?: IntWithAggregatesFilter<"SeedProduct"> | number
   }
 
@@ -11734,7 +12014,9 @@ export namespace Prisma {
     dealerPricing?: FloatFilter<"RegularProduct"> | number
     endUserPricing?: FloatFilter<"RegularProduct"> | number
     isDeleted?: BoolFilter<"RegularProduct"> | boolean
+    dealershipId?: IntFilter<"RegularProduct"> | number
     productCompanyId?: IntFilter<"RegularProduct"> | number
+    Dealership?: XOR<DealershipScalarRelationFilter, DealershipWhereInput>
     ProductCompany?: XOR<ProductCompanyScalarRelationFilter, ProductCompanyWhereInput>
   }
 
@@ -11746,7 +12028,9 @@ export namespace Prisma {
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
+    Dealership?: DealershipOrderByWithRelationInput
     ProductCompany?: ProductCompanyOrderByWithRelationInput
   }
 
@@ -11761,7 +12045,9 @@ export namespace Prisma {
     dealerPricing?: FloatFilter<"RegularProduct"> | number
     endUserPricing?: FloatFilter<"RegularProduct"> | number
     isDeleted?: BoolFilter<"RegularProduct"> | boolean
+    dealershipId?: IntFilter<"RegularProduct"> | number
     productCompanyId?: IntFilter<"RegularProduct"> | number
+    Dealership?: XOR<DealershipScalarRelationFilter, DealershipWhereInput>
     ProductCompany?: XOR<ProductCompanyScalarRelationFilter, ProductCompanyWhereInput>
   }, "id">
 
@@ -11773,6 +12059,7 @@ export namespace Prisma {
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
     _count?: RegularProductCountOrderByAggregateInput
     _avg?: RegularProductAvgOrderByAggregateInput
@@ -11792,6 +12079,7 @@ export namespace Prisma {
     dealerPricing?: FloatWithAggregatesFilter<"RegularProduct"> | number
     endUserPricing?: FloatWithAggregatesFilter<"RegularProduct"> | number
     isDeleted?: BoolWithAggregatesFilter<"RegularProduct"> | boolean
+    dealershipId?: IntWithAggregatesFilter<"RegularProduct"> | number
     productCompanyId?: IntWithAggregatesFilter<"RegularProduct"> | number
   }
 
@@ -11804,10 +12092,11 @@ export namespace Prisma {
     isQuote?: BoolFilter<"PurchaseOrder"> | boolean
     isSimple?: BoolFilter<"PurchaseOrder"> | boolean
     customerId?: IntFilter<"PurchaseOrder"> | number
-    orderDate?: DateTimeFilter<"PurchaseOrder"> | Date | string
     createdAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
     updatedAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
     isDeleted?: BoolFilter<"PurchaseOrder"> | boolean
+    dealershipId?: IntFilter<"PurchaseOrder"> | number
+    Dealership?: XOR<DealershipScalarRelationFilter, DealershipWhereInput>
     Customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     PurchaseOrderItem?: PurchaseOrderItemListRelationFilter
   }
@@ -11818,10 +12107,11 @@ export namespace Prisma {
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
-    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
+    Dealership?: DealershipOrderByWithRelationInput
     Customer?: CustomerOrderByWithRelationInput
     PurchaseOrderItem?: PurchaseOrderItemOrderByRelationAggregateInput
   }
@@ -11835,10 +12125,11 @@ export namespace Prisma {
     isQuote?: BoolFilter<"PurchaseOrder"> | boolean
     isSimple?: BoolFilter<"PurchaseOrder"> | boolean
     customerId?: IntFilter<"PurchaseOrder"> | number
-    orderDate?: DateTimeFilter<"PurchaseOrder"> | Date | string
     createdAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
     updatedAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
     isDeleted?: BoolFilter<"PurchaseOrder"> | boolean
+    dealershipId?: IntFilter<"PurchaseOrder"> | number
+    Dealership?: XOR<DealershipScalarRelationFilter, DealershipWhereInput>
     Customer?: XOR<CustomerScalarRelationFilter, CustomerWhereInput>
     PurchaseOrderItem?: PurchaseOrderItemListRelationFilter
   }, "id">
@@ -11849,10 +12140,10 @@ export namespace Prisma {
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
-    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     _count?: PurchaseOrderCountOrderByAggregateInput
     _avg?: PurchaseOrderAvgOrderByAggregateInput
     _max?: PurchaseOrderMaxOrderByAggregateInput
@@ -11869,10 +12160,10 @@ export namespace Prisma {
     isQuote?: BoolWithAggregatesFilter<"PurchaseOrder"> | boolean
     isSimple?: BoolWithAggregatesFilter<"PurchaseOrder"> | boolean
     customerId?: IntWithAggregatesFilter<"PurchaseOrder"> | number
-    orderDate?: DateTimeWithAggregatesFilter<"PurchaseOrder"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"PurchaseOrder"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PurchaseOrder"> | Date | string
     isDeleted?: BoolWithAggregatesFilter<"PurchaseOrder"> | boolean
+    dealershipId?: IntWithAggregatesFilter<"PurchaseOrder"> | number
   }
 
   export type PurchaseOrderItemWhereInput = {
@@ -11885,6 +12176,7 @@ export namespace Prisma {
     productId?: IntFilter<"PurchaseOrderItem"> | number
     quantity?: FloatFilter<"PurchaseOrderItem"> | number
     note?: StringNullableFilter<"PurchaseOrderItem"> | string | null
+    orderDate?: DateTimeFilter<"PurchaseOrderItem"> | Date | string
     createdAt?: DateTimeFilter<"PurchaseOrderItem"> | Date | string
     updatedAt?: DateTimeFilter<"PurchaseOrderItem"> | Date | string
     PurchaseOrder?: XOR<PurchaseOrderScalarRelationFilter, PurchaseOrderWhereInput>
@@ -11897,6 +12189,7 @@ export namespace Prisma {
     productId?: SortOrder
     quantity?: SortOrder
     note?: SortOrderInput | SortOrder
+    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     PurchaseOrder?: PurchaseOrderOrderByWithRelationInput
@@ -11913,6 +12206,7 @@ export namespace Prisma {
     productId?: IntFilter<"PurchaseOrderItem"> | number
     quantity?: FloatFilter<"PurchaseOrderItem"> | number
     note?: StringNullableFilter<"PurchaseOrderItem"> | string | null
+    orderDate?: DateTimeFilter<"PurchaseOrderItem"> | Date | string
     createdAt?: DateTimeFilter<"PurchaseOrderItem"> | Date | string
     updatedAt?: DateTimeFilter<"PurchaseOrderItem"> | Date | string
     PurchaseOrder?: XOR<PurchaseOrderScalarRelationFilter, PurchaseOrderWhereInput>
@@ -11925,6 +12219,7 @@ export namespace Prisma {
     productId?: SortOrder
     quantity?: SortOrder
     note?: SortOrderInput | SortOrder
+    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PurchaseOrderItemCountOrderByAggregateInput
@@ -11944,6 +12239,7 @@ export namespace Prisma {
     productId?: IntWithAggregatesFilter<"PurchaseOrderItem"> | number
     quantity?: FloatWithAggregatesFilter<"PurchaseOrderItem"> | number
     note?: StringNullableWithAggregatesFilter<"PurchaseOrderItem"> | string | null
+    orderDate?: DateTimeWithAggregatesFilter<"PurchaseOrderItem"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"PurchaseOrderItem"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PurchaseOrderItem"> | Date | string
   }
@@ -11954,6 +12250,10 @@ export namespace Prisma {
     isDeleted?: boolean
     Customer?: CustomerCreateNestedManyWithoutDealershipInput
     ProductCompany?: ProductCompanyCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderCreateNestedManyWithoutDealershipInput
   }
 
   export type DealershipUncheckedCreateInput = {
@@ -11963,6 +12263,10 @@ export namespace Prisma {
     isDeleted?: boolean
     Customer?: CustomerUncheckedCreateNestedManyWithoutDealershipInput
     ProductCompany?: ProductCompanyUncheckedCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductUncheckedCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductUncheckedCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductUncheckedCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderUncheckedCreateNestedManyWithoutDealershipInput
   }
 
   export type DealershipUpdateInput = {
@@ -11971,6 +12275,10 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     Customer?: CustomerUpdateManyWithoutDealershipNestedInput
     ProductCompany?: ProductCompanyUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUpdateManyWithoutDealershipNestedInput
   }
 
   export type DealershipUncheckedUpdateInput = {
@@ -11980,6 +12288,10 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     Customer?: CustomerUncheckedUpdateManyWithoutDealershipNestedInput
     ProductCompany?: ProductCompanyUncheckedUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUncheckedUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUncheckedUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUncheckedUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUncheckedUpdateManyWithoutDealershipNestedInput
   }
 
   export type DealershipCreateManyInput = {
@@ -12177,6 +12489,7 @@ export namespace Prisma {
     agiisId: string
     sapId: string
     isDeleted?: boolean
+    Dealership?: DealershipCreateNestedOneWithoutBayerProductInput
     ProductCompany: ProductCompanyCreateNestedOneWithoutBayerProductInput
   }
 
@@ -12194,6 +12507,7 @@ export namespace Prisma {
     agiisId: string
     sapId: string
     isDeleted?: boolean
+    dealershipId?: number
     productCompanyId: number
   }
 
@@ -12210,6 +12524,7 @@ export namespace Prisma {
     agiisId?: StringFieldUpdateOperationsInput | string
     sapId?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Dealership?: DealershipUpdateOneRequiredWithoutBayerProductNestedInput
     ProductCompany?: ProductCompanyUpdateOneRequiredWithoutBayerProductNestedInput
   }
 
@@ -12227,6 +12542,7 @@ export namespace Prisma {
     agiisId?: StringFieldUpdateOperationsInput | string
     sapId?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
     productCompanyId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -12244,6 +12560,7 @@ export namespace Prisma {
     agiisId: string
     sapId: string
     isDeleted?: boolean
+    dealershipId?: number
     productCompanyId: number
   }
 
@@ -12276,6 +12593,7 @@ export namespace Prisma {
     agiisId?: StringFieldUpdateOperationsInput | string
     sapId?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
     productCompanyId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -12289,6 +12607,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    Dealership?: DealershipCreateNestedOneWithoutSeedProductInput
     ProductCompany: ProductCompanyCreateNestedOneWithoutSeedProductInput
   }
 
@@ -12303,6 +12622,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    dealershipId?: number
     productCompanyId: number
   }
 
@@ -12316,6 +12636,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Dealership?: DealershipUpdateOneRequiredWithoutSeedProductNestedInput
     ProductCompany?: ProductCompanyUpdateOneRequiredWithoutSeedProductNestedInput
   }
 
@@ -12330,6 +12651,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
     productCompanyId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -12344,6 +12666,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    dealershipId?: number
     productCompanyId: number
   }
 
@@ -12370,6 +12693,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
     productCompanyId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -12380,6 +12704,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    Dealership?: DealershipCreateNestedOneWithoutRegularProductInput
     ProductCompany: ProductCompanyCreateNestedOneWithoutRegularProductInput
   }
 
@@ -12391,6 +12716,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    dealershipId?: number
     productCompanyId: number
   }
 
@@ -12401,6 +12727,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Dealership?: DealershipUpdateOneRequiredWithoutRegularProductNestedInput
     ProductCompany?: ProductCompanyUpdateOneRequiredWithoutRegularProductNestedInput
   }
 
@@ -12412,6 +12739,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
     productCompanyId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -12423,6 +12751,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    dealershipId?: number
     productCompanyId: number
   }
 
@@ -12443,6 +12772,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
     productCompanyId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -12450,10 +12780,10 @@ export namespace Prisma {
     purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
-    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
+    Dealership?: DealershipCreateNestedOneWithoutPurchaseOrderInput
     Customer: CustomerCreateNestedOneWithoutPurchaseOrderInput
     PurchaseOrderItem?: PurchaseOrderItemCreateNestedManyWithoutPurchaseOrderInput
   }
@@ -12464,10 +12794,10 @@ export namespace Prisma {
     isQuote: boolean
     isSimple: boolean
     customerId: number
-    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
+    dealershipId?: number
     PurchaseOrderItem?: PurchaseOrderItemUncheckedCreateNestedManyWithoutPurchaseOrderInput
   }
 
@@ -12475,10 +12805,10 @@ export namespace Prisma {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Dealership?: DealershipUpdateOneRequiredWithoutPurchaseOrderNestedInput
     Customer?: CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput
     PurchaseOrderItem?: PurchaseOrderItemUpdateManyWithoutPurchaseOrderNestedInput
   }
@@ -12489,10 +12819,10 @@ export namespace Prisma {
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     customerId?: IntFieldUpdateOperationsInput | number
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
     PurchaseOrderItem?: PurchaseOrderItemUncheckedUpdateManyWithoutPurchaseOrderNestedInput
   }
 
@@ -12502,17 +12832,16 @@ export namespace Prisma {
     isQuote: boolean
     isSimple: boolean
     customerId: number
-    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
+    dealershipId?: number
   }
 
   export type PurchaseOrderUpdateManyMutationInput = {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -12524,10 +12853,10 @@ export namespace Prisma {
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     customerId?: IntFieldUpdateOperationsInput | number
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
   }
 
   export type PurchaseOrderItemCreateInput = {
@@ -12535,6 +12864,7 @@ export namespace Prisma {
     productId: number
     quantity: number
     note?: string | null
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     PurchaseOrder: PurchaseOrderCreateNestedOneWithoutPurchaseOrderItemInput
@@ -12547,6 +12877,7 @@ export namespace Prisma {
     productId: number
     quantity: number
     note?: string | null
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12556,6 +12887,7 @@ export namespace Prisma {
     productId?: IntFieldUpdateOperationsInput | number
     quantity?: FloatFieldUpdateOperationsInput | number
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     PurchaseOrder?: PurchaseOrderUpdateOneRequiredWithoutPurchaseOrderItemNestedInput
@@ -12568,6 +12900,7 @@ export namespace Prisma {
     productId?: IntFieldUpdateOperationsInput | number
     quantity?: FloatFieldUpdateOperationsInput | number
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12579,6 +12912,7 @@ export namespace Prisma {
     productId: number
     quantity: number
     note?: string | null
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12588,6 +12922,7 @@ export namespace Prisma {
     productId?: IntFieldUpdateOperationsInput | number
     quantity?: FloatFieldUpdateOperationsInput | number
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12599,6 +12934,7 @@ export namespace Prisma {
     productId?: IntFieldUpdateOperationsInput | number
     quantity?: FloatFieldUpdateOperationsInput | number
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12646,11 +12982,51 @@ export namespace Prisma {
     none?: ProductCompanyWhereInput
   }
 
+  export type BayerProductListRelationFilter = {
+    every?: BayerProductWhereInput
+    some?: BayerProductWhereInput
+    none?: BayerProductWhereInput
+  }
+
+  export type SeedProductListRelationFilter = {
+    every?: SeedProductWhereInput
+    some?: SeedProductWhereInput
+    none?: SeedProductWhereInput
+  }
+
+  export type RegularProductListRelationFilter = {
+    every?: RegularProductWhereInput
+    some?: RegularProductWhereInput
+    none?: RegularProductWhereInput
+  }
+
+  export type PurchaseOrderListRelationFilter = {
+    every?: PurchaseOrderWhereInput
+    some?: PurchaseOrderWhereInput
+    none?: PurchaseOrderWhereInput
+  }
+
   export type CustomerOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type ProductCompanyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BayerProductOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SeedProductOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RegularProductOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PurchaseOrderOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12745,19 +13121,9 @@ export namespace Prisma {
     isNot?: DealershipWhereInput
   }
 
-  export type PurchaseOrderListRelationFilter = {
-    every?: PurchaseOrderWhereInput
-    some?: PurchaseOrderWhereInput
-    none?: PurchaseOrderWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type PurchaseOrderOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type CustomerCountOrderByAggregateInput = {
@@ -12835,36 +13201,6 @@ export namespace Prisma {
     in?: $Enums.CompanyType[] | ListEnumCompanyTypeFieldRefInput<$PrismaModel>
     notIn?: $Enums.CompanyType[] | ListEnumCompanyTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumCompanyTypeFilter<$PrismaModel> | $Enums.CompanyType
-  }
-
-  export type SeedProductListRelationFilter = {
-    every?: SeedProductWhereInput
-    some?: SeedProductWhereInput
-    none?: SeedProductWhereInput
-  }
-
-  export type BayerProductListRelationFilter = {
-    every?: BayerProductWhereInput
-    some?: BayerProductWhereInput
-    none?: BayerProductWhereInput
-  }
-
-  export type RegularProductListRelationFilter = {
-    every?: RegularProductWhereInput
-    some?: RegularProductWhereInput
-    none?: RegularProductWhereInput
-  }
-
-  export type SeedProductOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type BayerProductOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type RegularProductOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type ProductCompanyCountOrderByAggregateInput = {
@@ -12959,6 +13295,7 @@ export namespace Prisma {
     agiisId?: SortOrder
     sapId?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -12966,6 +13303,7 @@ export namespace Prisma {
     id?: SortOrder
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -12983,6 +13321,7 @@ export namespace Prisma {
     agiisId?: SortOrder
     sapId?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13000,6 +13339,7 @@ export namespace Prisma {
     agiisId?: SortOrder
     sapId?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13007,6 +13347,7 @@ export namespace Prisma {
     id?: SortOrder
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13056,6 +13397,7 @@ export namespace Prisma {
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13063,6 +13405,7 @@ export namespace Prisma {
     id?: SortOrder
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13077,6 +13420,7 @@ export namespace Prisma {
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13091,6 +13435,7 @@ export namespace Prisma {
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13098,6 +13443,7 @@ export namespace Prisma {
     id?: SortOrder
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13109,6 +13455,7 @@ export namespace Prisma {
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13116,6 +13463,7 @@ export namespace Prisma {
     id?: SortOrder
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13127,6 +13475,7 @@ export namespace Prisma {
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13138,6 +13487,7 @@ export namespace Prisma {
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13145,6 +13495,7 @@ export namespace Prisma {
     id?: SortOrder
     dealerPricing?: SortOrder
     endUserPricing?: SortOrder
+    dealershipId?: SortOrder
     productCompanyId?: SortOrder
   }
 
@@ -13180,15 +13531,16 @@ export namespace Prisma {
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
-    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
   }
 
   export type PurchaseOrderAvgOrderByAggregateInput = {
     id?: SortOrder
     customerId?: SortOrder
+    dealershipId?: SortOrder
   }
 
   export type PurchaseOrderMaxOrderByAggregateInput = {
@@ -13197,10 +13549,10 @@ export namespace Prisma {
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
-    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
   }
 
   export type PurchaseOrderMinOrderByAggregateInput = {
@@ -13209,15 +13561,16 @@ export namespace Prisma {
     isQuote?: SortOrder
     isSimple?: SortOrder
     customerId?: SortOrder
-    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeleted?: SortOrder
+    dealershipId?: SortOrder
   }
 
   export type PurchaseOrderSumOrderByAggregateInput = {
     id?: SortOrder
     customerId?: SortOrder
+    dealershipId?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -13251,6 +13604,7 @@ export namespace Prisma {
     productId?: SortOrder
     quantity?: SortOrder
     note?: SortOrder
+    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13270,6 +13624,7 @@ export namespace Prisma {
     productId?: SortOrder
     quantity?: SortOrder
     note?: SortOrder
+    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13281,6 +13636,7 @@ export namespace Prisma {
     productId?: SortOrder
     quantity?: SortOrder
     note?: SortOrder
+    orderDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13307,6 +13663,34 @@ export namespace Prisma {
     connect?: ProductCompanyWhereUniqueInput | ProductCompanyWhereUniqueInput[]
   }
 
+  export type BayerProductCreateNestedManyWithoutDealershipInput = {
+    create?: XOR<BayerProductCreateWithoutDealershipInput, BayerProductUncheckedCreateWithoutDealershipInput> | BayerProductCreateWithoutDealershipInput[] | BayerProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: BayerProductCreateOrConnectWithoutDealershipInput | BayerProductCreateOrConnectWithoutDealershipInput[]
+    createMany?: BayerProductCreateManyDealershipInputEnvelope
+    connect?: BayerProductWhereUniqueInput | BayerProductWhereUniqueInput[]
+  }
+
+  export type SeedProductCreateNestedManyWithoutDealershipInput = {
+    create?: XOR<SeedProductCreateWithoutDealershipInput, SeedProductUncheckedCreateWithoutDealershipInput> | SeedProductCreateWithoutDealershipInput[] | SeedProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: SeedProductCreateOrConnectWithoutDealershipInput | SeedProductCreateOrConnectWithoutDealershipInput[]
+    createMany?: SeedProductCreateManyDealershipInputEnvelope
+    connect?: SeedProductWhereUniqueInput | SeedProductWhereUniqueInput[]
+  }
+
+  export type RegularProductCreateNestedManyWithoutDealershipInput = {
+    create?: XOR<RegularProductCreateWithoutDealershipInput, RegularProductUncheckedCreateWithoutDealershipInput> | RegularProductCreateWithoutDealershipInput[] | RegularProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: RegularProductCreateOrConnectWithoutDealershipInput | RegularProductCreateOrConnectWithoutDealershipInput[]
+    createMany?: RegularProductCreateManyDealershipInputEnvelope
+    connect?: RegularProductWhereUniqueInput | RegularProductWhereUniqueInput[]
+  }
+
+  export type PurchaseOrderCreateNestedManyWithoutDealershipInput = {
+    create?: XOR<PurchaseOrderCreateWithoutDealershipInput, PurchaseOrderUncheckedCreateWithoutDealershipInput> | PurchaseOrderCreateWithoutDealershipInput[] | PurchaseOrderUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: PurchaseOrderCreateOrConnectWithoutDealershipInput | PurchaseOrderCreateOrConnectWithoutDealershipInput[]
+    createMany?: PurchaseOrderCreateManyDealershipInputEnvelope
+    connect?: PurchaseOrderWhereUniqueInput | PurchaseOrderWhereUniqueInput[]
+  }
+
   export type CustomerUncheckedCreateNestedManyWithoutDealershipInput = {
     create?: XOR<CustomerCreateWithoutDealershipInput, CustomerUncheckedCreateWithoutDealershipInput> | CustomerCreateWithoutDealershipInput[] | CustomerUncheckedCreateWithoutDealershipInput[]
     connectOrCreate?: CustomerCreateOrConnectWithoutDealershipInput | CustomerCreateOrConnectWithoutDealershipInput[]
@@ -13319,6 +13703,34 @@ export namespace Prisma {
     connectOrCreate?: ProductCompanyCreateOrConnectWithoutDealershipInput | ProductCompanyCreateOrConnectWithoutDealershipInput[]
     createMany?: ProductCompanyCreateManyDealershipInputEnvelope
     connect?: ProductCompanyWhereUniqueInput | ProductCompanyWhereUniqueInput[]
+  }
+
+  export type BayerProductUncheckedCreateNestedManyWithoutDealershipInput = {
+    create?: XOR<BayerProductCreateWithoutDealershipInput, BayerProductUncheckedCreateWithoutDealershipInput> | BayerProductCreateWithoutDealershipInput[] | BayerProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: BayerProductCreateOrConnectWithoutDealershipInput | BayerProductCreateOrConnectWithoutDealershipInput[]
+    createMany?: BayerProductCreateManyDealershipInputEnvelope
+    connect?: BayerProductWhereUniqueInput | BayerProductWhereUniqueInput[]
+  }
+
+  export type SeedProductUncheckedCreateNestedManyWithoutDealershipInput = {
+    create?: XOR<SeedProductCreateWithoutDealershipInput, SeedProductUncheckedCreateWithoutDealershipInput> | SeedProductCreateWithoutDealershipInput[] | SeedProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: SeedProductCreateOrConnectWithoutDealershipInput | SeedProductCreateOrConnectWithoutDealershipInput[]
+    createMany?: SeedProductCreateManyDealershipInputEnvelope
+    connect?: SeedProductWhereUniqueInput | SeedProductWhereUniqueInput[]
+  }
+
+  export type RegularProductUncheckedCreateNestedManyWithoutDealershipInput = {
+    create?: XOR<RegularProductCreateWithoutDealershipInput, RegularProductUncheckedCreateWithoutDealershipInput> | RegularProductCreateWithoutDealershipInput[] | RegularProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: RegularProductCreateOrConnectWithoutDealershipInput | RegularProductCreateOrConnectWithoutDealershipInput[]
+    createMany?: RegularProductCreateManyDealershipInputEnvelope
+    connect?: RegularProductWhereUniqueInput | RegularProductWhereUniqueInput[]
+  }
+
+  export type PurchaseOrderUncheckedCreateNestedManyWithoutDealershipInput = {
+    create?: XOR<PurchaseOrderCreateWithoutDealershipInput, PurchaseOrderUncheckedCreateWithoutDealershipInput> | PurchaseOrderCreateWithoutDealershipInput[] | PurchaseOrderUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: PurchaseOrderCreateOrConnectWithoutDealershipInput | PurchaseOrderCreateOrConnectWithoutDealershipInput[]
+    createMany?: PurchaseOrderCreateManyDealershipInputEnvelope
+    connect?: PurchaseOrderWhereUniqueInput | PurchaseOrderWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -13357,6 +13769,62 @@ export namespace Prisma {
     deleteMany?: ProductCompanyScalarWhereInput | ProductCompanyScalarWhereInput[]
   }
 
+  export type BayerProductUpdateManyWithoutDealershipNestedInput = {
+    create?: XOR<BayerProductCreateWithoutDealershipInput, BayerProductUncheckedCreateWithoutDealershipInput> | BayerProductCreateWithoutDealershipInput[] | BayerProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: BayerProductCreateOrConnectWithoutDealershipInput | BayerProductCreateOrConnectWithoutDealershipInput[]
+    upsert?: BayerProductUpsertWithWhereUniqueWithoutDealershipInput | BayerProductUpsertWithWhereUniqueWithoutDealershipInput[]
+    createMany?: BayerProductCreateManyDealershipInputEnvelope
+    set?: BayerProductWhereUniqueInput | BayerProductWhereUniqueInput[]
+    disconnect?: BayerProductWhereUniqueInput | BayerProductWhereUniqueInput[]
+    delete?: BayerProductWhereUniqueInput | BayerProductWhereUniqueInput[]
+    connect?: BayerProductWhereUniqueInput | BayerProductWhereUniqueInput[]
+    update?: BayerProductUpdateWithWhereUniqueWithoutDealershipInput | BayerProductUpdateWithWhereUniqueWithoutDealershipInput[]
+    updateMany?: BayerProductUpdateManyWithWhereWithoutDealershipInput | BayerProductUpdateManyWithWhereWithoutDealershipInput[]
+    deleteMany?: BayerProductScalarWhereInput | BayerProductScalarWhereInput[]
+  }
+
+  export type SeedProductUpdateManyWithoutDealershipNestedInput = {
+    create?: XOR<SeedProductCreateWithoutDealershipInput, SeedProductUncheckedCreateWithoutDealershipInput> | SeedProductCreateWithoutDealershipInput[] | SeedProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: SeedProductCreateOrConnectWithoutDealershipInput | SeedProductCreateOrConnectWithoutDealershipInput[]
+    upsert?: SeedProductUpsertWithWhereUniqueWithoutDealershipInput | SeedProductUpsertWithWhereUniqueWithoutDealershipInput[]
+    createMany?: SeedProductCreateManyDealershipInputEnvelope
+    set?: SeedProductWhereUniqueInput | SeedProductWhereUniqueInput[]
+    disconnect?: SeedProductWhereUniqueInput | SeedProductWhereUniqueInput[]
+    delete?: SeedProductWhereUniqueInput | SeedProductWhereUniqueInput[]
+    connect?: SeedProductWhereUniqueInput | SeedProductWhereUniqueInput[]
+    update?: SeedProductUpdateWithWhereUniqueWithoutDealershipInput | SeedProductUpdateWithWhereUniqueWithoutDealershipInput[]
+    updateMany?: SeedProductUpdateManyWithWhereWithoutDealershipInput | SeedProductUpdateManyWithWhereWithoutDealershipInput[]
+    deleteMany?: SeedProductScalarWhereInput | SeedProductScalarWhereInput[]
+  }
+
+  export type RegularProductUpdateManyWithoutDealershipNestedInput = {
+    create?: XOR<RegularProductCreateWithoutDealershipInput, RegularProductUncheckedCreateWithoutDealershipInput> | RegularProductCreateWithoutDealershipInput[] | RegularProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: RegularProductCreateOrConnectWithoutDealershipInput | RegularProductCreateOrConnectWithoutDealershipInput[]
+    upsert?: RegularProductUpsertWithWhereUniqueWithoutDealershipInput | RegularProductUpsertWithWhereUniqueWithoutDealershipInput[]
+    createMany?: RegularProductCreateManyDealershipInputEnvelope
+    set?: RegularProductWhereUniqueInput | RegularProductWhereUniqueInput[]
+    disconnect?: RegularProductWhereUniqueInput | RegularProductWhereUniqueInput[]
+    delete?: RegularProductWhereUniqueInput | RegularProductWhereUniqueInput[]
+    connect?: RegularProductWhereUniqueInput | RegularProductWhereUniqueInput[]
+    update?: RegularProductUpdateWithWhereUniqueWithoutDealershipInput | RegularProductUpdateWithWhereUniqueWithoutDealershipInput[]
+    updateMany?: RegularProductUpdateManyWithWhereWithoutDealershipInput | RegularProductUpdateManyWithWhereWithoutDealershipInput[]
+    deleteMany?: RegularProductScalarWhereInput | RegularProductScalarWhereInput[]
+  }
+
+  export type PurchaseOrderUpdateManyWithoutDealershipNestedInput = {
+    create?: XOR<PurchaseOrderCreateWithoutDealershipInput, PurchaseOrderUncheckedCreateWithoutDealershipInput> | PurchaseOrderCreateWithoutDealershipInput[] | PurchaseOrderUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: PurchaseOrderCreateOrConnectWithoutDealershipInput | PurchaseOrderCreateOrConnectWithoutDealershipInput[]
+    upsert?: PurchaseOrderUpsertWithWhereUniqueWithoutDealershipInput | PurchaseOrderUpsertWithWhereUniqueWithoutDealershipInput[]
+    createMany?: PurchaseOrderCreateManyDealershipInputEnvelope
+    set?: PurchaseOrderWhereUniqueInput | PurchaseOrderWhereUniqueInput[]
+    disconnect?: PurchaseOrderWhereUniqueInput | PurchaseOrderWhereUniqueInput[]
+    delete?: PurchaseOrderWhereUniqueInput | PurchaseOrderWhereUniqueInput[]
+    connect?: PurchaseOrderWhereUniqueInput | PurchaseOrderWhereUniqueInput[]
+    update?: PurchaseOrderUpdateWithWhereUniqueWithoutDealershipInput | PurchaseOrderUpdateWithWhereUniqueWithoutDealershipInput[]
+    updateMany?: PurchaseOrderUpdateManyWithWhereWithoutDealershipInput | PurchaseOrderUpdateManyWithWhereWithoutDealershipInput[]
+    deleteMany?: PurchaseOrderScalarWhereInput | PurchaseOrderScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -13391,6 +13859,62 @@ export namespace Prisma {
     update?: ProductCompanyUpdateWithWhereUniqueWithoutDealershipInput | ProductCompanyUpdateWithWhereUniqueWithoutDealershipInput[]
     updateMany?: ProductCompanyUpdateManyWithWhereWithoutDealershipInput | ProductCompanyUpdateManyWithWhereWithoutDealershipInput[]
     deleteMany?: ProductCompanyScalarWhereInput | ProductCompanyScalarWhereInput[]
+  }
+
+  export type BayerProductUncheckedUpdateManyWithoutDealershipNestedInput = {
+    create?: XOR<BayerProductCreateWithoutDealershipInput, BayerProductUncheckedCreateWithoutDealershipInput> | BayerProductCreateWithoutDealershipInput[] | BayerProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: BayerProductCreateOrConnectWithoutDealershipInput | BayerProductCreateOrConnectWithoutDealershipInput[]
+    upsert?: BayerProductUpsertWithWhereUniqueWithoutDealershipInput | BayerProductUpsertWithWhereUniqueWithoutDealershipInput[]
+    createMany?: BayerProductCreateManyDealershipInputEnvelope
+    set?: BayerProductWhereUniqueInput | BayerProductWhereUniqueInput[]
+    disconnect?: BayerProductWhereUniqueInput | BayerProductWhereUniqueInput[]
+    delete?: BayerProductWhereUniqueInput | BayerProductWhereUniqueInput[]
+    connect?: BayerProductWhereUniqueInput | BayerProductWhereUniqueInput[]
+    update?: BayerProductUpdateWithWhereUniqueWithoutDealershipInput | BayerProductUpdateWithWhereUniqueWithoutDealershipInput[]
+    updateMany?: BayerProductUpdateManyWithWhereWithoutDealershipInput | BayerProductUpdateManyWithWhereWithoutDealershipInput[]
+    deleteMany?: BayerProductScalarWhereInput | BayerProductScalarWhereInput[]
+  }
+
+  export type SeedProductUncheckedUpdateManyWithoutDealershipNestedInput = {
+    create?: XOR<SeedProductCreateWithoutDealershipInput, SeedProductUncheckedCreateWithoutDealershipInput> | SeedProductCreateWithoutDealershipInput[] | SeedProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: SeedProductCreateOrConnectWithoutDealershipInput | SeedProductCreateOrConnectWithoutDealershipInput[]
+    upsert?: SeedProductUpsertWithWhereUniqueWithoutDealershipInput | SeedProductUpsertWithWhereUniqueWithoutDealershipInput[]
+    createMany?: SeedProductCreateManyDealershipInputEnvelope
+    set?: SeedProductWhereUniqueInput | SeedProductWhereUniqueInput[]
+    disconnect?: SeedProductWhereUniqueInput | SeedProductWhereUniqueInput[]
+    delete?: SeedProductWhereUniqueInput | SeedProductWhereUniqueInput[]
+    connect?: SeedProductWhereUniqueInput | SeedProductWhereUniqueInput[]
+    update?: SeedProductUpdateWithWhereUniqueWithoutDealershipInput | SeedProductUpdateWithWhereUniqueWithoutDealershipInput[]
+    updateMany?: SeedProductUpdateManyWithWhereWithoutDealershipInput | SeedProductUpdateManyWithWhereWithoutDealershipInput[]
+    deleteMany?: SeedProductScalarWhereInput | SeedProductScalarWhereInput[]
+  }
+
+  export type RegularProductUncheckedUpdateManyWithoutDealershipNestedInput = {
+    create?: XOR<RegularProductCreateWithoutDealershipInput, RegularProductUncheckedCreateWithoutDealershipInput> | RegularProductCreateWithoutDealershipInput[] | RegularProductUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: RegularProductCreateOrConnectWithoutDealershipInput | RegularProductCreateOrConnectWithoutDealershipInput[]
+    upsert?: RegularProductUpsertWithWhereUniqueWithoutDealershipInput | RegularProductUpsertWithWhereUniqueWithoutDealershipInput[]
+    createMany?: RegularProductCreateManyDealershipInputEnvelope
+    set?: RegularProductWhereUniqueInput | RegularProductWhereUniqueInput[]
+    disconnect?: RegularProductWhereUniqueInput | RegularProductWhereUniqueInput[]
+    delete?: RegularProductWhereUniqueInput | RegularProductWhereUniqueInput[]
+    connect?: RegularProductWhereUniqueInput | RegularProductWhereUniqueInput[]
+    update?: RegularProductUpdateWithWhereUniqueWithoutDealershipInput | RegularProductUpdateWithWhereUniqueWithoutDealershipInput[]
+    updateMany?: RegularProductUpdateManyWithWhereWithoutDealershipInput | RegularProductUpdateManyWithWhereWithoutDealershipInput[]
+    deleteMany?: RegularProductScalarWhereInput | RegularProductScalarWhereInput[]
+  }
+
+  export type PurchaseOrderUncheckedUpdateManyWithoutDealershipNestedInput = {
+    create?: XOR<PurchaseOrderCreateWithoutDealershipInput, PurchaseOrderUncheckedCreateWithoutDealershipInput> | PurchaseOrderCreateWithoutDealershipInput[] | PurchaseOrderUncheckedCreateWithoutDealershipInput[]
+    connectOrCreate?: PurchaseOrderCreateOrConnectWithoutDealershipInput | PurchaseOrderCreateOrConnectWithoutDealershipInput[]
+    upsert?: PurchaseOrderUpsertWithWhereUniqueWithoutDealershipInput | PurchaseOrderUpsertWithWhereUniqueWithoutDealershipInput[]
+    createMany?: PurchaseOrderCreateManyDealershipInputEnvelope
+    set?: PurchaseOrderWhereUniqueInput | PurchaseOrderWhereUniqueInput[]
+    disconnect?: PurchaseOrderWhereUniqueInput | PurchaseOrderWhereUniqueInput[]
+    delete?: PurchaseOrderWhereUniqueInput | PurchaseOrderWhereUniqueInput[]
+    connect?: PurchaseOrderWhereUniqueInput | PurchaseOrderWhereUniqueInput[]
+    update?: PurchaseOrderUpdateWithWhereUniqueWithoutDealershipInput | PurchaseOrderUpdateWithWhereUniqueWithoutDealershipInput[]
+    updateMany?: PurchaseOrderUpdateManyWithWhereWithoutDealershipInput | PurchaseOrderUpdateManyWithWhereWithoutDealershipInput[]
+    deleteMany?: PurchaseOrderScalarWhereInput | PurchaseOrderScalarWhereInput[]
   }
 
   export type DealershipCreateNestedOneWithoutCustomerInput = {
@@ -13597,6 +14121,12 @@ export namespace Prisma {
     deleteMany?: RegularProductScalarWhereInput | RegularProductScalarWhereInput[]
   }
 
+  export type DealershipCreateNestedOneWithoutBayerProductInput = {
+    create?: XOR<DealershipCreateWithoutBayerProductInput, DealershipUncheckedCreateWithoutBayerProductInput>
+    connectOrCreate?: DealershipCreateOrConnectWithoutBayerProductInput
+    connect?: DealershipWhereUniqueInput
+  }
+
   export type ProductCompanyCreateNestedOneWithoutBayerProductInput = {
     create?: XOR<ProductCompanyCreateWithoutBayerProductInput, ProductCompanyUncheckedCreateWithoutBayerProductInput>
     connectOrCreate?: ProductCompanyCreateOrConnectWithoutBayerProductInput
@@ -13615,6 +14145,14 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type DealershipUpdateOneRequiredWithoutBayerProductNestedInput = {
+    create?: XOR<DealershipCreateWithoutBayerProductInput, DealershipUncheckedCreateWithoutBayerProductInput>
+    connectOrCreate?: DealershipCreateOrConnectWithoutBayerProductInput
+    upsert?: DealershipUpsertWithoutBayerProductInput
+    connect?: DealershipWhereUniqueInput
+    update?: XOR<XOR<DealershipUpdateToOneWithWhereWithoutBayerProductInput, DealershipUpdateWithoutBayerProductInput>, DealershipUncheckedUpdateWithoutBayerProductInput>
+  }
+
   export type ProductCompanyUpdateOneRequiredWithoutBayerProductNestedInput = {
     create?: XOR<ProductCompanyCreateWithoutBayerProductInput, ProductCompanyUncheckedCreateWithoutBayerProductInput>
     connectOrCreate?: ProductCompanyCreateOrConnectWithoutBayerProductInput
@@ -13623,10 +14161,24 @@ export namespace Prisma {
     update?: XOR<XOR<ProductCompanyUpdateToOneWithWhereWithoutBayerProductInput, ProductCompanyUpdateWithoutBayerProductInput>, ProductCompanyUncheckedUpdateWithoutBayerProductInput>
   }
 
+  export type DealershipCreateNestedOneWithoutSeedProductInput = {
+    create?: XOR<DealershipCreateWithoutSeedProductInput, DealershipUncheckedCreateWithoutSeedProductInput>
+    connectOrCreate?: DealershipCreateOrConnectWithoutSeedProductInput
+    connect?: DealershipWhereUniqueInput
+  }
+
   export type ProductCompanyCreateNestedOneWithoutSeedProductInput = {
     create?: XOR<ProductCompanyCreateWithoutSeedProductInput, ProductCompanyUncheckedCreateWithoutSeedProductInput>
     connectOrCreate?: ProductCompanyCreateOrConnectWithoutSeedProductInput
     connect?: ProductCompanyWhereUniqueInput
+  }
+
+  export type DealershipUpdateOneRequiredWithoutSeedProductNestedInput = {
+    create?: XOR<DealershipCreateWithoutSeedProductInput, DealershipUncheckedCreateWithoutSeedProductInput>
+    connectOrCreate?: DealershipCreateOrConnectWithoutSeedProductInput
+    upsert?: DealershipUpsertWithoutSeedProductInput
+    connect?: DealershipWhereUniqueInput
+    update?: XOR<XOR<DealershipUpdateToOneWithWhereWithoutSeedProductInput, DealershipUpdateWithoutSeedProductInput>, DealershipUncheckedUpdateWithoutSeedProductInput>
   }
 
   export type ProductCompanyUpdateOneRequiredWithoutSeedProductNestedInput = {
@@ -13637,10 +14189,24 @@ export namespace Prisma {
     update?: XOR<XOR<ProductCompanyUpdateToOneWithWhereWithoutSeedProductInput, ProductCompanyUpdateWithoutSeedProductInput>, ProductCompanyUncheckedUpdateWithoutSeedProductInput>
   }
 
+  export type DealershipCreateNestedOneWithoutRegularProductInput = {
+    create?: XOR<DealershipCreateWithoutRegularProductInput, DealershipUncheckedCreateWithoutRegularProductInput>
+    connectOrCreate?: DealershipCreateOrConnectWithoutRegularProductInput
+    connect?: DealershipWhereUniqueInput
+  }
+
   export type ProductCompanyCreateNestedOneWithoutRegularProductInput = {
     create?: XOR<ProductCompanyCreateWithoutRegularProductInput, ProductCompanyUncheckedCreateWithoutRegularProductInput>
     connectOrCreate?: ProductCompanyCreateOrConnectWithoutRegularProductInput
     connect?: ProductCompanyWhereUniqueInput
+  }
+
+  export type DealershipUpdateOneRequiredWithoutRegularProductNestedInput = {
+    create?: XOR<DealershipCreateWithoutRegularProductInput, DealershipUncheckedCreateWithoutRegularProductInput>
+    connectOrCreate?: DealershipCreateOrConnectWithoutRegularProductInput
+    upsert?: DealershipUpsertWithoutRegularProductInput
+    connect?: DealershipWhereUniqueInput
+    update?: XOR<XOR<DealershipUpdateToOneWithWhereWithoutRegularProductInput, DealershipUpdateWithoutRegularProductInput>, DealershipUncheckedUpdateWithoutRegularProductInput>
   }
 
   export type ProductCompanyUpdateOneRequiredWithoutRegularProductNestedInput = {
@@ -13649,6 +14215,12 @@ export namespace Prisma {
     upsert?: ProductCompanyUpsertWithoutRegularProductInput
     connect?: ProductCompanyWhereUniqueInput
     update?: XOR<XOR<ProductCompanyUpdateToOneWithWhereWithoutRegularProductInput, ProductCompanyUpdateWithoutRegularProductInput>, ProductCompanyUncheckedUpdateWithoutRegularProductInput>
+  }
+
+  export type DealershipCreateNestedOneWithoutPurchaseOrderInput = {
+    create?: XOR<DealershipCreateWithoutPurchaseOrderInput, DealershipUncheckedCreateWithoutPurchaseOrderInput>
+    connectOrCreate?: DealershipCreateOrConnectWithoutPurchaseOrderInput
+    connect?: DealershipWhereUniqueInput
   }
 
   export type CustomerCreateNestedOneWithoutPurchaseOrderInput = {
@@ -13673,6 +14245,14 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type DealershipUpdateOneRequiredWithoutPurchaseOrderNestedInput = {
+    create?: XOR<DealershipCreateWithoutPurchaseOrderInput, DealershipUncheckedCreateWithoutPurchaseOrderInput>
+    connectOrCreate?: DealershipCreateOrConnectWithoutPurchaseOrderInput
+    upsert?: DealershipUpsertWithoutPurchaseOrderInput
+    connect?: DealershipWhereUniqueInput
+    update?: XOR<XOR<DealershipUpdateToOneWithWhereWithoutPurchaseOrderInput, DealershipUpdateWithoutPurchaseOrderInput>, DealershipUncheckedUpdateWithoutPurchaseOrderInput>
   }
 
   export type CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput = {
@@ -13990,6 +14570,150 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type BayerProductCreateWithoutDealershipInput = {
+    trait: string
+    variety: string
+    treatment: string
+    seedSize: string
+    packaging: string
+    cropType: $Enums.CropType
+    productDetail: string
+    dealerPricing: number
+    endUserPricing: number
+    agiisId: string
+    sapId: string
+    isDeleted?: boolean
+    ProductCompany: ProductCompanyCreateNestedOneWithoutBayerProductInput
+  }
+
+  export type BayerProductUncheckedCreateWithoutDealershipInput = {
+    id?: number
+    trait: string
+    variety: string
+    treatment: string
+    seedSize: string
+    packaging: string
+    cropType: $Enums.CropType
+    productDetail: string
+    dealerPricing: number
+    endUserPricing: number
+    agiisId: string
+    sapId: string
+    isDeleted?: boolean
+    productCompanyId: number
+  }
+
+  export type BayerProductCreateOrConnectWithoutDealershipInput = {
+    where: BayerProductWhereUniqueInput
+    create: XOR<BayerProductCreateWithoutDealershipInput, BayerProductUncheckedCreateWithoutDealershipInput>
+  }
+
+  export type BayerProductCreateManyDealershipInputEnvelope = {
+    data: BayerProductCreateManyDealershipInput | BayerProductCreateManyDealershipInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SeedProductCreateWithoutDealershipInput = {
+    trait: string
+    variety: string
+    treatment: string
+    seedSize: string
+    packaging: string
+    cropType: $Enums.CropType
+    dealerPricing: number
+    endUserPricing: number
+    isDeleted?: boolean
+    ProductCompany: ProductCompanyCreateNestedOneWithoutSeedProductInput
+  }
+
+  export type SeedProductUncheckedCreateWithoutDealershipInput = {
+    id?: number
+    trait: string
+    variety: string
+    treatment: string
+    seedSize: string
+    packaging: string
+    cropType: $Enums.CropType
+    dealerPricing: number
+    endUserPricing: number
+    isDeleted?: boolean
+    productCompanyId: number
+  }
+
+  export type SeedProductCreateOrConnectWithoutDealershipInput = {
+    where: SeedProductWhereUniqueInput
+    create: XOR<SeedProductCreateWithoutDealershipInput, SeedProductUncheckedCreateWithoutDealershipInput>
+  }
+
+  export type SeedProductCreateManyDealershipInputEnvelope = {
+    data: SeedProductCreateManyDealershipInput | SeedProductCreateManyDealershipInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RegularProductCreateWithoutDealershipInput = {
+    product: string
+    type?: string | null
+    description?: string | null
+    dealerPricing: number
+    endUserPricing: number
+    isDeleted?: boolean
+    ProductCompany: ProductCompanyCreateNestedOneWithoutRegularProductInput
+  }
+
+  export type RegularProductUncheckedCreateWithoutDealershipInput = {
+    id?: number
+    product: string
+    type?: string | null
+    description?: string | null
+    dealerPricing: number
+    endUserPricing: number
+    isDeleted?: boolean
+    productCompanyId: number
+  }
+
+  export type RegularProductCreateOrConnectWithoutDealershipInput = {
+    where: RegularProductWhereUniqueInput
+    create: XOR<RegularProductCreateWithoutDealershipInput, RegularProductUncheckedCreateWithoutDealershipInput>
+  }
+
+  export type RegularProductCreateManyDealershipInputEnvelope = {
+    data: RegularProductCreateManyDealershipInput | RegularProductCreateManyDealershipInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PurchaseOrderCreateWithoutDealershipInput = {
+    purchaseOrderName?: string | null
+    isQuote: boolean
+    isSimple: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeleted?: boolean
+    Customer: CustomerCreateNestedOneWithoutPurchaseOrderInput
+    PurchaseOrderItem?: PurchaseOrderItemCreateNestedManyWithoutPurchaseOrderInput
+  }
+
+  export type PurchaseOrderUncheckedCreateWithoutDealershipInput = {
+    id?: number
+    purchaseOrderName?: string | null
+    isQuote: boolean
+    isSimple: boolean
+    customerId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeleted?: boolean
+    PurchaseOrderItem?: PurchaseOrderItemUncheckedCreateNestedManyWithoutPurchaseOrderInput
+  }
+
+  export type PurchaseOrderCreateOrConnectWithoutDealershipInput = {
+    where: PurchaseOrderWhereUniqueInput
+    create: XOR<PurchaseOrderCreateWithoutDealershipInput, PurchaseOrderUncheckedCreateWithoutDealershipInput>
+  }
+
+  export type PurchaseOrderCreateManyDealershipInputEnvelope = {
+    data: PurchaseOrderCreateManyDealershipInput | PurchaseOrderCreateManyDealershipInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CustomerUpsertWithWhereUniqueWithoutDealershipInput = {
     where: CustomerWhereUniqueInput
     update: XOR<CustomerUpdateWithoutDealershipInput, CustomerUncheckedUpdateWithoutDealershipInput>
@@ -14050,11 +14774,148 @@ export namespace Prisma {
     isDeleted?: BoolFilter<"ProductCompany"> | boolean
   }
 
+  export type BayerProductUpsertWithWhereUniqueWithoutDealershipInput = {
+    where: BayerProductWhereUniqueInput
+    update: XOR<BayerProductUpdateWithoutDealershipInput, BayerProductUncheckedUpdateWithoutDealershipInput>
+    create: XOR<BayerProductCreateWithoutDealershipInput, BayerProductUncheckedCreateWithoutDealershipInput>
+  }
+
+  export type BayerProductUpdateWithWhereUniqueWithoutDealershipInput = {
+    where: BayerProductWhereUniqueInput
+    data: XOR<BayerProductUpdateWithoutDealershipInput, BayerProductUncheckedUpdateWithoutDealershipInput>
+  }
+
+  export type BayerProductUpdateManyWithWhereWithoutDealershipInput = {
+    where: BayerProductScalarWhereInput
+    data: XOR<BayerProductUpdateManyMutationInput, BayerProductUncheckedUpdateManyWithoutDealershipInput>
+  }
+
+  export type BayerProductScalarWhereInput = {
+    AND?: BayerProductScalarWhereInput | BayerProductScalarWhereInput[]
+    OR?: BayerProductScalarWhereInput[]
+    NOT?: BayerProductScalarWhereInput | BayerProductScalarWhereInput[]
+    id?: IntFilter<"BayerProduct"> | number
+    trait?: StringFilter<"BayerProduct"> | string
+    variety?: StringFilter<"BayerProduct"> | string
+    treatment?: StringFilter<"BayerProduct"> | string
+    seedSize?: StringFilter<"BayerProduct"> | string
+    packaging?: StringFilter<"BayerProduct"> | string
+    cropType?: EnumCropTypeFilter<"BayerProduct"> | $Enums.CropType
+    productDetail?: StringFilter<"BayerProduct"> | string
+    dealerPricing?: FloatFilter<"BayerProduct"> | number
+    endUserPricing?: FloatFilter<"BayerProduct"> | number
+    agiisId?: StringFilter<"BayerProduct"> | string
+    sapId?: StringFilter<"BayerProduct"> | string
+    isDeleted?: BoolFilter<"BayerProduct"> | boolean
+    dealershipId?: IntFilter<"BayerProduct"> | number
+    productCompanyId?: IntFilter<"BayerProduct"> | number
+  }
+
+  export type SeedProductUpsertWithWhereUniqueWithoutDealershipInput = {
+    where: SeedProductWhereUniqueInput
+    update: XOR<SeedProductUpdateWithoutDealershipInput, SeedProductUncheckedUpdateWithoutDealershipInput>
+    create: XOR<SeedProductCreateWithoutDealershipInput, SeedProductUncheckedCreateWithoutDealershipInput>
+  }
+
+  export type SeedProductUpdateWithWhereUniqueWithoutDealershipInput = {
+    where: SeedProductWhereUniqueInput
+    data: XOR<SeedProductUpdateWithoutDealershipInput, SeedProductUncheckedUpdateWithoutDealershipInput>
+  }
+
+  export type SeedProductUpdateManyWithWhereWithoutDealershipInput = {
+    where: SeedProductScalarWhereInput
+    data: XOR<SeedProductUpdateManyMutationInput, SeedProductUncheckedUpdateManyWithoutDealershipInput>
+  }
+
+  export type SeedProductScalarWhereInput = {
+    AND?: SeedProductScalarWhereInput | SeedProductScalarWhereInput[]
+    OR?: SeedProductScalarWhereInput[]
+    NOT?: SeedProductScalarWhereInput | SeedProductScalarWhereInput[]
+    id?: IntFilter<"SeedProduct"> | number
+    trait?: StringFilter<"SeedProduct"> | string
+    variety?: StringFilter<"SeedProduct"> | string
+    treatment?: StringFilter<"SeedProduct"> | string
+    seedSize?: StringFilter<"SeedProduct"> | string
+    packaging?: StringFilter<"SeedProduct"> | string
+    cropType?: EnumCropTypeFilter<"SeedProduct"> | $Enums.CropType
+    dealerPricing?: FloatFilter<"SeedProduct"> | number
+    endUserPricing?: FloatFilter<"SeedProduct"> | number
+    isDeleted?: BoolFilter<"SeedProduct"> | boolean
+    dealershipId?: IntFilter<"SeedProduct"> | number
+    productCompanyId?: IntFilter<"SeedProduct"> | number
+  }
+
+  export type RegularProductUpsertWithWhereUniqueWithoutDealershipInput = {
+    where: RegularProductWhereUniqueInput
+    update: XOR<RegularProductUpdateWithoutDealershipInput, RegularProductUncheckedUpdateWithoutDealershipInput>
+    create: XOR<RegularProductCreateWithoutDealershipInput, RegularProductUncheckedCreateWithoutDealershipInput>
+  }
+
+  export type RegularProductUpdateWithWhereUniqueWithoutDealershipInput = {
+    where: RegularProductWhereUniqueInput
+    data: XOR<RegularProductUpdateWithoutDealershipInput, RegularProductUncheckedUpdateWithoutDealershipInput>
+  }
+
+  export type RegularProductUpdateManyWithWhereWithoutDealershipInput = {
+    where: RegularProductScalarWhereInput
+    data: XOR<RegularProductUpdateManyMutationInput, RegularProductUncheckedUpdateManyWithoutDealershipInput>
+  }
+
+  export type RegularProductScalarWhereInput = {
+    AND?: RegularProductScalarWhereInput | RegularProductScalarWhereInput[]
+    OR?: RegularProductScalarWhereInput[]
+    NOT?: RegularProductScalarWhereInput | RegularProductScalarWhereInput[]
+    id?: IntFilter<"RegularProduct"> | number
+    product?: StringFilter<"RegularProduct"> | string
+    type?: StringNullableFilter<"RegularProduct"> | string | null
+    description?: StringNullableFilter<"RegularProduct"> | string | null
+    dealerPricing?: FloatFilter<"RegularProduct"> | number
+    endUserPricing?: FloatFilter<"RegularProduct"> | number
+    isDeleted?: BoolFilter<"RegularProduct"> | boolean
+    dealershipId?: IntFilter<"RegularProduct"> | number
+    productCompanyId?: IntFilter<"RegularProduct"> | number
+  }
+
+  export type PurchaseOrderUpsertWithWhereUniqueWithoutDealershipInput = {
+    where: PurchaseOrderWhereUniqueInput
+    update: XOR<PurchaseOrderUpdateWithoutDealershipInput, PurchaseOrderUncheckedUpdateWithoutDealershipInput>
+    create: XOR<PurchaseOrderCreateWithoutDealershipInput, PurchaseOrderUncheckedCreateWithoutDealershipInput>
+  }
+
+  export type PurchaseOrderUpdateWithWhereUniqueWithoutDealershipInput = {
+    where: PurchaseOrderWhereUniqueInput
+    data: XOR<PurchaseOrderUpdateWithoutDealershipInput, PurchaseOrderUncheckedUpdateWithoutDealershipInput>
+  }
+
+  export type PurchaseOrderUpdateManyWithWhereWithoutDealershipInput = {
+    where: PurchaseOrderScalarWhereInput
+    data: XOR<PurchaseOrderUpdateManyMutationInput, PurchaseOrderUncheckedUpdateManyWithoutDealershipInput>
+  }
+
+  export type PurchaseOrderScalarWhereInput = {
+    AND?: PurchaseOrderScalarWhereInput | PurchaseOrderScalarWhereInput[]
+    OR?: PurchaseOrderScalarWhereInput[]
+    NOT?: PurchaseOrderScalarWhereInput | PurchaseOrderScalarWhereInput[]
+    id?: IntFilter<"PurchaseOrder"> | number
+    purchaseOrderName?: StringNullableFilter<"PurchaseOrder"> | string | null
+    isQuote?: BoolFilter<"PurchaseOrder"> | boolean
+    isSimple?: BoolFilter<"PurchaseOrder"> | boolean
+    customerId?: IntFilter<"PurchaseOrder"> | number
+    createdAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
+    updatedAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
+    isDeleted?: BoolFilter<"PurchaseOrder"> | boolean
+    dealershipId?: IntFilter<"PurchaseOrder"> | number
+  }
+
   export type DealershipCreateWithoutCustomerInput = {
     name: string
     password: string
     isDeleted?: boolean
     ProductCompany?: ProductCompanyCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderCreateNestedManyWithoutDealershipInput
   }
 
   export type DealershipUncheckedCreateWithoutCustomerInput = {
@@ -14063,6 +14924,10 @@ export namespace Prisma {
     password: string
     isDeleted?: boolean
     ProductCompany?: ProductCompanyUncheckedCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductUncheckedCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductUncheckedCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductUncheckedCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderUncheckedCreateNestedManyWithoutDealershipInput
   }
 
   export type DealershipCreateOrConnectWithoutCustomerInput = {
@@ -14074,10 +14939,10 @@ export namespace Prisma {
     purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
-    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
+    Dealership?: DealershipCreateNestedOneWithoutPurchaseOrderInput
     PurchaseOrderItem?: PurchaseOrderItemCreateNestedManyWithoutPurchaseOrderInput
   }
 
@@ -14086,10 +14951,10 @@ export namespace Prisma {
     purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
-    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
+    dealershipId?: number
     PurchaseOrderItem?: PurchaseOrderItemUncheckedCreateNestedManyWithoutPurchaseOrderInput
   }
 
@@ -14119,6 +14984,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     ProductCompany?: ProductCompanyUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUpdateManyWithoutDealershipNestedInput
   }
 
   export type DealershipUncheckedUpdateWithoutCustomerInput = {
@@ -14127,6 +14996,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     ProductCompany?: ProductCompanyUncheckedUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUncheckedUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUncheckedUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUncheckedUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUncheckedUpdateManyWithoutDealershipNestedInput
   }
 
   export type PurchaseOrderUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -14145,26 +15018,15 @@ export namespace Prisma {
     data: XOR<PurchaseOrderUpdateManyMutationInput, PurchaseOrderUncheckedUpdateManyWithoutCustomerInput>
   }
 
-  export type PurchaseOrderScalarWhereInput = {
-    AND?: PurchaseOrderScalarWhereInput | PurchaseOrderScalarWhereInput[]
-    OR?: PurchaseOrderScalarWhereInput[]
-    NOT?: PurchaseOrderScalarWhereInput | PurchaseOrderScalarWhereInput[]
-    id?: IntFilter<"PurchaseOrder"> | number
-    purchaseOrderName?: StringNullableFilter<"PurchaseOrder"> | string | null
-    isQuote?: BoolFilter<"PurchaseOrder"> | boolean
-    isSimple?: BoolFilter<"PurchaseOrder"> | boolean
-    customerId?: IntFilter<"PurchaseOrder"> | number
-    orderDate?: DateTimeFilter<"PurchaseOrder"> | Date | string
-    createdAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
-    updatedAt?: DateTimeFilter<"PurchaseOrder"> | Date | string
-    isDeleted?: BoolFilter<"PurchaseOrder"> | boolean
-  }
-
   export type DealershipCreateWithoutProductCompanyInput = {
     name: string
     password: string
     isDeleted?: boolean
     Customer?: CustomerCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderCreateNestedManyWithoutDealershipInput
   }
 
   export type DealershipUncheckedCreateWithoutProductCompanyInput = {
@@ -14173,6 +15035,10 @@ export namespace Prisma {
     password: string
     isDeleted?: boolean
     Customer?: CustomerUncheckedCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductUncheckedCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductUncheckedCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductUncheckedCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderUncheckedCreateNestedManyWithoutDealershipInput
   }
 
   export type DealershipCreateOrConnectWithoutProductCompanyInput = {
@@ -14190,6 +15056,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    Dealership?: DealershipCreateNestedOneWithoutSeedProductInput
   }
 
   export type SeedProductUncheckedCreateWithoutProductCompanyInput = {
@@ -14203,6 +15070,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    dealershipId?: number
   }
 
   export type SeedProductCreateOrConnectWithoutProductCompanyInput = {
@@ -14228,6 +15096,7 @@ export namespace Prisma {
     agiisId: string
     sapId: string
     isDeleted?: boolean
+    Dealership?: DealershipCreateNestedOneWithoutBayerProductInput
   }
 
   export type BayerProductUncheckedCreateWithoutProductCompanyInput = {
@@ -14244,6 +15113,7 @@ export namespace Prisma {
     agiisId: string
     sapId: string
     isDeleted?: boolean
+    dealershipId?: number
   }
 
   export type BayerProductCreateOrConnectWithoutProductCompanyInput = {
@@ -14263,6 +15133,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    Dealership?: DealershipCreateNestedOneWithoutRegularProductInput
   }
 
   export type RegularProductUncheckedCreateWithoutProductCompanyInput = {
@@ -14273,6 +15144,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    dealershipId?: number
   }
 
   export type RegularProductCreateOrConnectWithoutProductCompanyInput = {
@@ -14301,6 +15173,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     Customer?: CustomerUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUpdateManyWithoutDealershipNestedInput
   }
 
   export type DealershipUncheckedUpdateWithoutProductCompanyInput = {
@@ -14309,6 +15185,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     Customer?: CustomerUncheckedUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUncheckedUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUncheckedUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUncheckedUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUncheckedUpdateManyWithoutDealershipNestedInput
   }
 
   export type SeedProductUpsertWithWhereUniqueWithoutProductCompanyInput = {
@@ -14327,23 +15207,6 @@ export namespace Prisma {
     data: XOR<SeedProductUpdateManyMutationInput, SeedProductUncheckedUpdateManyWithoutProductCompanyInput>
   }
 
-  export type SeedProductScalarWhereInput = {
-    AND?: SeedProductScalarWhereInput | SeedProductScalarWhereInput[]
-    OR?: SeedProductScalarWhereInput[]
-    NOT?: SeedProductScalarWhereInput | SeedProductScalarWhereInput[]
-    id?: IntFilter<"SeedProduct"> | number
-    trait?: StringFilter<"SeedProduct"> | string
-    variety?: StringFilter<"SeedProduct"> | string
-    treatment?: StringFilter<"SeedProduct"> | string
-    seedSize?: StringFilter<"SeedProduct"> | string
-    packaging?: StringFilter<"SeedProduct"> | string
-    cropType?: EnumCropTypeFilter<"SeedProduct"> | $Enums.CropType
-    dealerPricing?: FloatFilter<"SeedProduct"> | number
-    endUserPricing?: FloatFilter<"SeedProduct"> | number
-    isDeleted?: BoolFilter<"SeedProduct"> | boolean
-    productCompanyId?: IntFilter<"SeedProduct"> | number
-  }
-
   export type BayerProductUpsertWithWhereUniqueWithoutProductCompanyInput = {
     where: BayerProductWhereUniqueInput
     update: XOR<BayerProductUpdateWithoutProductCompanyInput, BayerProductUncheckedUpdateWithoutProductCompanyInput>
@@ -14358,26 +15221,6 @@ export namespace Prisma {
   export type BayerProductUpdateManyWithWhereWithoutProductCompanyInput = {
     where: BayerProductScalarWhereInput
     data: XOR<BayerProductUpdateManyMutationInput, BayerProductUncheckedUpdateManyWithoutProductCompanyInput>
-  }
-
-  export type BayerProductScalarWhereInput = {
-    AND?: BayerProductScalarWhereInput | BayerProductScalarWhereInput[]
-    OR?: BayerProductScalarWhereInput[]
-    NOT?: BayerProductScalarWhereInput | BayerProductScalarWhereInput[]
-    id?: IntFilter<"BayerProduct"> | number
-    trait?: StringFilter<"BayerProduct"> | string
-    variety?: StringFilter<"BayerProduct"> | string
-    treatment?: StringFilter<"BayerProduct"> | string
-    seedSize?: StringFilter<"BayerProduct"> | string
-    packaging?: StringFilter<"BayerProduct"> | string
-    cropType?: EnumCropTypeFilter<"BayerProduct"> | $Enums.CropType
-    productDetail?: StringFilter<"BayerProduct"> | string
-    dealerPricing?: FloatFilter<"BayerProduct"> | number
-    endUserPricing?: FloatFilter<"BayerProduct"> | number
-    agiisId?: StringFilter<"BayerProduct"> | string
-    sapId?: StringFilter<"BayerProduct"> | string
-    isDeleted?: BoolFilter<"BayerProduct"> | boolean
-    productCompanyId?: IntFilter<"BayerProduct"> | number
   }
 
   export type RegularProductUpsertWithWhereUniqueWithoutProductCompanyInput = {
@@ -14396,18 +15239,32 @@ export namespace Prisma {
     data: XOR<RegularProductUpdateManyMutationInput, RegularProductUncheckedUpdateManyWithoutProductCompanyInput>
   }
 
-  export type RegularProductScalarWhereInput = {
-    AND?: RegularProductScalarWhereInput | RegularProductScalarWhereInput[]
-    OR?: RegularProductScalarWhereInput[]
-    NOT?: RegularProductScalarWhereInput | RegularProductScalarWhereInput[]
-    id?: IntFilter<"RegularProduct"> | number
-    product?: StringFilter<"RegularProduct"> | string
-    type?: StringNullableFilter<"RegularProduct"> | string | null
-    description?: StringNullableFilter<"RegularProduct"> | string | null
-    dealerPricing?: FloatFilter<"RegularProduct"> | number
-    endUserPricing?: FloatFilter<"RegularProduct"> | number
-    isDeleted?: BoolFilter<"RegularProduct"> | boolean
-    productCompanyId?: IntFilter<"RegularProduct"> | number
+  export type DealershipCreateWithoutBayerProductInput = {
+    name: string
+    password: string
+    isDeleted?: boolean
+    Customer?: CustomerCreateNestedManyWithoutDealershipInput
+    ProductCompany?: ProductCompanyCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderCreateNestedManyWithoutDealershipInput
+  }
+
+  export type DealershipUncheckedCreateWithoutBayerProductInput = {
+    id?: number
+    name: string
+    password: string
+    isDeleted?: boolean
+    Customer?: CustomerUncheckedCreateNestedManyWithoutDealershipInput
+    ProductCompany?: ProductCompanyUncheckedCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductUncheckedCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductUncheckedCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderUncheckedCreateNestedManyWithoutDealershipInput
+  }
+
+  export type DealershipCreateOrConnectWithoutBayerProductInput = {
+    where: DealershipWhereUniqueInput
+    create: XOR<DealershipCreateWithoutBayerProductInput, DealershipUncheckedCreateWithoutBayerProductInput>
   }
 
   export type ProductCompanyCreateWithoutBayerProductInput = {
@@ -14432,6 +15289,40 @@ export namespace Prisma {
   export type ProductCompanyCreateOrConnectWithoutBayerProductInput = {
     where: ProductCompanyWhereUniqueInput
     create: XOR<ProductCompanyCreateWithoutBayerProductInput, ProductCompanyUncheckedCreateWithoutBayerProductInput>
+  }
+
+  export type DealershipUpsertWithoutBayerProductInput = {
+    update: XOR<DealershipUpdateWithoutBayerProductInput, DealershipUncheckedUpdateWithoutBayerProductInput>
+    create: XOR<DealershipCreateWithoutBayerProductInput, DealershipUncheckedCreateWithoutBayerProductInput>
+    where?: DealershipWhereInput
+  }
+
+  export type DealershipUpdateToOneWithWhereWithoutBayerProductInput = {
+    where?: DealershipWhereInput
+    data: XOR<DealershipUpdateWithoutBayerProductInput, DealershipUncheckedUpdateWithoutBayerProductInput>
+  }
+
+  export type DealershipUpdateWithoutBayerProductInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Customer?: CustomerUpdateManyWithoutDealershipNestedInput
+    ProductCompany?: ProductCompanyUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUpdateManyWithoutDealershipNestedInput
+  }
+
+  export type DealershipUncheckedUpdateWithoutBayerProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Customer?: CustomerUncheckedUpdateManyWithoutDealershipNestedInput
+    ProductCompany?: ProductCompanyUncheckedUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUncheckedUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUncheckedUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUncheckedUpdateManyWithoutDealershipNestedInput
   }
 
   export type ProductCompanyUpsertWithoutBayerProductInput = {
@@ -14464,6 +15355,34 @@ export namespace Prisma {
     RegularProduct?: RegularProductUncheckedUpdateManyWithoutProductCompanyNestedInput
   }
 
+  export type DealershipCreateWithoutSeedProductInput = {
+    name: string
+    password: string
+    isDeleted?: boolean
+    Customer?: CustomerCreateNestedManyWithoutDealershipInput
+    ProductCompany?: ProductCompanyCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderCreateNestedManyWithoutDealershipInput
+  }
+
+  export type DealershipUncheckedCreateWithoutSeedProductInput = {
+    id?: number
+    name: string
+    password: string
+    isDeleted?: boolean
+    Customer?: CustomerUncheckedCreateNestedManyWithoutDealershipInput
+    ProductCompany?: ProductCompanyUncheckedCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductUncheckedCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductUncheckedCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderUncheckedCreateNestedManyWithoutDealershipInput
+  }
+
+  export type DealershipCreateOrConnectWithoutSeedProductInput = {
+    where: DealershipWhereUniqueInput
+    create: XOR<DealershipCreateWithoutSeedProductInput, DealershipUncheckedCreateWithoutSeedProductInput>
+  }
+
   export type ProductCompanyCreateWithoutSeedProductInput = {
     name: string
     companyType: $Enums.CompanyType
@@ -14486,6 +15405,40 @@ export namespace Prisma {
   export type ProductCompanyCreateOrConnectWithoutSeedProductInput = {
     where: ProductCompanyWhereUniqueInput
     create: XOR<ProductCompanyCreateWithoutSeedProductInput, ProductCompanyUncheckedCreateWithoutSeedProductInput>
+  }
+
+  export type DealershipUpsertWithoutSeedProductInput = {
+    update: XOR<DealershipUpdateWithoutSeedProductInput, DealershipUncheckedUpdateWithoutSeedProductInput>
+    create: XOR<DealershipCreateWithoutSeedProductInput, DealershipUncheckedCreateWithoutSeedProductInput>
+    where?: DealershipWhereInput
+  }
+
+  export type DealershipUpdateToOneWithWhereWithoutSeedProductInput = {
+    where?: DealershipWhereInput
+    data: XOR<DealershipUpdateWithoutSeedProductInput, DealershipUncheckedUpdateWithoutSeedProductInput>
+  }
+
+  export type DealershipUpdateWithoutSeedProductInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Customer?: CustomerUpdateManyWithoutDealershipNestedInput
+    ProductCompany?: ProductCompanyUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUpdateManyWithoutDealershipNestedInput
+  }
+
+  export type DealershipUncheckedUpdateWithoutSeedProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Customer?: CustomerUncheckedUpdateManyWithoutDealershipNestedInput
+    ProductCompany?: ProductCompanyUncheckedUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUncheckedUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUncheckedUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUncheckedUpdateManyWithoutDealershipNestedInput
   }
 
   export type ProductCompanyUpsertWithoutSeedProductInput = {
@@ -14518,6 +15471,34 @@ export namespace Prisma {
     RegularProduct?: RegularProductUncheckedUpdateManyWithoutProductCompanyNestedInput
   }
 
+  export type DealershipCreateWithoutRegularProductInput = {
+    name: string
+    password: string
+    isDeleted?: boolean
+    Customer?: CustomerCreateNestedManyWithoutDealershipInput
+    ProductCompany?: ProductCompanyCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderCreateNestedManyWithoutDealershipInput
+  }
+
+  export type DealershipUncheckedCreateWithoutRegularProductInput = {
+    id?: number
+    name: string
+    password: string
+    isDeleted?: boolean
+    Customer?: CustomerUncheckedCreateNestedManyWithoutDealershipInput
+    ProductCompany?: ProductCompanyUncheckedCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductUncheckedCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductUncheckedCreateNestedManyWithoutDealershipInput
+    PurchaseOrder?: PurchaseOrderUncheckedCreateNestedManyWithoutDealershipInput
+  }
+
+  export type DealershipCreateOrConnectWithoutRegularProductInput = {
+    where: DealershipWhereUniqueInput
+    create: XOR<DealershipCreateWithoutRegularProductInput, DealershipUncheckedCreateWithoutRegularProductInput>
+  }
+
   export type ProductCompanyCreateWithoutRegularProductInput = {
     name: string
     companyType: $Enums.CompanyType
@@ -14540,6 +15521,40 @@ export namespace Prisma {
   export type ProductCompanyCreateOrConnectWithoutRegularProductInput = {
     where: ProductCompanyWhereUniqueInput
     create: XOR<ProductCompanyCreateWithoutRegularProductInput, ProductCompanyUncheckedCreateWithoutRegularProductInput>
+  }
+
+  export type DealershipUpsertWithoutRegularProductInput = {
+    update: XOR<DealershipUpdateWithoutRegularProductInput, DealershipUncheckedUpdateWithoutRegularProductInput>
+    create: XOR<DealershipCreateWithoutRegularProductInput, DealershipUncheckedCreateWithoutRegularProductInput>
+    where?: DealershipWhereInput
+  }
+
+  export type DealershipUpdateToOneWithWhereWithoutRegularProductInput = {
+    where?: DealershipWhereInput
+    data: XOR<DealershipUpdateWithoutRegularProductInput, DealershipUncheckedUpdateWithoutRegularProductInput>
+  }
+
+  export type DealershipUpdateWithoutRegularProductInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Customer?: CustomerUpdateManyWithoutDealershipNestedInput
+    ProductCompany?: ProductCompanyUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUpdateManyWithoutDealershipNestedInput
+  }
+
+  export type DealershipUncheckedUpdateWithoutRegularProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Customer?: CustomerUncheckedUpdateManyWithoutDealershipNestedInput
+    ProductCompany?: ProductCompanyUncheckedUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUncheckedUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUncheckedUpdateManyWithoutDealershipNestedInput
+    PurchaseOrder?: PurchaseOrderUncheckedUpdateManyWithoutDealershipNestedInput
   }
 
   export type ProductCompanyUpsertWithoutRegularProductInput = {
@@ -14570,6 +15585,34 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     SeedProduct?: SeedProductUncheckedUpdateManyWithoutProductCompanyNestedInput
     BayerProduct?: BayerProductUncheckedUpdateManyWithoutProductCompanyNestedInput
+  }
+
+  export type DealershipCreateWithoutPurchaseOrderInput = {
+    name: string
+    password: string
+    isDeleted?: boolean
+    Customer?: CustomerCreateNestedManyWithoutDealershipInput
+    ProductCompany?: ProductCompanyCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductCreateNestedManyWithoutDealershipInput
+  }
+
+  export type DealershipUncheckedCreateWithoutPurchaseOrderInput = {
+    id?: number
+    name: string
+    password: string
+    isDeleted?: boolean
+    Customer?: CustomerUncheckedCreateNestedManyWithoutDealershipInput
+    ProductCompany?: ProductCompanyUncheckedCreateNestedManyWithoutDealershipInput
+    BayerProduct?: BayerProductUncheckedCreateNestedManyWithoutDealershipInput
+    SeedProduct?: SeedProductUncheckedCreateNestedManyWithoutDealershipInput
+    RegularProduct?: RegularProductUncheckedCreateNestedManyWithoutDealershipInput
+  }
+
+  export type DealershipCreateOrConnectWithoutPurchaseOrderInput = {
+    where: DealershipWhereUniqueInput
+    create: XOR<DealershipCreateWithoutPurchaseOrderInput, DealershipUncheckedCreateWithoutPurchaseOrderInput>
   }
 
   export type CustomerCreateWithoutPurchaseOrderInput = {
@@ -14609,6 +15652,7 @@ export namespace Prisma {
     productId: number
     quantity: number
     note?: string | null
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14619,6 +15663,7 @@ export namespace Prisma {
     productId: number
     quantity: number
     note?: string | null
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14631,6 +15676,40 @@ export namespace Prisma {
   export type PurchaseOrderItemCreateManyPurchaseOrderInputEnvelope = {
     data: PurchaseOrderItemCreateManyPurchaseOrderInput | PurchaseOrderItemCreateManyPurchaseOrderInput[]
     skipDuplicates?: boolean
+  }
+
+  export type DealershipUpsertWithoutPurchaseOrderInput = {
+    update: XOR<DealershipUpdateWithoutPurchaseOrderInput, DealershipUncheckedUpdateWithoutPurchaseOrderInput>
+    create: XOR<DealershipCreateWithoutPurchaseOrderInput, DealershipUncheckedCreateWithoutPurchaseOrderInput>
+    where?: DealershipWhereInput
+  }
+
+  export type DealershipUpdateToOneWithWhereWithoutPurchaseOrderInput = {
+    where?: DealershipWhereInput
+    data: XOR<DealershipUpdateWithoutPurchaseOrderInput, DealershipUncheckedUpdateWithoutPurchaseOrderInput>
+  }
+
+  export type DealershipUpdateWithoutPurchaseOrderInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Customer?: CustomerUpdateManyWithoutDealershipNestedInput
+    ProductCompany?: ProductCompanyUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUpdateManyWithoutDealershipNestedInput
+  }
+
+  export type DealershipUncheckedUpdateWithoutPurchaseOrderInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Customer?: CustomerUncheckedUpdateManyWithoutDealershipNestedInput
+    ProductCompany?: ProductCompanyUncheckedUpdateManyWithoutDealershipNestedInput
+    BayerProduct?: BayerProductUncheckedUpdateManyWithoutDealershipNestedInput
+    SeedProduct?: SeedProductUncheckedUpdateManyWithoutDealershipNestedInput
+    RegularProduct?: RegularProductUncheckedUpdateManyWithoutDealershipNestedInput
   }
 
   export type CustomerUpsertWithoutPurchaseOrderInput = {
@@ -14697,6 +15776,7 @@ export namespace Prisma {
     productId?: IntFilter<"PurchaseOrderItem"> | number
     quantity?: FloatFilter<"PurchaseOrderItem"> | number
     note?: StringNullableFilter<"PurchaseOrderItem"> | string | null
+    orderDate?: DateTimeFilter<"PurchaseOrderItem"> | Date | string
     createdAt?: DateTimeFilter<"PurchaseOrderItem"> | Date | string
     updatedAt?: DateTimeFilter<"PurchaseOrderItem"> | Date | string
   }
@@ -14705,10 +15785,10 @@ export namespace Prisma {
     purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
-    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
+    Dealership?: DealershipCreateNestedOneWithoutPurchaseOrderInput
     Customer: CustomerCreateNestedOneWithoutPurchaseOrderInput
   }
 
@@ -14718,10 +15798,10 @@ export namespace Prisma {
     isQuote: boolean
     isSimple: boolean
     customerId: number
-    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
+    dealershipId?: number
   }
 
   export type PurchaseOrderCreateOrConnectWithoutPurchaseOrderItemInput = {
@@ -14744,10 +15824,10 @@ export namespace Prisma {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Dealership?: DealershipUpdateOneRequiredWithoutPurchaseOrderNestedInput
     Customer?: CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput
   }
 
@@ -14757,10 +15837,10 @@ export namespace Prisma {
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
     customerId?: IntFieldUpdateOperationsInput | number
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
   }
 
   export type CustomerCreateManyDealershipInput = {
@@ -14780,6 +15860,59 @@ export namespace Prisma {
     id?: number
     name: string
     companyType: $Enums.CompanyType
+    isDeleted?: boolean
+  }
+
+  export type BayerProductCreateManyDealershipInput = {
+    id?: number
+    trait: string
+    variety: string
+    treatment: string
+    seedSize: string
+    packaging: string
+    cropType: $Enums.CropType
+    productDetail: string
+    dealerPricing: number
+    endUserPricing: number
+    agiisId: string
+    sapId: string
+    isDeleted?: boolean
+    productCompanyId: number
+  }
+
+  export type SeedProductCreateManyDealershipInput = {
+    id?: number
+    trait: string
+    variety: string
+    treatment: string
+    seedSize: string
+    packaging: string
+    cropType: $Enums.CropType
+    dealerPricing: number
+    endUserPricing: number
+    isDeleted?: boolean
+    productCompanyId: number
+  }
+
+  export type RegularProductCreateManyDealershipInput = {
+    id?: number
+    product: string
+    type?: string | null
+    description?: string | null
+    dealerPricing: number
+    endUserPricing: number
+    isDeleted?: boolean
+    productCompanyId: number
+  }
+
+  export type PurchaseOrderCreateManyDealershipInput = {
+    id?: number
+    purchaseOrderName?: string | null
+    isQuote: boolean
+    isSimple: boolean
+    customerId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
     isDeleted?: boolean
   }
 
@@ -14849,25 +15982,182 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type BayerProductUpdateWithoutDealershipInput = {
+    trait?: StringFieldUpdateOperationsInput | string
+    variety?: StringFieldUpdateOperationsInput | string
+    treatment?: StringFieldUpdateOperationsInput | string
+    seedSize?: StringFieldUpdateOperationsInput | string
+    packaging?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    productDetail?: StringFieldUpdateOperationsInput | string
+    dealerPricing?: FloatFieldUpdateOperationsInput | number
+    endUserPricing?: FloatFieldUpdateOperationsInput | number
+    agiisId?: StringFieldUpdateOperationsInput | string
+    sapId?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    ProductCompany?: ProductCompanyUpdateOneRequiredWithoutBayerProductNestedInput
+  }
+
+  export type BayerProductUncheckedUpdateWithoutDealershipInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    trait?: StringFieldUpdateOperationsInput | string
+    variety?: StringFieldUpdateOperationsInput | string
+    treatment?: StringFieldUpdateOperationsInput | string
+    seedSize?: StringFieldUpdateOperationsInput | string
+    packaging?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    productDetail?: StringFieldUpdateOperationsInput | string
+    dealerPricing?: FloatFieldUpdateOperationsInput | number
+    endUserPricing?: FloatFieldUpdateOperationsInput | number
+    agiisId?: StringFieldUpdateOperationsInput | string
+    sapId?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    productCompanyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BayerProductUncheckedUpdateManyWithoutDealershipInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    trait?: StringFieldUpdateOperationsInput | string
+    variety?: StringFieldUpdateOperationsInput | string
+    treatment?: StringFieldUpdateOperationsInput | string
+    seedSize?: StringFieldUpdateOperationsInput | string
+    packaging?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    productDetail?: StringFieldUpdateOperationsInput | string
+    dealerPricing?: FloatFieldUpdateOperationsInput | number
+    endUserPricing?: FloatFieldUpdateOperationsInput | number
+    agiisId?: StringFieldUpdateOperationsInput | string
+    sapId?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    productCompanyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SeedProductUpdateWithoutDealershipInput = {
+    trait?: StringFieldUpdateOperationsInput | string
+    variety?: StringFieldUpdateOperationsInput | string
+    treatment?: StringFieldUpdateOperationsInput | string
+    seedSize?: StringFieldUpdateOperationsInput | string
+    packaging?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    dealerPricing?: FloatFieldUpdateOperationsInput | number
+    endUserPricing?: FloatFieldUpdateOperationsInput | number
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    ProductCompany?: ProductCompanyUpdateOneRequiredWithoutSeedProductNestedInput
+  }
+
+  export type SeedProductUncheckedUpdateWithoutDealershipInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    trait?: StringFieldUpdateOperationsInput | string
+    variety?: StringFieldUpdateOperationsInput | string
+    treatment?: StringFieldUpdateOperationsInput | string
+    seedSize?: StringFieldUpdateOperationsInput | string
+    packaging?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    dealerPricing?: FloatFieldUpdateOperationsInput | number
+    endUserPricing?: FloatFieldUpdateOperationsInput | number
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    productCompanyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SeedProductUncheckedUpdateManyWithoutDealershipInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    trait?: StringFieldUpdateOperationsInput | string
+    variety?: StringFieldUpdateOperationsInput | string
+    treatment?: StringFieldUpdateOperationsInput | string
+    seedSize?: StringFieldUpdateOperationsInput | string
+    packaging?: StringFieldUpdateOperationsInput | string
+    cropType?: EnumCropTypeFieldUpdateOperationsInput | $Enums.CropType
+    dealerPricing?: FloatFieldUpdateOperationsInput | number
+    endUserPricing?: FloatFieldUpdateOperationsInput | number
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    productCompanyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type RegularProductUpdateWithoutDealershipInput = {
+    product?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dealerPricing?: FloatFieldUpdateOperationsInput | number
+    endUserPricing?: FloatFieldUpdateOperationsInput | number
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    ProductCompany?: ProductCompanyUpdateOneRequiredWithoutRegularProductNestedInput
+  }
+
+  export type RegularProductUncheckedUpdateWithoutDealershipInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    product?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dealerPricing?: FloatFieldUpdateOperationsInput | number
+    endUserPricing?: FloatFieldUpdateOperationsInput | number
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    productCompanyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type RegularProductUncheckedUpdateManyWithoutDealershipInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    product?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dealerPricing?: FloatFieldUpdateOperationsInput | number
+    endUserPricing?: FloatFieldUpdateOperationsInput | number
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    productCompanyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PurchaseOrderUpdateWithoutDealershipInput = {
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
+    isQuote?: BoolFieldUpdateOperationsInput | boolean
+    isSimple?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Customer?: CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput
+    PurchaseOrderItem?: PurchaseOrderItemUpdateManyWithoutPurchaseOrderNestedInput
+  }
+
+  export type PurchaseOrderUncheckedUpdateWithoutDealershipInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
+    isQuote?: BoolFieldUpdateOperationsInput | boolean
+    isSimple?: BoolFieldUpdateOperationsInput | boolean
+    customerId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    PurchaseOrderItem?: PurchaseOrderItemUncheckedUpdateManyWithoutPurchaseOrderNestedInput
+  }
+
+  export type PurchaseOrderUncheckedUpdateManyWithoutDealershipInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
+    isQuote?: BoolFieldUpdateOperationsInput | boolean
+    isSimple?: BoolFieldUpdateOperationsInput | boolean
+    customerId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type PurchaseOrderCreateManyCustomerInput = {
     id?: number
     purchaseOrderName?: string | null
     isQuote: boolean
     isSimple: boolean
-    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeleted?: boolean
+    dealershipId?: number
   }
 
   export type PurchaseOrderUpdateWithoutCustomerInput = {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Dealership?: DealershipUpdateOneRequiredWithoutPurchaseOrderNestedInput
     PurchaseOrderItem?: PurchaseOrderItemUpdateManyWithoutPurchaseOrderNestedInput
   }
 
@@ -14876,10 +16166,10 @@ export namespace Prisma {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
     PurchaseOrderItem?: PurchaseOrderItemUncheckedUpdateManyWithoutPurchaseOrderNestedInput
   }
 
@@ -14888,10 +16178,10 @@ export namespace Prisma {
     purchaseOrderName?: NullableStringFieldUpdateOperationsInput | string | null
     isQuote?: BoolFieldUpdateOperationsInput | boolean
     isSimple?: BoolFieldUpdateOperationsInput | boolean
-    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
   }
 
   export type SeedProductCreateManyProductCompanyInput = {
@@ -14905,6 +16195,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    dealershipId?: number
   }
 
   export type BayerProductCreateManyProductCompanyInput = {
@@ -14921,6 +16212,7 @@ export namespace Prisma {
     agiisId: string
     sapId: string
     isDeleted?: boolean
+    dealershipId?: number
   }
 
   export type RegularProductCreateManyProductCompanyInput = {
@@ -14931,6 +16223,7 @@ export namespace Prisma {
     dealerPricing: number
     endUserPricing: number
     isDeleted?: boolean
+    dealershipId?: number
   }
 
   export type SeedProductUpdateWithoutProductCompanyInput = {
@@ -14943,6 +16236,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Dealership?: DealershipUpdateOneRequiredWithoutSeedProductNestedInput
   }
 
   export type SeedProductUncheckedUpdateWithoutProductCompanyInput = {
@@ -14956,6 +16250,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
   }
 
   export type SeedProductUncheckedUpdateManyWithoutProductCompanyInput = {
@@ -14969,6 +16264,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
   }
 
   export type BayerProductUpdateWithoutProductCompanyInput = {
@@ -14984,6 +16280,7 @@ export namespace Prisma {
     agiisId?: StringFieldUpdateOperationsInput | string
     sapId?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Dealership?: DealershipUpdateOneRequiredWithoutBayerProductNestedInput
   }
 
   export type BayerProductUncheckedUpdateWithoutProductCompanyInput = {
@@ -15000,6 +16297,7 @@ export namespace Prisma {
     agiisId?: StringFieldUpdateOperationsInput | string
     sapId?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
   }
 
   export type BayerProductUncheckedUpdateManyWithoutProductCompanyInput = {
@@ -15016,6 +16314,7 @@ export namespace Prisma {
     agiisId?: StringFieldUpdateOperationsInput | string
     sapId?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
   }
 
   export type RegularProductUpdateWithoutProductCompanyInput = {
@@ -15025,6 +16324,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    Dealership?: DealershipUpdateOneRequiredWithoutRegularProductNestedInput
   }
 
   export type RegularProductUncheckedUpdateWithoutProductCompanyInput = {
@@ -15035,6 +16335,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
   }
 
   export type RegularProductUncheckedUpdateManyWithoutProductCompanyInput = {
@@ -15045,6 +16346,7 @@ export namespace Prisma {
     dealerPricing?: FloatFieldUpdateOperationsInput | number
     endUserPricing?: FloatFieldUpdateOperationsInput | number
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    dealershipId?: IntFieldUpdateOperationsInput | number
   }
 
   export type PurchaseOrderItemCreateManyPurchaseOrderInput = {
@@ -15053,6 +16355,7 @@ export namespace Prisma {
     productId: number
     quantity: number
     note?: string | null
+    orderDate?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15062,6 +16365,7 @@ export namespace Prisma {
     productId?: IntFieldUpdateOperationsInput | number
     quantity?: FloatFieldUpdateOperationsInput | number
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15072,6 +16376,7 @@ export namespace Prisma {
     productId?: IntFieldUpdateOperationsInput | number
     quantity?: FloatFieldUpdateOperationsInput | number
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15082,6 +16387,7 @@ export namespace Prisma {
     productId?: IntFieldUpdateOperationsInput | number
     quantity?: FloatFieldUpdateOperationsInput | number
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
