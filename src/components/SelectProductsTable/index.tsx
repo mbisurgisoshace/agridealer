@@ -38,10 +38,11 @@ export default function SelectProductsTable({
     name: "items",
   });
 
-  const onAddProduct = (product: Product, quantity: number) => {
+  const onAddProduct = (product: Product, quantity: number, note: string) => {
     if (!selectedCompany) return;
 
     const newItem = {
+      note,
       quantity,
       productId: product.id,
       orderDate: orderItemDate!,
@@ -63,6 +64,7 @@ export default function SelectProductsTable({
         ...product!,
         description: product?.description || "-",
         quantity: item.quantity,
+        note: item.note,
       };
     });
   };

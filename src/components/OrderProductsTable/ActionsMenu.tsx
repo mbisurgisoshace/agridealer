@@ -53,8 +53,13 @@ export default function ActionsMenu({ orderItem }: ActionsMenuProps) {
     fetchData();
   }, []);
 
-  const onUpdateProduct = async (product: Product, quantity: number) => {
+  const onUpdateProduct = async (
+    product: Product,
+    quantity: number,
+    note: string
+  ) => {
     const updatedItem = {
+      note,
       quantity,
       productId: product.id,
       orderDate: orderItem.orderDate!,
@@ -87,6 +92,7 @@ export default function ActionsMenu({ orderItem }: ActionsMenuProps) {
               <RegularProductsTable
                 products={products}
                 onAddProduct={() => {}}
+                productNote={orderItem.note}
                 onUpdateProduct={onUpdateProduct}
               />
             )}
@@ -95,6 +101,7 @@ export default function ActionsMenu({ orderItem }: ActionsMenuProps) {
                 products={products}
                 onAddProduct={() => {}}
                 product={product as Seed}
+                productNote={orderItem.note}
                 onUpdateProduct={onUpdateProduct}
                 productQuantity={orderItem.quantity}
                 cropType={(product as Seed).cropType}

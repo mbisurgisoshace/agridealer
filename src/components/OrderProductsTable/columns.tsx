@@ -6,6 +6,7 @@ import { ProductView } from "@/types/products";
 
 export type OrderProductView = ProductView & {
   orderDate?: Date;
+  note?: string;
   quantity: number;
   orderItemId?: number;
 };

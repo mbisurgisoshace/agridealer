@@ -240,7 +240,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/mbisurgi/Documents/Projects/Agri Dealer/agridealer-next/generated/prisma",
+      "value": "/Users/maximilianobisurgi/Documents/Projects/Appollo/agridealer/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -258,7 +258,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/mbisurgi/Documents/Projects/Agri Dealer/agridealer-next/prisma/schema.prisma",
+    "sourceFilePath": "/Users/maximilianobisurgi/Documents/Projects/Appollo/agridealer/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -272,6 +272,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

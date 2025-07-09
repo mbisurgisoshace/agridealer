@@ -16,14 +16,20 @@ import { CropType } from "../../../generated/prisma";
 import { Product, Seed } from "./useSelectProductsTable";
 import ColumnHeader, { seedProductColumns } from "./ColumnHeader";
 import useSeedProductFiltering from "./Filters/useSeedProductFiltering";
+import { Textarea } from "../ui/textarea";
 
 interface SeedProductsTableProps {
   product?: Seed;
   products: Product[];
   cropType?: CropType;
+  productNote?: string;
   productQuantity?: number;
-  onAddProduct: (product: Product, quantity: number) => void;
-  onUpdateProduct?: (product: Product, quantity: number) => void;
+  onAddProduct: (product: Product, quantity: number, comment: string) => void;
+  onUpdateProduct?: (
+    product: Product,
+    quantity: number,
+    comment: string
+  ) => void;
 }
 
 export default function SeedProductsTable({
@@ -32,6 +38,7 @@ export default function SeedProductsTable({
   products,
   onAddProduct,
   onUpdateProduct,
+  productNote = "",
   productQuantity = 0,
 }: SeedProductsTableProps) {
   const {
@@ -43,10 +50,14 @@ export default function SeedProductsTable({
     onFilterValueChange,
   } = useSeedProductFiltering(products as Seed[], cropType);
 
+  const [comment, setComment] = useState<string>(productNote);
   const [quantity, setQuantity] = useState<number>(productQuantity);
 
   useEffect(() => {
-    if (!selectedProduct && !product) setQuantity(0);
+    if (!selectedProduct && !product) {
+      setQuantity(0);
+      setComment("");
+    }
   }, [selectedProduct]);
 
   useEffect(() => {
@@ -66,9 +77,9 @@ export default function SeedProductsTable({
     if (quantity <= 0) return;
 
     if (product && onUpdateProduct) {
-      onUpdateProduct(selectedProduct, quantity);
+      onUpdateProduct(selectedProduct, quantity, comment);
     } else {
-      onAddProduct(selectedProduct, quantity);
+      onAddProduct(selectedProduct, quantity, comment);
       reset();
     }
   };
@@ -129,6 +140,13 @@ export default function SeedProductsTable({
                 <span className="text-xs">{`MSRP: ${numeral(
                   selectedProduct.endUserPricing
                 ).format("$0,0.00")}`}</span>
+
+                <Textarea
+                  value={comment}
+                  className="mt-2"
+                  placeholder="Comment"
+                  onChange={(e) => setComment(e.target.value)}
+                />
               </div>
             ) : null}
           </TableCell>

@@ -22,6 +22,7 @@ export default async function OrderPage({
     return {
       ...product!,
       orderItemId: item.id,
+      note: item.note || "",
       quantity: item.quantity,
       orderDate: item.orderDate,
       description: product?.description || "-",
