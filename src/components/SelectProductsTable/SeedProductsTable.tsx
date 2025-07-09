@@ -102,6 +102,7 @@ export default function SeedProductsTable({
             filteringOptions={filteringOptions.trait}
           />
           <SelectionCell
+            filterable
             filters={filters}
             filterKey="variety"
             onSelectFilter={onFilterValueChange}
