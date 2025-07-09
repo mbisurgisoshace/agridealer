@@ -23,7 +23,11 @@ import { getCompanyById } from "@/services/Companies";
 import { getProductByIdAndCompany, getProducts } from "@/services/Products";
 
 import SeedProductsTable from "../SelectProductsTable/SeedProductsTable";
-import { Product, Seed } from "../SelectProductsTable/useSelectProductsTable";
+import {
+  Product,
+  Regular,
+  Seed,
+} from "../SelectProductsTable/useSelectProductsTable";
 import RegularProductsTable from "../SelectProductsTable/RegularProductsTable";
 import { updateOrderItem } from "@/services/Orders";
 
@@ -92,8 +96,10 @@ export default function ActionsMenu({ orderItem }: ActionsMenuProps) {
               <RegularProductsTable
                 products={products}
                 onAddProduct={() => {}}
+                product={product as Regular}
                 productNote={orderItem.note}
                 onUpdateProduct={onUpdateProduct}
+                productQuantity={orderItem.quantity}
               />
             )}
             {company && company.companyType !== "Regular" && product && (
