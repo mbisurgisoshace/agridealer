@@ -12,23 +12,21 @@ export default async function OrderPage({
   const allProducts = await getAllProducts();
   const order = await getOrderById(parseInt(orderId));
 
-  const generateData = (): OrderProductView[] => {
-    const items = order?.PurchaseOrderItem || [];
-    return items.map((item) => {
-      const product = allProducts.find(
-        (p) =>
-          p.id === item.productId &&
-          p.productCompanyId === item.productCompanyId
-      );
-      return {
-        ...product!,
-        orderItemId: item.id,
-        quantity: item.quantity,
-        orderDate: item.orderDate,
-        description: product?.description || "-",
-      };
-    });
-  };
+  const generatedData: OrderProductView[] = (
+    order?.PurchaseOrderItem || []
+  ).map((item) => {
+    const product = allProducts.find(
+      (p) =>
+        p.id === item.productId && p.productCompanyId === item.productCompanyId
+    );
+    return {
+      ...product!,
+      orderItemId: item.id,
+      quantity: item.quantity,
+      orderDate: item.orderDate,
+      description: product?.description || "-",
+    };
+  });
 
   return (
     <div>
@@ -40,7 +38,7 @@ export default async function OrderPage({
           order?.isQuote ? "QT" : "PO"
         }#${order?.id}`}</span>
       </h3>
-      <OrderProductsTable data={generateData()} isEditable />
+      <OrderProductsTable data={generatedData} isEditable />
     </div>
   );
 }
