@@ -2,6 +2,7 @@ import { getOrderById } from "@/services/Orders";
 import { getAllProducts } from "@/services/Products";
 import OrderProductsTable from "@/components/OrderProductsTable";
 import { OrderProductView } from "@/components/OrderProductsTable/columns";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function OrderPage({
   params,
@@ -29,9 +30,16 @@ export default async function OrderPage({
     };
   });
 
+  const bayerData = generatedData.filter(
+    (item) => item.productCompanyName === "Bayer"
+  );
+  const otherData = generatedData.filter(
+    (item) => item.productCompanyName !== "Bayer"
+  );
+
   return (
     <div>
-      <h3 className="flex items-center gap-2 text-muted-foreground">
+      <h3 className="flex items-center gap-2 text-muted-foreground mb-2">
         {`${order?.Customer.name}'s ${
           order?.isQuote ? "Quote" : "Purchase Order"
         } `}{" "}
@@ -39,7 +47,25 @@ export default async function OrderPage({
           order?.isQuote ? "QT" : "PO"
         }#${order?.id}`}</span>
       </h3>
-      <OrderProductsTable data={generatedData} isEditable />
+      <div className="flex flex-col gap-4">
+        <Card>
+          <CardHeader>
+            <CardTitle>Bayer Products</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <OrderProductsTable data={bayerData} isEditable />
+          </CardContent>
+        </Card>
+
+        <Card>
+          {/* <CardHeader>
+            <CardTitle>Non Bayer Products</CardTitle>
+          </CardHeader> */}
+          <CardContent>
+            <OrderProductsTable data={otherData} isEditable />
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
