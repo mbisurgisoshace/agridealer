@@ -1,0 +1,129 @@
+<!-- 
+    Sidebar DSL
+ -->
+<Block>
+    <BlockName>Sidebar</BlockName>
+    <BlockProps>
+        <PropName>items</PropName>
+        <PropType>array</PropType>
+        <ItemSchema>
+            <Prop>
+                <PropName>href</PropName>
+                <PropType>string</PropType>
+                <PropRequired>true</PropRequired>
+            </Prop>
+            <Prop>
+                <PropName>value</PropName>
+                <PropType>string</PropType>
+                <PropRequired>false</PropRequired>
+            </Prop>
+            <Prop>
+                <PropName>render</PropName>
+                <PropType>dsl</PropType>
+                <PropRequired>false</PropRequired>
+                <PropDescription>Custom DSL block to render the item content</PropDescription>
+            </Prop>
+        </ItemSchema>
+        <PropRequired>true</PropRequired>
+    </BlockProps>
+
+    <BlockRender>
+        <For each="item in items">
+            <Block>
+                <BlockProps>
+                    <BlockProp>
+                        <PropName>href</PropName>
+                        <PropValue>{item.href}</PropValue>
+                    </BlockProp>
+                </BlockProps>
+                <BlockChildren>
+                    <If condition="item.render">
+                        <Inject value="{item.render}" />
+                    </If>
+                    <If condition="!item.render">
+                        <Block>
+                            <BlockName>Text</BlockName>
+                            <BlockProps>
+                                <BlockProp>
+                                    <PropName>content</PropName>
+                                    <PropValue>{item.value}</PropValue>
+                                </BlockProp>
+                            </BlockProps>
+                        </Block>
+                    </If>
+                </BlockChildren>
+            </Block>
+        </For>
+    </BlockRender>
+</Block>
+
+<!-- 
+    Sidebar Item DSL
+ -->
+<Block>
+    <BlockName>SidebarItem</BlockName>
+    <BlockProps>
+        <BlockProp>
+            <PropName>href</PropName>
+            <PropType>string</PropType>
+            <PropRequired>true</PropRequired>
+        </BlockProp>
+        <BlockProp>
+            <PropName>active</PropName>
+            <PropType>boolean</PropType>
+            <PropDefault>false</PropDefault>
+        </BlockProp>
+    </BlockProps>
+
+    <BlockChildren>
+        <Slot name="default" />
+    </BlockChildren>
+
+     <BlockRender>
+        <Block>
+            <BlockName>Link</BlockName>
+            <BlockProps>
+                <BlockProp>
+                    <PropName>href</PropName>
+                    <PropValue>{href}</PropValue>
+                </BlockProp>
+            </BlockProps>
+            <BlockChildren>
+                <Slot name="default" />
+            </BlockChildren>
+        </Block>
+  </BlockRender>
+</Block>
+
+
+ <!-- 
+    Link DSL
+ -->
+ <Block>
+    <BlockName>Link</BlockName>
+    
+    <BlockProps>
+        <BlockProp>
+            <PropName>href</PropName>
+            <PropType>string</PropType>
+            <PropRequired>true</PropRequired>
+            <PropDescription>URL to navigate to</PropDescription>
+        </BlockProp>
+    </BlockProps>
+
+    <BlockChildren>
+        <Slot name="default" />
+    </BlockChildren>
+
+    <BlockBehavior>
+        <OnEvent name="click">
+            <Action type="navigate" target="{href}" />
+        </OnEvent>
+    </BlockBehavior>
+
+    <BlockLogic>
+    </BlockLogic>
+
+    <BlockStyling>
+    </BlockStyling>
+ </Block>
