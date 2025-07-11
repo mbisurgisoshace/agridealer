@@ -233,3 +233,298 @@ Platform-agnostic hyperlink component that handles navigation logic.
   <BlockStyling />
 </Block>
 ```
+
+## 🧲 `Table` Block
+
+### Purpose
+
+Represents a container for tabular data. Can optionally support props like striped or bordered, and accepts header, row, and cell components as children.
+
+### Structure
+
+```xml
+<Block>
+  <BlockName>Table</BlockName>
+  <BlockProps>
+    <BlockProp>
+      <PropName>striped</PropName>
+      <PropType>boolean</PropType>
+      <PropDefault>true</PropDefault>
+    </BlockProp>
+  </BlockProps>
+  <BlockChildren>
+    <Slot name="default" />
+  </BlockChildren>
+</Block>
+```
+
+## 🧲 `TableHeader` Block
+
+### Purpose
+
+Defines the header section of a table, typically composed of multiple column headers. Used within the Table block.
+
+### Structure
+
+```xml
+<Block>
+  <BlockName>TableHeader</BlockName>
+  <BlockChildren>
+    <Slot name="default" />
+  </BlockChildren>
+</Block>
+```
+
+## 🧲 `TableRow` Block
+
+### Purpose
+
+Defines a row within a table. Commonly used in conjunction with a For loop to render dynamic rows based on data.
+
+### Structure
+
+```xml
+<Block>
+  <BlockName>TableRow</BlockName>
+  <BlockChildren>
+    <Slot name="default" />
+  </BlockChildren>
+</Block>
+```
+
+## 🧲 `TableCell` Block
+
+### Purpose
+
+Defines a single cell inside a row. Supports alignment and custom content such as text, buttons, or nested components.
+
+### Structure
+
+```xml
+<Block>
+  <BlockName>TableCell</BlockName>
+  <BlockProps>
+    <BlockProp>
+      <PropName>align</PropName>
+      <PropType>string</PropType>
+      <PropDefault>left</PropDefault>
+    </BlockProp>
+  </BlockProps>
+  <BlockChildren>
+    <Slot name="default" />
+  </BlockChildren>
+</Block>
+```
+
+## 🧩 DSL Example: Customer List Screen
+
+This section models the UI of the Customer List screen using DSL blocks in modular format.
+
+---
+
+### 🔸 `CustomerListPage` Block
+
+```xml
+<Block>
+  <BlockName>CustomerListPage</BlockName>
+  <BlockProps>
+    <BlockProp>
+      <PropName>customers</PropName>
+      <PropType>array</PropType>
+      <ItemSchema>
+        <Prop>
+          <PropName>name</PropName>
+          <PropType>string</PropType>
+        </Prop>
+        <Prop>
+          <PropName>quotes</PropName>
+          <PropType>array</PropType>
+        </Prop>
+        <Prop>
+          <PropName>orders</PropName>
+          <PropType>array</PropType>
+        </Prop>
+      </ItemSchema>
+    </BlockProp>
+  </BlockProps>
+
+  <BlockChildren>
+    <Block>
+      <BlockName>Header</BlockName>
+      <BlockChildren>
+        <Block>
+          <BlockName>Text</BlockName>
+          <BlockProps>
+            <BlockProp>
+              <PropName>content</PropName>
+              <PropValue>Customers</PropValue>
+            </BlockProp>
+          </BlockProps>
+        </Block>
+        <Block>
+          <BlockName>Button</BlockName>
+          <BlockProps>
+            <BlockProp>
+              <PropName>label</PropName>
+              <PropValue>Add New</PropValue>
+            </BlockProp>
+            <BlockProp>
+              <PropName>onClick</PropName>
+              <PropValue>openAddCustomerModal</PropValue>
+            </BlockProp>
+          </BlockProps>
+        </Block>
+      </BlockChildren>
+    </Block>
+
+    <Block>
+      <BlockName>CustomerTable</BlockName>
+      <BlockProps>
+        <BlockProp>
+          <PropName>customers</PropName>
+          <PropValue>{customers}</PropValue>
+        </BlockProp>
+      </BlockProps>
+    </Block>
+  </BlockChildren>
+</Block>
+```
+
+### 🔸 `CustomerTable` Block
+
+```xml
+<Block>
+  <BlockName>CustomerTable</BlockName>
+  <BlockProps>
+    <BlockProp>
+      <PropName>customers</PropName>
+      <PropType>array</PropType>
+    </BlockProp>
+  </BlockProps>
+
+  <BlockRender>
+    <Table>
+      <TableHeader>
+        <TableColumn>Name</TableColumn>
+        <TableColumn>Quotes</TableColumn>
+        <TableColumn>Purchase Orders</TableColumn>
+      </TableHeader>
+
+      <For each="customer in customers">
+        <Block>
+          <BlockName>CustomerRow</BlockName>
+          <BlockProps>
+            <BlockProp>
+              <PropName>customer</PropName>
+              <PropValue>{customer}</PropValue>
+            </BlockProp>
+          </BlockProps>
+        </Block>
+      </For>
+    </Table>
+  </BlockRender>
+</Block>
+```
+
+### 🔸 `CustomerRow` Block
+
+```xml
+<Block>
+  <BlockName>CustomerRow</BlockName>
+  <BlockProps>
+    <BlockProp>
+      <PropName>customer</PropName>
+      <PropType>object</PropType>
+    </BlockProp>
+  </BlockProps>
+
+  <BlockRender>
+    <TableRow>
+      <TableCell>{customer.name}</TableCell>
+      <TableCell>
+        <Block>
+          <BlockName>CustomerLinkList</BlockName>
+          <BlockProps>
+            <BlockProp>
+              <PropName>items</PropName>
+              <PropValue>{customer.quotes}</PropValue>
+            </BlockProp>
+            <BlockProp>
+              <PropName>type</PropName>
+              <PropValue>quote</PropValue>
+            </BlockProp>
+          </BlockProps>
+        </Block>
+      </TableCell>
+      <TableCell>
+        <Block>
+          <BlockName>CustomerLinkList</BlockName>
+          <BlockProps>
+            <BlockProp>
+              <PropName>items</PropName>
+              <PropValue>{customer.orders}</PropValue>
+            </BlockProp>
+            <BlockProp>
+              <PropName>type</PropName>
+              <PropValue>order</PropValue>
+            </BlockProp>
+          </BlockProps>
+        </Block>
+      </TableCell>
+    </TableRow>
+  </BlockRender>
+</Block>
+```
+
+### 🔸 `CustomerLinkList` Block
+```xml
+<Block>
+  <BlockName>CustomerLinkList</BlockName>
+  <BlockProps>
+    <BlockProp>
+      <PropName>items</PropName>
+      <PropType>array</PropType>
+    </BlockProp>
+    <BlockProp>
+      <PropName>type</PropName>
+      <PropType>string</PropType>
+    </BlockProp>
+  </BlockProps>
+
+  <BlockRender>
+    <If condition="items.length > 0">
+      <For each="item in items">
+        <Block>
+          <BlockName>Link</BlockName>
+          <BlockProps>
+            <BlockProp>
+              <PropName>href</PropName>
+              <PropValue>{`/${type}s/${item}`}</PropValue>
+            </BlockProp>
+            <BlockProp>
+              <PropName>label</PropName>
+              <PropValue>{item}</PropValue>
+            </BlockProp>
+          </BlockProps>
+        </Block>
+      </For>
+    </If>
+
+    <If condition="items.length === 0">
+      <Block>
+        <BlockName>Button</BlockName>
+        <BlockProps>
+          <BlockProp>
+            <PropName>label</PropName>
+            <PropValue>{`Create ${type === 'quote' ? 'Quote' : 'Purchase Order'}`}</PropValue>
+          </BlockProp>
+          <BlockProp>
+            <PropName>variant</PropName>
+            <PropValue>link</PropValue>
+          </BlockProp>
+        </BlockProps>
+      </Block>
+    </If>
+  </BlockRender>
+</Block>
+```
