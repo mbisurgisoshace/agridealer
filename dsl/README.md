@@ -402,26 +402,70 @@ This section models the UI of the Customer List screen using DSL blocks in modul
     </BlockProp>
   </BlockProps>
 
-  <BlockRender>
-    <Table>
-      <TableHeader>
-        <TableColumn>Name</TableColumn>
-        <TableColumn>Quotes</TableColumn>
-        <TableColumn>Purchase Orders</TableColumn>
-      </TableHeader>
-
-      <For each="customer in customers">
+   <BlockRender>
+    <Block>
+      <BlockName>Table</BlockName>
+      <BlockChildren>
         <Block>
-          <BlockName>CustomerRow</BlockName>
-          <BlockProps>
-            <BlockProp>
-              <PropName>customer</PropName>
-              <PropValue>{customer}</PropValue>
-            </BlockProp>
-          </BlockProps>
+          <BlockName>TableHeader</BlockName>
+          <BlockChildren>
+            <Block>
+              <BlockName>TableCell</BlockName>
+              <BlockChildren>
+                <Block>
+                  <BlockName>Text</BlockName>
+                  <BlockProps>
+                    <BlockProp>
+                      <PropName>content</PropName>
+                      <PropValue>Name</PropValue>
+                    </BlockProp>
+                  </BlockProps>
+                </Block>
+              </BlockChildren>
+            </Block>
+            <Block>
+              <BlockName>TableCell</BlockName>
+              <BlockChildren>
+                <Block>
+                  <BlockName>Text</BlockName>
+                  <BlockProps>
+                    <BlockProp>
+                      <PropName>content</PropName>
+                      <PropValue>Quotes</PropValue>
+                    </BlockProp>
+                  </BlockProps>
+                </Block>
+              </BlockChildren>
+            </Block>
+            <Block>
+              <BlockName>TableCell</BlockName>
+              <BlockChildren>
+                <Block>
+                  <BlockName>Text</BlockName>
+                  <BlockProps>
+                    <BlockProp>
+                      <PropName>content</PropName>
+                      <PropValue>Purchase Orders</PropValue>
+                    </BlockProp>
+                  </BlockProps>
+                </Block>
+              </BlockChildren>
+            </Block>
+          </BlockChildren>
         </Block>
-      </For>
-    </Table>
+        <For each="customer in customers">
+          <Block>
+            <BlockName>CustomerRow</BlockName>
+            <BlockProps>
+              <BlockProp>
+                <PropName>customer</PropName>
+                <PropValue>{customer}</PropValue>
+              </BlockProp>
+            </BlockProps>
+          </Block>
+        </For>
+      </BlockChildren>
+    </Block>
   </BlockRender>
 </Block>
 ```
@@ -439,39 +483,116 @@ This section models the UI of the Customer List screen using DSL blocks in modul
   </BlockProps>
 
   <BlockRender>
-    <TableRow>
-      <TableCell>{customer.name}</TableCell>
-      <TableCell>
+    <Block>
+      <BlockName>TableRow</BlockName>
+      <BlockChildren>
         <Block>
-          <BlockName>CustomerLinkList</BlockName>
-          <BlockProps>
-            <BlockProp>
-              <PropName>items</PropName>
-              <PropValue>{customer.quotes}</PropValue>
-            </BlockProp>
-            <BlockProp>
-              <PropName>type</PropName>
-              <PropValue>quote</PropValue>
-            </BlockProp>
-          </BlockProps>
+          <BlockName>TableCell</BlockName>
+          <BlockChildren>
+            <Block>
+              <BlockName>Text</BlockName>
+              <BlockProps>
+                <BlockProp>
+                  <PropName>content</PropName>
+                  <PropValue>{customer.name}</PropValue>
+                </BlockProp>
+              </BlockProps>
+            </Block>
+          </BlockChildren>
         </Block>
-      </TableCell>
-      <TableCell>
+
         <Block>
-          <BlockName>CustomerLinkList</BlockName>
-          <BlockProps>
-            <BlockProp>
-              <PropName>items</PropName>
-              <PropValue>{customer.orders}</PropValue>
-            </BlockProp>
-            <BlockProp>
-              <PropName>type</PropName>
-              <PropValue>order</PropValue>
-            </BlockProp>
-          </BlockProps>
+          <BlockName>TableCell</BlockName>
+          <BlockChildren>
+            <If condition="customer.quotes.length === 0">
+              <Block>
+                <BlockName>Button</BlockName>
+                <BlockProps>
+                  <BlockProp>
+                    <PropName>label</PropName>
+                    <PropValue>Create Quote</PropValue>
+                  </BlockProp>
+                  <BlockProp>
+                    <PropName>onClick</PropName>
+                    <PropValue>{() => createQuote(customer)}</PropValue>
+                  </BlockProp>
+                </BlockProps>
+              </Block>
+            </If>
+            <If condition="customer.quotes.length > 0">
+              <For each="quote in customer.quotes">
+                <Block>
+                  <BlockName>Link</BlockName>
+                  <BlockProps>
+                    <BlockProp>
+                      <PropName>href</PropName>
+                      <PropValue>{`/quotes/${quote.id}`}</PropValue>
+                    </BlockProp>
+                  </BlockProps>
+                  <BlockChildren>
+                    <Block>
+                      <BlockName>Text</BlockName>
+                      <BlockProps>
+                        <BlockProp>
+                          <PropName>content</PropName>
+                          <PropValue>{quote.name}</PropValue>
+                        </BlockProp>
+                      </BlockProps>
+                    </Block>
+                  </BlockChildren>
+                </Block>
+              </For>
+            </If>
+          </BlockChildren>
         </Block>
-      </TableCell>
-    </TableRow>
+
+        <Block>
+          <BlockName>TableCell</BlockName>
+          <BlockChildren>
+            <If condition="customer.orders.length === 0">
+              <Block>
+                <BlockName>Button</BlockName>
+                <BlockProps>
+                  <BlockProp>
+                    <PropName>label</PropName>
+                    <PropValue>Create Purchase Order</PropValue>
+                  </BlockProp>
+                  <BlockProp>
+                    <PropName>onClick</PropName>
+                    <PropValue>{() => createOrder(customer)}</PropValue>
+                  </BlockProp>
+                </BlockProps>
+              </Block>
+            </If>
+            <If condition="customer.orders.length > 0">
+              <For each="order in customer.orders">
+                <Block>
+                  <BlockName>Link</BlockName>
+                  <BlockProps>
+                    <BlockProp>
+                      <PropName>href</PropName>
+                      <PropValue>{`/orders/${order.id}`}</PropValue>
+                    </BlockProp>
+                  </BlockProps>
+                  <BlockChildren>
+                    <Block>
+                      <BlockName>Text</BlockName>
+                      <BlockProps>
+                        <BlockProp>
+                          <PropName>content</PropName>
+                          <PropValue>{order.name}</PropValue>
+                        </BlockProp>
+                      </BlockProps>
+                    </Block>
+                  </BlockChildren>
+                </Block>
+              </For>
+            </If>
+          </BlockChildren>
+        </Block>
+
+      </BlockChildren>
+    </Block>
   </BlockRender>
 </Block>
 ```
