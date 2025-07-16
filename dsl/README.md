@@ -84,6 +84,8 @@ Conditionally renders children if the condition evaluates truthy.
 
 Injects a DSL-defined value, usually used for rendering a dynamic block or fragment passed as data.
 
+### `<ApiCall />`
+
 ---
 
 ## 🧲 `Sidebar` Block
@@ -644,6 +646,105 @@ This section models the UI of the Customer List screen using DSL blocks in modul
             <PropValue>link</PropValue>
           </BlockProp>
         </BlockProps>
+      </Block>
+    </If>
+  </BlockRender>
+</Block>
+```
+
+### 🔸 `AddCustomerModal` Block
+```xml
+<Block>
+  <BlockName>AddCustomerModal</BlockName>
+  <BlockProps>
+    <BlockProp>
+      <PropName>isOpen</PropName>
+      <PropType>boolean</PropType>
+      <PropRequired>true</PropRequired>
+    </BlockProp>
+    <BlockProp>
+      <PropName>onClose</PropName>
+      <PropType>function</PropType>
+    </BlockProp>
+  </BlockProps>
+
+  <BlockLogic>
+    <Define name="handleSubmit">
+      <Action type="api.call">
+        <Endpoint>/api/customers</Endpoint>
+        <Method>POST</Method>
+        <Payload>{ formData }</Payload>
+        <OnSuccess>
+          <Action type="emit" name="customerAdded" />
+          <Action type="call" fn="onClose" />
+        </OnSuccess>
+        <OnError>
+          <Action type="toast.error" message="Failed to add customer" />
+        </OnError>
+      </Action>
+    </Define>
+  </BlockLogic>
+
+  <BlockRender>
+    <If condition="isOpen">
+      <Block>
+        <BlockName>Modal</BlockName>
+        <BlockChildren>
+          <Block>
+            <BlockName>Form</BlockName>
+            <BlockProps>
+              <BlockProp>
+                <PropName>onSubmit</PropName>
+                <PropValue>{handleSubmit}</PropValue>
+              </BlockProp>
+            </BlockProps>
+            <BlockChildren>
+              <Block>
+                <BlockName>FormField</BlockName>
+                <BlockProps>
+                  <BlockProp>
+                    <PropName>name</PropName>
+                    <PropValue>name</PropValue>
+                  </BlockProp>
+                  <BlockProp>
+                    <PropName>label</PropName>
+                    <PropValue>Customer Name</PropValue>
+                  </BlockProp>
+                  <BlockProp>
+                    <PropName>type</PropName>
+                    <PropValue>text</PropValue>
+                  </BlockProp>
+                </BlockProps>
+              </Block>
+              <Block>
+                <BlockName>Button</BlockName>
+                <BlockProps>
+                  <BlockProp>
+                    <PropName>type</PropName>
+                    <PropValue>submit</PropValue>
+                  </BlockProp>
+                  <BlockProp>
+                    <PropName>label</PropName>
+                    <PropValue>Save</PropValue>
+                  </BlockProp>
+                </BlockProps>
+              </Block>
+              <Block>
+                <BlockName>Button</BlockName>
+                <BlockProps>
+                  <BlockProp>
+                    <PropName>label</PropName>
+                    <PropValue>Cancel</PropValue>
+                  </BlockProp>
+                  <BlockProp>
+                    <PropName>onClick</PropName>
+                    <PropValue>{onClose}</PropValue>
+                  </BlockProp>
+                </BlockProps>
+              </Block>
+            </BlockChildren>
+          </Block>
+        </BlockChildren>
       </Block>
     </If>
   </BlockRender>
