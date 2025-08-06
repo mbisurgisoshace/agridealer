@@ -81,23 +81,29 @@ model ProductCompany {
 }
 
 model BayerProduct {
-  id               Int            @id @default(autoincrement())
-  trait            String
-  variety          String
-  treatment        String
-  seedSize         String
-  packaging        String
-  cropType         CropType
-  productDetail    String
-  dealerPricing    Float
-  endUserPricing   Float
-  agiisId          String
-  sapId            String
-  isDeleted        Boolean        @default(false)
-  dealershipId     Int            @default(1)
-  Dealership       Dealership     @relation(fields: [dealershipId], references: [id])
-  productCompanyId Int
-  ProductCompany   ProductCompany @relation(fields: [productCompanyId], references: [id])
+  id                         Int                          @id @default(autoincrement())
+  trait                      String
+  variety                    String
+  treatment                  String
+  seedSize                   String
+  packaging                  String
+  cropType                   CropType
+  productDetail              String
+  // dealerPricing    Float
+  // endUserPricing   Float
+  agiisId                    String
+  sapId                      String
+  isDeleted                  Boolean                      @default(false)
+  // measurementUnitCodeValue  String
+  // measurementUnitCodeDomain String
+  dealershipId               Int                          @default(1)
+  Dealership                 Dealership                   @relation(fields: [dealershipId], references: [id])
+  productCompanyId           Int
+  ProductCompany             ProductCompany               @relation(fields: [productCompanyId], references: [id])
+  BayerPricesheet            BayerPricesheet[]
+  BayerRetailerOrderSummary  BayerRetailerOrderSummary[]
+  BayerProductBookingSummary BayerProductBookingSummary[]
+  BayerShipNotice            BayerShipNotice[]
 
   @@unique([trait, variety, treatment, seedSize, cropType, packaging, agiisId, sapId])
   @@map("BayerProducts")
@@ -140,34 +146,90 @@ model RegularProduct {
 }
 
 model PurchaseOrder {
-  id                Int                 @id @default(autoincrement())
-  purchaseOrderName String?
-  isQuote           Boolean
-  isSimple          Boolean
-  customerId        Int
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
-  isDeleted         Boolean             @default(false)
-  dealershipId      Int                 @default(1)
-  Dealership        Dealership          @relation(fields: [dealershipId], references: [id])
-  Customer          Customer            @relation(fields: [customerId], references: [id])
-  PurchaseOrderItem PurchaseOrderItem[]
+  id                         Int                          @id @default(autoincrement())
+  purchaseOrderName          String?
+  isQuote                    Boolean
+  isSimple                   Boolean
+  customerId                 Int
+  createdAt                  DateTime                     @default(now())
+  updatedAt                  DateTime                     @updatedAt
+  isDeleted                  Boolean                      @default(false)
+  dealershipId               Int                          @default(1)
+  Dealership                 Dealership                   @relation(fields: [dealershipId], references: [id])
+  Customer                   Customer                     @relation(fields: [customerId], references: [id])
+  PurchaseOrderItem          PurchaseOrderItem[]
+  BayerProductBookingSummary BayerProductBookingSummary[]
 
   @@map("PurchaseOrders")
 }
 
 model PurchaseOrderItem {
-  id               Int           @id @default(autoincrement())
-  puchaseOrderId   Int
-  productCompanyId Int
-  productId        Int
-  quantity         Float
-  note             String?
-  orderDate        DateTime      @default(now())
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
-  PurchaseOrder    PurchaseOrder @relation(fields: [puchaseOrderId], references: [id])
+  id                  Int           @id @default(autoincrement())
+  puchaseOrderId      Int
+  productCompanyId    Int
+  productId           Int
+  quantity            Float
+  note                String?
+  editedPrice         Float
+  bayerLineNumber     Int?
+  bayerLineItemNumber Int?
+  orderDate           DateTime      @default(now())
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  PurchaseOrder       PurchaseOrder @relation(fields: [puchaseOrderId], references: [id])
 
   @@unique([productCompanyId, productId])
   @@map("PurchaseOrderItems")
+}
+
+model BayerPricesheet {
+  id             Int          @id @default(autoincrement())
+  bayerProductId Int
+  zoneId         String
+  dealerPricing  Float
+  endUserPricing Float
+  BayerProduct   BayerProduct @relation(fields: [bayerProductId], references: [id])
+
+  @@map("BayerPricesheets")
+}
+
+model BayerProductBookingSummary {
+  id                  Int           @id @default(autoincrement())
+  purchaseOrderId     Int
+  bayerProductId      Int
+  quantity            Float
+  pbsCustomerName     String
+  bayerLineNumber     Int
+  bayerLineItemNumber Int
+  PurchaseOrder       PurchaseOrder @relation(fields: [purchaseOrderId], references: [id])
+  BayerProduct        BayerProduct  @relation(fields: [bayerProductId], references: [id])
+
+  @@map("BayerProductBookingSummary")
+}
+
+model BayerRetailerOrderSummary {
+  id                      Int          @id @default(autoincrement())
+  bayerProductId          Int
+  netShippedQuantity      Float
+  scheduledToShipQuantity Float
+  BayerProduct            BayerProduct @relation(fields: [bayerProductId], references: [id])
+
+  @@map("BayerRetailerOrderSummary")
+}
+
+model BayerShipNotice {
+  id                   Int          @id @default(autoincrement())
+  bayerProductId       Int
+  quantity             Float
+  lotNumber            String
+  grossVolumeNetWeight String
+  isAccepted           Boolean
+  deliveryNoteNumber   String
+  shipNoticeNumber     String
+  shipDate             DateTime
+  deliveryDate         DateTime
+  isDeleted            Boolean      @default(false)
+  BayerProduct         BayerProduct @relation(fields: [bayerProductId], references: [id])
+
+  @@map("BayerShipNotice")
 }
